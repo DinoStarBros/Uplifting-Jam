@@ -15,7 +15,7 @@ tracks/0/path = NodePath("buttons:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.2, 0.6),
 "transitions": PackedFloat32Array(0.307786, 0.307786, 1),
 "update": 0,
 "values": [Vector2(78, 787), Vector2(78, 787), Vector2(78, 297)]
@@ -27,7 +27,7 @@ tracks/1/path = NodePath("title_txt:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.396494),
 "transitions": PackedFloat32Array(0.164939, 1),
 "update": 0,
 "values": [Vector2(206, -322), Vector2(205.5, 42)]
