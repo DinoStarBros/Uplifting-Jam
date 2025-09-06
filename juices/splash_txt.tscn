@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk10q23hpe03b"]
+
+[ext_resource type="Script" uid="uid://dpvje8f1do3x0" path="res://juices/splash_txt.gd" id="1_1gul7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1gul7"]
+font_size = 30
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_1gul7"]
+resource_name = "start"
+step = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgwow"]
+_data = {
+&"start": SubResource("Animation_1gul7")
+}
+
+[node name="splash_txt" type="Node2D"]
+script = ExtResource("1_1gul7")
+
+[node name="text" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -17.5
+offset_right = 31.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "67!!"
+label_settings = SubResource("LabelSettings_1gul7")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rgwow")
+}
+autoplay = "start"

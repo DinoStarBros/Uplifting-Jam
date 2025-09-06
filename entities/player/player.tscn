@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjnhgh4poati4"]
+
+[ext_resource type="Script" uid="uid://cj5flhwrb4ild" path="res://entities/player/player.gd" id="1_symyc"]
+[ext_resource type="Script" uid="uid://cxnayph0w8mol" path="res://entities/player/camera_2d.gd" id="2_abrql"]
+[ext_resource type="Script" uid="uid://cd0rt1c62nhq1" path="res://entities/player/gui.gd" id="3_sglur"]
+[ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://settingsMenu/settings_menu.tscn" id="4_bls4j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_symyc"]
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_symyc")
+
+[node name="cls" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_symyc")
+
+[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_abrql")
+target = NodePath("..")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("3_sglur")
+
+[node name="pause" type="Control" parent="GUI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="settingsMenu" parent="GUI/pause" instance=ExtResource("4_bls4j")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -556.0
+offset_top = -317.0
+offset_right = -556.0
+offset_bottom = -317.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="botuns" type="HBoxContainer" parent="GUI/pause/settingsMenu"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 553.0
+offset_right = 192.0
+offset_bottom = 593.0
+
+[node name="resume" type="Button" parent="GUI/pause/settingsMenu/botuns"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "RESUME"
+
+[node name="quit" type="Button" parent="GUI/pause/settingsMenu/botuns"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "quit
+"
+
+[node name="sure" type="Button" parent="GUI/pause/settingsMenu/botuns"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Sure?
+"
