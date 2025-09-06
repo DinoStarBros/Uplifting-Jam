@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://wxr3bfk3vrrk"]
+[gd_scene load_steps=6 format=3 uid="uid://wxr3bfk3vrrk"]
 
 [ext_resource type="Script" uid="uid://bahqri01wuqxe" path="res://screens/title_screen/title_screen.gd" id="1_4rvf0"]
 
@@ -8,9 +8,61 @@ font_size = 100
 [sub_resource type="Animation" id="Animation_4rvf0"]
 resource_name = "start"
 step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("buttons:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.307786, 0.307786, 1),
+"update": 0,
+"values": [Vector2(78, 787), Vector2(78, 787), Vector2(78, 297)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("title_txt:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.164939, 1),
+"update": 0,
+"values": [Vector2(206, -322), Vector2(205.5, 42)]
+}
+
+[sub_resource type="Animation" id="Animation_alfmu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("buttons:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(78, 787)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("title_txt:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(206, -322)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_alfmu"]
 _data = {
+&"RESET": SubResource("Animation_alfmu"),
 &"start": SubResource("Animation_4rvf0")
 }
 
@@ -21,10 +73,10 @@ script = ExtResource("1_4rvf0")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -434.5
-offset_top = 42.0
-offset_right = 434.5
-offset_bottom = 155.0
+offset_left = -434.0
+offset_top = -322.0
+offset_right = 435.0
+offset_bottom = -209.0
 grow_horizontal = 2
 text = "UPLIFTING GAME"
 label_settings = SubResource("LabelSettings_4rvf0")
@@ -35,9 +87,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 78.0
-offset_top = -63.0
+offset_top = 427.0
 offset_right = 264.0
-offset_bottom = 196.0
+offset_bottom = 686.0
 grow_vertical = 2
 theme_override_constants/separation = 50
 

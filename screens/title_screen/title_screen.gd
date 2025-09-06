@@ -4,6 +4,8 @@ class_name TitleScreen
 @onready var animation: AnimationPlayer = %animation
 
 func _ready() -> void:
+	SceneManager.fade_in()
+	
 	get_tree().paused = false
 	Global.game_state = Global.GAME_STATES.TITLE
 	
