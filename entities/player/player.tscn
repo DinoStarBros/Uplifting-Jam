@@ -16,6 +16,7 @@ shape = SubResource("RectangleShape2D_symyc")
 [node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_abrql")
 target = NodePath("..")
+sensitivity = 0.0
 
 [node name="GUI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -38,6 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="settingsMenu" parent="GUI/pause" instance=ExtResource("4_bls4j")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -16,7 +16,7 @@ func _on_save_pressed()->void:
 	SaveLoad.SaveFileData.screen_shake = Global.screen_shake_value
 	SaveLoad.SaveFileData.frame_freeze = Global.frame_freeze_value
 	
-	SaveLoad.SaveFileData.resolutuion_index = Global.resolution_index
+	#SaveLoad.SaveFileData.resolutuion_index = Global.resolution_index
 	SaveLoad._save()
 
 func _on_load_pressed()->void:
