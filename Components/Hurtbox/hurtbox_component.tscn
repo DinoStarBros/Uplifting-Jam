@@ -1,0 +1,146 @@
+[gd_scene load_steps=11 format=3 uid="uid://c457ehqfb1g6c"]
+
+[ext_resource type="Script" uid="uid://bny5t54ps4gjb" path="res://Components/Hurtbox/hurtbox_component.gd" id="1_gl5xv"]
+[ext_resource type="Texture2D" uid="uid://c0jpnw00110i" path="res://Art/hitspark.png" id="2_uccbt"]
+[ext_resource type="AudioStream" uid="uid://btoc7gcwarymr" path="res://Audio/amalgun/shoot.wav" id="3_k8a6g"]
+[ext_resource type="AudioStream" uid="uid://cspd72htqero" path="res://Audio/jetslash sfx/SFX/hit.mp3" id="4_3rmhx"]
+
+[sub_resource type="Curve" id="Curve_uccbt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.375, 0.88764), -0.927768, -0.927768, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_k8a6g"]
+curve = SubResource("Curve_uccbt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uccbt"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+initial_velocity_min = 330.77
+initial_velocity_max = 646.15
+angular_velocity_min = -487.38
+angular_velocity_max = 465.23
+gravity = Vector3(0, 98, 0)
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_k8a6g")
+
+[sub_resource type="Animation" id="Animation_k8a6g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitspark:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitspark/GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitspark/GPUParticles2D:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="Animation" id="Animation_uccbt"]
+resource_name = "on_hit"
+length = 0.3
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitspark:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitspark/GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitspark/GPUParticles2D:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.0, 2.0, 64.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k8a6g"]
+_data = {
+&"RESET": SubResource("Animation_k8a6g"),
+&"on_hit": SubResource("Animation_uccbt")
+}
+
+[node name="hurtbox_component" type="Area2D"]
+script = ExtResource("1_gl5xv")
+
+[node name="Hitspark" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_uccbt")
+centered = false
+offset = Vector2(0, -64)
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Hitspark"]
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_uccbt")
+
+[node name="fxAnim" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_k8a6g")
+}
+
+[node name="hit1" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_k8a6g")
+pitch_scale = 0.4
+
+[node name="hit2" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_3rmhx")

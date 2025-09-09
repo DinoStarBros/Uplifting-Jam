@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=22 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -10,9 +10,6 @@
 [ext_resource type="Script" uid="uid://drr7ccpqlh4b5" path="res://entities/player/StateStuff/jumpPlr.gd" id="5_8fjmc"]
 [ext_resource type="Script" uid="uid://prtybmq88jau" path="res://entities/player/StateStuff/dashPlr.gd" id="6_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://diihmdabfwa8g" path="res://Art/Placeholder/Trail2.png" id="8_26q78"]
-[ext_resource type="Script" uid="uid://br0jxj83cm6v0" path="res://entities/player/StateStuff/pogoJumpPlr.gd" id="9_a1qjk"]
-[ext_resource type="Script" uid="uid://cdschvmpwj5fr" path="res://entities/player/StateStuff/slashKnockbackPlr.gd" id="10_j3ovn"]
-[ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="13_j3ovn"]
 
 [sub_resource type="Animation" id="Animation_8fjmc"]
 length = 0.001
@@ -224,6 +221,47 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bls4j"]
 size = Vector2(36, 64)
 
+[sub_resource type="Animation" id="Animation_7thud"]
+resource_name = "slash"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("slash:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 1, 0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("slash:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("slash:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_a1qjk"]
 length = 0.001
 tracks/0/type = "value"
@@ -262,71 +300,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_7thud"]
-resource_name = "slash"
-length = 0.2
-step = 0.025
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("slash:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [2, 1, 0, 1, 2]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("slash:flip_v")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("slash:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.05, 0.175),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a1qjk"]
 _data = {
@@ -334,12 +307,7 @@ _data = {
 &"slash": SubResource("Animation_7thud")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7thud"]
-radius = 38.9999
-height = 130.0
-
 [node name="player" type="CharacterBody2D"]
-collision_layer = 0
 script = ExtResource("1_symyc")
 
 [node name="Label" type="Label" parent="."]
@@ -389,12 +357,6 @@ wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="pogoJump" type="Node" parent="SM"]
-script = ExtResource("9_a1qjk")
-
-[node name="slashKnockback" type="Node" parent="SM"]
-script = ExtResource("10_j3ovn")
-
 [node name="anim" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
@@ -422,7 +384,7 @@ unique_name_in_owner = true
 [node name="slash" type="Sprite2D" parent="slash_pivot"]
 unique_name_in_owner = true
 visible = false
-scale = Vector2(1.4, 0.7)
+scale = Vector2(1.4, 0.5)
 texture = ExtResource("8_26q78")
 hframes = 2
 vframes = 2
@@ -434,11 +396,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_a1qjk")
 }
 speed_scale = 1.5
-
-[node name="HitboxComponent" parent="slash_pivot" instance=ExtResource("13_j3ovn")]
-unique_name_in_owner = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="slash_pivot/HitboxComponent"]
-position = Vector2(1.00006, -23)
-shape = SubResource("CapsuleShape2D_7thud")
-disabled = true

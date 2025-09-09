@@ -1,12 +1,135 @@
 extends CharacterBody2D
 class_name Player
 
-func _physics_process(_delta: float) -> void:
-	pass
+@onready var sm: StateMachinePlayer = %SM
+@onready var anim: AnimationPlayer = %anim
+@onready var sprite: Sprite2D = %Mow
+@onready var slashnim: AnimationPlayer = %slashnim
+@onready var slash_pivot: Node2D = %slash_pivot
+@onready var hitbox_component: HitboxComponent = %HitboxComponent
 
-var aim_position : Vector2
-var half_viewport : Vector2
-func _unhandled_input(event: InputEvent) -> void: ## For camera aiming, dynamic camera follow mouse
-	if event is InputEventMouseMotion:
-		half_viewport = get_viewport_rect().size / 2.0
-		aim_position = (event.position - half_viewport)
+var coyote_time : float = 0
+var x_input : int = 0
+var last_x_input : int = 0
+var y_input : int = 0
+var last_y_input : int = 0
+var jump_buffer_time : float = 0
+var next_buffered_state : String
+var enable_gravity : bool = true
+var air_dashes : int = 1
+var override_flip_sprite : bool = false
+var can_slash : bool = true
+var can_dash : bool = true
+
+const MAX_DASHES : int = 1
+const SPEED : float = 400.0
+const JUMP_VEL : float = 600.0
+const COYOTE_TIME_THRESHOLD : float = 0.15
+const DASH_SPEED : float = 1000.0
+const DASH_DURATION : float = 0.25
+const SLASH_COOLDOWN : float = 0.35
+const SLASH_KNOCKBACK : float = 300.0
+
+func _ready() -> void:
+	%slashTimer.timeout.connect(_slashCD_timeout)
+	hitbox_component.Hit.connect(_hitbox_hit)
+	hitbox_component.attack.damage = 10
+	hitbox_component.attack.knockback = 350
+
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		if enable_gravity:
+			velocity.y += Global.GRAVITY * delta
+		coyote_time += delta
+	else:
+		air_dashes = MAX_DASHES
+		coyote_time = 0
+	
+	_x_input_handling()
+	_y_input_handling()
+	move_and_slide()
+	
+	if Input.is_action_just_pressed("esc"):
+		get_tree().quit()
+
+func _x_input_handling() -> void:
+	if Input.is_action_pressed("Right"):
+		x_input = 1
+		last_x_input = 1
+	elif Input.is_action_pressed("Left"):
+		x_input = -1
+		last_x_input = -1
+	else:
+		x_input = 0
+	
+	if not override_flip_sprite:
+		sprite.flip_h = last_x_input == -1
+
+func _y_input_handling() -> void:
+	if Input.is_action_pressed("Down"):
+		y_input = 1
+		last_y_input = 1
+	elif Input.is_action_pressed("Up"):
+		y_input = -1
+		last_y_input = -1
+	else:
+		y_input = 0
+
+func _slash_dir_handling() -> void:
+	if y_input == 0:
+		if last_x_input == 1: # Right
+			slash_pivot.rotation_degrees = 0
+			hitbox_component.attack.knockback_direction = Vector2.RIGHT
+			
+		elif last_x_input == -1: # Left
+			slash_pivot.rotation_degrees = 180
+			hitbox_component.attack.knockback_direction = Vector2.LEFT
+			
+	else:
+		if y_input == 1: # Down
+			if is_on_floor():
+				if last_x_input == 1: # Right
+					slash_pivot.rotation_degrees = 0
+					hitbox_component.attack.knockback_direction = Vector2.RIGHT
+					
+				elif last_x_input == -1: # Left
+					slash_pivot.rotation_degrees = 180
+					hitbox_component.attack.knockback_direction = Vector2.LEFT
+			else:
+				slash_pivot.rotation_degrees = 90
+				hitbox_component.attack.knockback_direction = Vector2.DOWN
+			
+		elif y_input == -1: # Up
+			slash_pivot.rotation_degrees = -90
+			hitbox_component.attack.knockback_direction = Vector2.UP
+			
+
+func slash_handling() -> void:
+	if Input.is_action_just_pressed("slash") and can_slash:
+		%slash.scale.y *= -1
+		_slash_dir_handling()
+		slashnim.play("slash")
+		can_slash = false
+		%slashTimer.start(SLASH_COOLDOWN)
+		
+		%slash_sfx.pitch_scale = randf_range(0.8, 1.2)
+		%slash_sfx.play()
+
+func _slashCD_timeout() -> void:
+	can_slash = true
+
+func dash_handling() -> void:
+	if Input.is_action_just_pressed("dash") and air_dashes >= 1:
+		sm.change_state("dash")
+
+func _hitbox_hit(attack:Attack) -> void:
+	Global.frame_freeze(0.1, 0.05)
+	
+	if y_input != 0: # Y Stuff
+		if slash_pivot.rotation_degrees == 90: # POGO
+			sm.change_state("walk")
+			sm.change_state("pogoJump")
+	
+	else: # X stuff
+		velocity.x = attack.knockback_direction.x * -SLASH_KNOCKBACK
+		sm.change_state("slashKnockback")
