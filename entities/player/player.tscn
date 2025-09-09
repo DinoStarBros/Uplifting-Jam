@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=29 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -12,7 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://diihmdabfwa8g" path="res://Art/Placeholder/Trail2.png" id="8_26q78"]
 [ext_resource type="Script" uid="uid://br0jxj83cm6v0" path="res://entities/player/StateStuff/pogoJumpPlr.gd" id="9_a1qjk"]
 [ext_resource type="Script" uid="uid://cdschvmpwj5fr" path="res://entities/player/StateStuff/slashKnockbackPlr.gd" id="10_j3ovn"]
+[ext_resource type="Script" uid="uid://d2a5ol1v657d8" path="res://entities/player/camera.gd" id="11_afbqv"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="13_j3ovn"]
+[ext_resource type="Script" uid="uid://cd0rt1c62nhq1" path="res://entities/player/gui.gd" id="15_gx6sm"]
+[ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://settingsMenu/settings_menu.tscn" id="16_yqrof"]
 
 [sub_resource type="Animation" id="Animation_8fjmc"]
 length = 0.001
@@ -343,7 +346,6 @@ collision_layer = 0
 script = ExtResource("1_symyc")
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_left = -22.0
 offset_top = -58.0
 offset_right = 18.0
@@ -401,9 +403,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_8fjmc")
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.9, 0.9)
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+zoom = Vector2(0.8, 0.8)
 position_smoothing_speed = 25.0
+script = ExtResource("11_afbqv")
 
 [node name="collide" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bls4j")
@@ -437,8 +441,55 @@ speed_scale = 1.5
 
 [node name="HitboxComponent" parent="slash_pivot" instance=ExtResource("13_j3ovn")]
 unique_name_in_owner = true
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="slash_pivot/HitboxComponent"]
 position = Vector2(1.00006, -23)
 shape = SubResource("CapsuleShape2D_7thud")
 disabled = true
+
+[node name="GUI" type="CanvasLayer" parent="."]
+script = ExtResource("15_gx6sm")
+
+[node name="pause" type="Control" parent="GUI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 47.0
+offset_top = -264.0
+offset_right = 677.0
+offset_bottom = 325.0
+grow_vertical = 2
+
+[node name="settingsMenu" parent="GUI/pause" instance=ExtResource("16_yqrof")]
+unique_name_in_owner = true
+offset_left = -12.0
+offset_top = -32.0
+offset_right = -12.0
+offset_bottom = -32.0
+
+[node name="buttonBox" type="HBoxContainer" parent="GUI/pause/settingsMenu"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 549.0
+offset_right = 223.0
+offset_bottom = 589.0
+
+[node name="resume" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="quit" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="sure" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sure"

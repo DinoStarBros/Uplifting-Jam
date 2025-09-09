@@ -3,11 +3,17 @@ class_name HurtboxComponent
 
 @export var health_component : HealthComponent
 @export var ouchnim : AnimationPlayer
+@export var hitspark_scale : Vector2 = Vector2(1,1)
+
+@onready var hitspark: Sprite2D = %Hitspark
+
+func _ready() -> void:
+	hitspark.scale = hitspark_scale
 
 func on_hit(attack: Attack) -> void:
 	health_component.hp -= attack.damage
-	%Hitspark.look_at(global_position-attack.knockback_direction)
-	%Hitspark.rotation_degrees += 180
+	hitspark.look_at(global_position-attack.knockback_direction)
+	hitspark.rotation_degrees += 180
 	%fxAnim.play("on_hit")
 	ouchnim.play("ouch")
 	

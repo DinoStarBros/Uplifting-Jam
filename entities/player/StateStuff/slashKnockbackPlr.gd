@@ -6,10 +6,12 @@ func on_enter() -> void:
 func process(delta: float)-> void:
 	p.velocity.x *= 0.8
 	
+	if not Input.is_action_pressed("jump"):
+		p.velocity.y *= 0.8
 	
 	p.slash_handling()
 	
-	if abs(p.velocity.x) < 30:
+	if abs(p.velocity.x) < 50:
 		p.sm.change_state("walk")
 	
 	p.dash_handling()

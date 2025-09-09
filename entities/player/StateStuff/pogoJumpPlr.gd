@@ -10,6 +10,7 @@ func process(delta: float)-> void:
 	p.velocity.x = p.x_input * p.SPEED
 	p.slash_handling()
 	
+	
 	if p.velocity.y >= 0:
 		p.sm.change_state("fall")
 	

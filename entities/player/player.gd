@@ -7,6 +7,7 @@ class_name Player
 @onready var slashnim: AnimationPlayer = %slashnim
 @onready var slash_pivot: Node2D = %slash_pivot
 @onready var hitbox_component: HitboxComponent = %HitboxComponent
+@onready var camera: Cam = %Camera
 
 var coyote_time : float = 0
 var x_input : int = 0
@@ -48,9 +49,6 @@ func _physics_process(delta: float) -> void:
 	_x_input_handling()
 	_y_input_handling()
 	move_and_slide()
-	
-	if Input.is_action_just_pressed("esc"):
-		get_tree().quit()
 
 func _x_input_handling() -> void:
 	if Input.is_action_pressed("Right"):
@@ -124,12 +122,14 @@ func dash_handling() -> void:
 
 func _hitbox_hit(attack:Attack) -> void:
 	Global.frame_freeze(0.1, 0.05)
+	camera.screen_shake(2, 0.1)
 	
-	if y_input != 0: # Y Stuff
-		if slash_pivot.rotation_degrees == 90: # POGO
-			sm.change_state("walk")
-			sm.change_state("pogoJump")
+	#if y_input != 0: # Y Stuff
+	if slash_pivot.rotation_degrees == 90: # POGO
+		sm.change_state("walk")
+		sm.change_state("pogoJump")
 	
 	else: # X stuff
-		velocity.x = attack.knockback_direction.x * -SLASH_KNOCKBACK
 		sm.change_state("slashKnockback")
+	
+	velocity.x = attack.knockback_direction.x * -SLASH_KNOCKBACK
