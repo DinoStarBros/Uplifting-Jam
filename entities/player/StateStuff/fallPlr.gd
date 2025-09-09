@@ -8,6 +8,7 @@ func process(delta: float)-> void:
 	p.velocity.x = p.x_input * p.SPEED
 	p.slash_handling()
 	
+	
 	if Input.is_action_pressed("jump"):
 		p.jump_buffer_time += delta
 	else:

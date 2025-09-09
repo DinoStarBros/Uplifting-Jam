@@ -23,7 +23,7 @@ func on_hit(attack: Attack) -> void:
 		
 		%hit1.pitch_scale = randf_range(0.3, 0.5)
 		%hit1.play()
-		%hit2.pitch_scale = randf_range(0.9, 1.1)
+		%hit2.pitch_scale = randf_range(0.7, 0.9)
 		%hit2.play()
 	else:
 		if owner.has_method("dead"):
