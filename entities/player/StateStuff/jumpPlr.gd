@@ -10,6 +10,8 @@ func on_enter()-> void:
 func process(delta: float)-> void:
 	p.velocity.x = p.x_input * p.SPEED
 	p.slash_handling()
+	p.ability_handling(delta)
+
 	
 	if not Input.is_action_pressed("jump"):
 		p.velocity.y = 0

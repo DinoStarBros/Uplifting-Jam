@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://cirmuwc630gtr"]
+
+[ext_resource type="Script" uid="uid://ipdl2ppslru3" path="res://inventory/inventory.gd" id="1_62wf1"]
+
+[node name="inventoryStuff" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_62wf1")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -605.5
+offset_top = -335.0
+offset_right = 605.5
+offset_bottom = 335.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tabs" type="TabContainer" parent="PanelContainer"]
+layout_mode = 2
+current_tab = 0
+
+[node name="Inventory" type="VBoxContainer" parent="PanelContainer/Tabs"]
+layout_mode = 2
+alignment = 1
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="PanelContainer/Tabs/Inventory"]
+layout_mode = 2
+text = "YOU HAVE STUFF IDK"
+
+[node name="Abilities" type="VBoxContainer" parent="PanelContainer/Tabs"]
+visible = false
+layout_mode = 2
+alignment = 1
+metadata/_tab_index = 1
+
+[node name="Label" type="Label" parent="PanelContainer/Tabs/Abilities"]
+layout_mode = 2
+text = "abilities"
+
+[node name="Skill Tree" type="VBoxContainer" parent="PanelContainer/Tabs"]
+visible = false
+layout_mode = 2
+alignment = 1
+metadata/_tab_index = 2
+
+[node name="s" type="Label" parent="PanelContainer/Tabs/Skill Tree"]
+layout_mode = 2
+text = "skill tree lmao"

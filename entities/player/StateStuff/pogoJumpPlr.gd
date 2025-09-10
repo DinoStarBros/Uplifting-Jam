@@ -9,7 +9,7 @@ func on_enter()-> void:
 func process(delta: float)-> void:
 	p.velocity.x = p.x_input * p.SPEED
 	p.slash_handling()
-	
+	p.ability_handling(delta)
 	
 	if p.velocity.y >= 0:
 		p.sm.change_state("fall")

@@ -4,6 +4,7 @@ class_name GUI
 @onready var pause: Control = %pause
 @onready var settings_menu: Settings = %settingsMenu
 @onready var inventory: Control = %inventory
+@onready var inventory_stuff: Inventory = %inventoryStuff
 
 var sure_quit : bool = false
 var gui_mode : GUI_MODES = GUI_MODES.UNPAUSED
@@ -16,6 +17,7 @@ func _ready() -> void:
 	%resume.pressed.connect(_resume_pressed)
 	%sure.pressed.connect(_sure_pressed)
 	%quit.pressed.connect(_quit_pressed)
+	%inv_resume.pressed.connect(_inv_resum_pressed)
 
 func _process(_delta: float) -> void:
 	pause.visible = (
@@ -49,6 +51,7 @@ func _inventory() -> void:
 	if get_tree().paused:
 		settings_menu._on_load_pressed()
 		gui_mode = GUI_MODES.INVENTORY
+		%inv_resume.grab_focus()
 	else:
 		settings_menu._on_save_pressed()
 		gui_mode = GUI_MODES.UNPAUSED
@@ -66,6 +69,7 @@ func _pause() -> void:
 	if get_tree().paused:
 		settings_menu._on_load_pressed()
 		gui_mode = GUI_MODES.PAUSE
+		%resume.grab_focus()
 	else:
 		settings_menu._on_save_pressed()
 		gui_mode = GUI_MODES.UNPAUSED
@@ -78,3 +82,6 @@ func _sure_pressed() -> void:
 
 func _quit_pressed() -> void:
 	sure_quit = not sure_quit
+
+func _inv_resum_pressed() -> void:
+	_inventory()

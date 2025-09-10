@@ -12,6 +12,7 @@ func process(delta: float)-> void:
 	p.override_flip_sprite = false
 	p.velocity.x = p.x_input * p.SPEED
 	p.slash_handling()
+	p.ability_handling(delta)
 	
 	if not Input.is_action_pressed("jump") and p.velocity.y < 0:
 		p.velocity.y = 0

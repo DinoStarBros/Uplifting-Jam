@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=36 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -18,7 +18,14 @@
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="13_j3ovn"]
 [ext_resource type="Script" uid="uid://cd0rt1c62nhq1" path="res://entities/player/gui.gd" id="15_gx6sm"]
 [ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://settingsMenu/settings_menu.tscn" id="16_yqrof"]
+[ext_resource type="PackedScene" uid="uid://cirmuwc630gtr" path="res://inventory/inventory.tscn" id="19_221hk"]
 [ext_resource type="Script" uid="uid://4o1uq1ih5l5u" path="res://entities/player/ability_handler.gd" id="19_we0b7"]
+[ext_resource type="PackedScene" uid="uid://c457ehqfb1g6c" path="res://Components/Hurtbox/hurtbox_component.tscn" id="20_eyb6c"]
+[ext_resource type="PackedScene" uid="uid://bghmfsudxxrio" path="res://Components/Health/health_component.tscn" id="21_221hk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyb6c"]
+radius = 15.0
+height = 52.0
 
 [sub_resource type="Animation" id="Animation_8fjmc"]
 length = 0.001
@@ -355,6 +362,14 @@ offset_right = 18.0
 offset_bottom = -35.0
 text = "Walk"
 
+[node name="hurtbox_component" parent="." instance=ExtResource("20_eyb6c")]
+
+[node name="hurtbox" type="CollisionShape2D" parent="hurtbox_component"]
+shape = SubResource("CapsuleShape2D_eyb6c")
+debug_color = Color(0.925038, 0.138517, 3.85046e-07, 0.42)
+
+[node name="health_component" parent="." instance=ExtResource("21_221hk")]
+
 [node name="ability_handler" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("19_we0b7")
@@ -441,6 +456,7 @@ script = ExtResource("15_gx6sm")
 
 [node name="pause" type="Control" parent="GUI"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
@@ -483,9 +499,33 @@ text = "Sure"
 [node name="inventory" type="Control" parent="GUI"]
 unique_name_in_owner = true
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inventoryStuff" parent="GUI/inventory" instance=ExtResource("19_221hk")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="buttonBox" type="HBoxContainer" parent="GUI/inventory/inventoryStuff"]
+layout_mode = 0
+offset_left = -555.0
+offset_top = 269.0
+offset_right = -369.0
+offset_bottom = 309.0
+
+[node name="inv_resume" type="Button" parent="GUI/inventory/inventoryStuff/buttonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
 
 [node name="Mow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
