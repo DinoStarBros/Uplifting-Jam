@@ -29,7 +29,7 @@ const JUMP_VEL : float = 600.0
 const COYOTE_TIME_THRESHOLD : float = 0.15
 const DASH_SPEED : float = 1000.0
 const DASH_DURATION : float = 0.25
-const SLASH_COOLDOWN : float = 0.35
+const SLASH_COOLDOWN : float = 0.37
 const SLASH_KNOCKBACK : float = 300.0
 
 func _ready() -> void:
