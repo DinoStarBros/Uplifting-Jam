@@ -6,6 +6,7 @@ const general_limit : int = 50
 @export var audios : Array[AudioSettings]
 
 var sfx_2d_scn : PackedScene = preload("res://globals/audioManagerGlobals/sfx_2d/sfx_2d.tscn")
+var sfx_scn : PackedScene = preload("res://globals/audioManagerGlobals/sfx/sfx.tscn")
 var audio : AudioSettings
 func create_2d_audio(location: Vector2, type: AudioSettings.types) -> void:
 	for n in audios:
@@ -26,6 +27,25 @@ func create_2d_audio(location: Vector2, type: AudioSettings.types) -> void:
 		general_audio_count += 1
 		
 		sfx_2d.play(audio.starting_point)
+
+func create_audio(type: AudioSettings.types) -> void:
+	for n in audios:
+		if n.type == type:
+			audio = n
+	
+	if not audio.reached_limit() and not general_limit_reached():
+		var sfx : SFX = sfx_2d_scn.instantiate()
+		add_child(sfx)
+
+		sfx.stream = audio.audio_stream
+		sfx.pitch_scale = randf_range(audio.min_pitch, audio.max_pitch)
+		sfx.volume_db = audio.volume_db
+		sfx.audio = audio
+		sfx.duration = audio.duration
+		audio.change_audio_count(1)
+		general_audio_count += 1
+		
+		sfx.play(audio.starting_point)
 
 func general_limit_reached() -> bool:
 	return general_audio_count > general_limit

@@ -2,8 +2,10 @@ extends Resource
 class_name AudioSettings
 
 enum types {
-	THING1,
-	THING2,
+	ENEMY_HIT1,
+	ENEMY_HIT2,
+	ENEMY_HIT3,
+	ENEMY_DEATH
 }
 
 @export var audio_stream : AudioStream

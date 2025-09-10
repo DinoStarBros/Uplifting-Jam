@@ -10,7 +10,7 @@ func on_enter()-> void:
 	p.velocity.y = 0
 	p.enable_gravity = false
 	p.override_flip_sprite = true
-	%dash_sfx.pitch_scale = randf_range(0.8, 1.2)
+	%dash_sfx.pitch_scale = randf_range(1.2, 1.5)
 	%dash_sfx.play()
 	
 	p.air_dashes -= 1

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://da63t5q408n3g"]
+
+[ext_resource type="Script" uid="uid://dx2i70j77duht" path="res://globals/audioManagerGlobals/sfx/sfx.gd" id="1_hcd2n"]
+
+[node name="sfx" type="AudioStreamPlayer"]
+bus = &"SFX"
+script = ExtResource("1_hcd2n")
+
+[node name="durationTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="finished" from="." to="." method="_on_finished"]

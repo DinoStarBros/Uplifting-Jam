@@ -7,6 +7,10 @@ func _ready()->void:
 	
 	#_update_res()
 	#_update_vol_val()
+	
+	%master_volume.value_changed.connect(_on_master_volume_value_changed)
+	%music_volume.value_changed.connect(_on_music_volume_value_changed)
+	%sfx_vol.value_changed.connect(_on_sfx_vol_value_changed)
 
 func _on_save_pressed()->void:
 	SaveLoad.SaveFileData.master_volume = Global.master_volume
@@ -56,21 +60,18 @@ func _update_res()->void:
 	%resOptions.select(SaveLoad.SaveFileData.resolutuion_index)
 	_on_res_options_item_selected(SaveLoad.SaveFileData.resolutuion_index)
 
-func _on_master_volume_value_chanGlobaled(value: float)->void:
-	%vol_chanGlobale_master.pitch_scale = value
-	%vol_chanGlobale_master.play(0.005)
-	
+func _on_master_volume_value_changed(value: float)->void:
 	Global.master_volume = value
-func _on_music_volume_value_chanGlobaled(value: float)->void:
-	%vol_chanGlobale_music.pitch_scale = value
-	%vol_chanGlobale_music.play(0.005)
 	
+
+func _on_music_volume_value_changed(value: float)->void:
 	Global.music_volume = value
-func _on_sfx_vol_value_chanGlobaled(value: float)->void:
-	%vol_chanGlobale_sfx.pitch_scale = value 
-	%vol_chanGlobale_sfx.play(0.005)
 	
+
+func _on_sfx_vol_value_changed(value: float)->void:
 	Global.sfx_volume = value
+	
+
 
 func _on_res_options_item_selected(index: int) -> void:
 	#pass
@@ -97,3 +98,14 @@ func _on_frame_freeze_pressed() -> void:
 		%frame_freeze.text = str("On")
 	else:
 		%frame_freeze.text = str("Off")
+
+
+func _on_screen_shake_pressed() -> void:
+	Global.screen_shake_value = not Global.screen_shake_value
+	%button_pressed.pitch_scale = randf_range(1.8,2.2)
+	%button_pressed.play()
+	
+	if Global.screen_shake_value:
+		%screen_shake.text = str("On")
+	else:
+		%screen_shake.text = str("Off")

@@ -8,6 +8,7 @@ class_name Player
 @onready var slash_pivot: Node2D = %slash_pivot
 @onready var hitbox_component: HitboxComponent = %HitboxComponent
 @onready var camera: Cam = %Camera
+@onready var ability_handler: Ability_Handler = %ability_handler
 
 var coyote_time : float = 0
 var x_input : int = 0
@@ -40,7 +41,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		if enable_gravity:
-			velocity.y += Global.GRAVITY * delta
+			if velocity.y < 0:
+				velocity.y += Global.GRAVITY * delta
+			else:
+				velocity.y += Global.GRAVITY * delta * 1.5
 		coyote_time += delta
 	else:
 		air_dashes = MAX_DASHES
@@ -121,8 +125,8 @@ func dash_handling() -> void:
 		sm.change_state("dash")
 
 func _hitbox_hit(attack:Attack) -> void:
-	Global.frame_freeze(0.1, 0.05)
-	camera.screen_shake(2, 0.1)
+	Global.frame_freeze(0.1, 0.075)
+	camera.screen_shake(5, 0.1)
 	
 	#if y_input != 0: # Y Stuff
 	if slash_pivot.rotation_degrees == 90: # POGO
@@ -133,3 +137,6 @@ func _hitbox_hit(attack:Attack) -> void:
 		sm.change_state("slashKnockback")
 	
 	velocity.x = attack.knockback_direction.x * -SLASH_KNOCKBACK
+
+func ability_handling(delta: float) -> void:
+	ability_handler.ability_handling(delta)

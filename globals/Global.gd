@@ -13,9 +13,16 @@ var cam : Cam
 const GRAVITY : float = 980
 
 enum GAME_STATES {
-	TITLE, MAIN
+	TITLE, MAIN, INVENTORY
 }
 var game_state : GAME_STATES
+
+func _init() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	volume_handle()
+
+func _process(delta: float) -> void:
+	volume_handle()
 
 func frame_freeze(timescale: float, duration: float) -> void: ## Slows down the engine's time scale, slowing down the time, for a certain duration. Use for da juice
 	if frame_freeze_value:
@@ -38,8 +45,9 @@ func volume_handle() -> void:
 	)
 
 var txt_scn : PackedScene = preload("res://juices/splash_txt.tscn")
-func spawn_txt(text: String, global_pos: Vector2)->void: ## Spawns a splash text effect, can be used for damage numbers, or score
+func spawn_txt(text: Variant, global_pos: Vector2, duration: float = 0.5)->void: ## Spawns a splash text effect, can be used for damage numbers, or score
 	var txt : SplashTXT = txt_scn.instantiate()
+	txt.duration = duration
 	txt.text = str(text)
 	txt.global_position = global_pos
 	game.add_child(txt)

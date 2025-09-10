@@ -10,8 +10,6 @@ func process(delta: float)-> void:
 	
 	if abs(p.velocity.x) < 50:
 		p.sm.change_state("walk")
-		p.velocity.y = 0
-
 	
 	p.dash_handling()
 

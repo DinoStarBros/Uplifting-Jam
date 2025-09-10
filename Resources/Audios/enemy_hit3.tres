@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AudioSettings" load_steps=3 format=3 uid="uid://c0o6t2xvshuoy"]
+
+[ext_resource type="AudioStream" uid="uid://cspd72htqero" path="res://Audio/jetslash sfx/SFX/hit.mp3" id="1_7wmcr"]
+[ext_resource type="Script" uid="uid://dev818h8ibdxg" path="res://globals/audioManagerGlobals/audio_settings_res.gd" id="2_atyve"]
+
+[resource]
+script = ExtResource("2_atyve")
+audio_stream = ExtResource("1_7wmcr")
+limit = 3
+type = 2
+volume_db = -5.0
+min_pitch = 0.9
+max_pitch = 1.2
+starting_point = 0.0
+duration = 1.5
+metadata/_custom_type_script = "uid://dev818h8ibdxg"

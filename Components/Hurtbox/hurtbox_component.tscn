@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://c457ehqfb1g6c"]
+[gd_scene load_steps=9 format=3 uid="uid://c457ehqfb1g6c"]
 
 [ext_resource type="Script" uid="uid://bny5t54ps4gjb" path="res://Components/Hurtbox/hurtbox_component.gd" id="1_gl5xv"]
 [ext_resource type="Texture2D" uid="uid://c0jpnw00110i" path="res://Art/hitspark.png" id="2_uccbt"]
-[ext_resource type="AudioStream" uid="uid://btoc7gcwarymr" path="res://Audio/amalgun/shoot.wav" id="3_k8a6g"]
-[ext_resource type="AudioStream" uid="uid://cspd72htqero" path="res://Audio/jetslash sfx/SFX/hit.mp3" id="4_3rmhx"]
 
 [sub_resource type="Curve" id="Curve_uccbt"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.375, 0.88764), -0.927768, -0.927768, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -135,12 +133,3 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_k8a6g")
 }
-
-[node name="hit1" type="AudioStreamPlayer2D" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("3_k8a6g")
-pitch_scale = 0.4
-
-[node name="hit2" type="AudioStreamPlayer2D" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("4_3rmhx")

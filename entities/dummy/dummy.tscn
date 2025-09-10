@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c550uj2jof6xt"]
+[gd_scene load_steps=13 format=3 uid="uid://c550uj2jof6xt"]
 
 [ext_resource type="Script" uid="uid://q3ffus1x8g4x" path="res://entities/dummy/dummy.gd" id="1_nih5e"]
-[ext_resource type="AudioStream" uid="uid://crwvnwtgketcd" path="res://Audio/cardtowersfx/enemy_hit.wav" id="2_cshfw"]
 [ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="2_vlfdi"]
 [ext_resource type="PackedScene" uid="uid://c457ehqfb1g6c" path="res://Components/Hurtbox/hurtbox_component.tscn" id="3_1mvqt"]
 [ext_resource type="PackedScene" uid="uid://bghmfsudxxrio" path="res://Components/Health/health_component.tscn" id="3_uo211"]
@@ -47,6 +46,58 @@ _data = {
 &"ouch": SubResource("Animation_uo211")
 }
 
+[sub_resource type="Animation" id="Animation_wfdha"]
+resource_name = "death"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Icon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(100, 100, 100, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_j521q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Icon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j521q"]
+_data = {
+&"RESET": SubResource("Animation_j521q"),
+&"death": SubResource("Animation_wfdha")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mvqt"]
 size = Vector2(130, 128)
 
@@ -54,19 +105,14 @@ size = Vector2(130, 128)
 collision_layer = 0
 script = ExtResource("1_nih5e")
 
-[node name="sfx" type="Node2D" parent="."]
-
-[node name="ene_hit" type="AudioStreamPlayer2D" parent="sfx"]
-unique_name_in_owner = true
-stream = ExtResource("2_cshfw")
-
-[node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component", "ouchnim") instance=ExtResource("3_1mvqt")]
+[node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component", "ouchnim", "deathnim") instance=ExtResource("3_1mvqt")]
 z_index = 2
 collision_layer = 2
 collision_mask = 2
 health_component = NodePath("../health_component")
-ouchnim = NodePath("ouch")
 hitspark_scale = Vector2(2, 2)
+ouchnim = NodePath("ouch")
+deathnim = NodePath("death")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox_component"]
 visible = false
@@ -77,8 +123,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_cshfw")
 }
 
+[node name="death" type="AnimationPlayer" parent="hurtbox_component"]
+libraries = {
+&"": SubResource("AnimationLibrary_j521q")
+}
+
 [node name="health_component" parent="." instance=ExtResource("3_uo211")]
-max_hp = 1000.0
+max_hp = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1mvqt")

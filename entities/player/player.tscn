@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=32 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -6,8 +6,10 @@
 [ext_resource type="Script" uid="uid://dior7u0t0tpbp" path="res://entities/player/StateStuff/walkPlr.gd" id="3_bls4j"]
 [ext_resource type="Texture2D" uid="uid://dvamsylqvvrlj" path="res://Art/Stuff/Mow.png" id="3_sglur"]
 [ext_resource type="AudioStream" uid="uid://nj64nd85rtql" path="res://Audio/splashtownSFX/Airdash.wav" id="3_wvtmh"]
+[ext_resource type="AudioStream" uid="uid://cw0s6bkxlwn2b" path="res://Audio/splashtownSFX/Jump.wav" id="4_3wlsy"]
 [ext_resource type="Script" uid="uid://dvkkkswc8fliu" path="res://entities/player/StateStuff/fallPlr.gd" id="4_fkugw"]
 [ext_resource type="Script" uid="uid://drr7ccpqlh4b5" path="res://entities/player/StateStuff/jumpPlr.gd" id="5_8fjmc"]
+[ext_resource type="AudioStream" uid="uid://cppxtyh63shtf" path="res://Audio/tresure/walkStep.wav" id="5_b2kln"]
 [ext_resource type="Script" uid="uid://prtybmq88jau" path="res://entities/player/StateStuff/dashPlr.gd" id="6_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://diihmdabfwa8g" path="res://Art/Placeholder/Trail2.png" id="8_26q78"]
 [ext_resource type="Script" uid="uid://br0jxj83cm6v0" path="res://entities/player/StateStuff/pogoJumpPlr.gd" id="9_a1qjk"]
@@ -16,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="13_j3ovn"]
 [ext_resource type="Script" uid="uid://cd0rt1c62nhq1" path="res://entities/player/gui.gd" id="15_gx6sm"]
 [ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://settingsMenu/settings_menu.tscn" id="16_yqrof"]
+[ext_resource type="Script" uid="uid://4o1uq1ih5l5u" path="res://entities/player/ability_handler.gd" id="19_we0b7"]
 
 [sub_resource type="Animation" id="Animation_8fjmc"]
 length = 0.001
@@ -352,15 +355,35 @@ offset_right = 18.0
 offset_bottom = -35.0
 text = "Walk"
 
+[node name="ability_handler" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("19_we0b7")
+
 [node name="sfx" type="Node2D" parent="."]
 
 [node name="slash_sfx" type="AudioStreamPlayer" parent="sfx"]
 unique_name_in_owner = true
 stream = ExtResource("2_bectd")
+bus = &"SFX"
 
 [node name="dash_sfx" type="AudioStreamPlayer" parent="sfx"]
 unique_name_in_owner = true
 stream = ExtResource("3_wvtmh")
+bus = &"SFX"
+
+[node name="jump_sfx" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("4_3wlsy")
+volume_db = -7.0
+pitch_scale = 1.5
+bus = &"SFX"
+
+[node name="land" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("5_b2kln")
+volume_db = -10.0
+pitch_scale = 3.0
+bus = &"SFX"
 
 [node name="timers" type="Node" parent="."]
 
@@ -412,6 +435,58 @@ script = ExtResource("11_afbqv")
 [node name="collide" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bls4j")
 
+[node name="GUI" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("15_gx6sm")
+
+[node name="pause" type="Control" parent="GUI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 47.0
+offset_top = -264.0
+offset_right = 677.0
+offset_bottom = 325.0
+grow_vertical = 2
+
+[node name="settingsMenu" parent="GUI/pause" instance=ExtResource("16_yqrof")]
+unique_name_in_owner = true
+offset_left = -12.0
+offset_top = -47.0
+offset_right = -12.0
+offset_bottom = -47.0
+
+[node name="buttonBox" type="HBoxContainer" parent="GUI/pause/settingsMenu"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 549.0
+offset_right = 223.0
+offset_bottom = 589.0
+
+[node name="resume" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="quit" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="sure" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sure"
+
+[node name="inventory" type="Control" parent="GUI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Mow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(2, 2)
@@ -449,47 +524,3 @@ collision_mask = 2
 position = Vector2(1.00006, -23)
 shape = SubResource("CapsuleShape2D_7thud")
 disabled = true
-
-[node name="GUI" type="CanvasLayer" parent="."]
-script = ExtResource("15_gx6sm")
-
-[node name="pause" type="Control" parent="GUI"]
-unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 47.0
-offset_top = -264.0
-offset_right = 677.0
-offset_bottom = 325.0
-grow_vertical = 2
-
-[node name="settingsMenu" parent="GUI/pause" instance=ExtResource("16_yqrof")]
-unique_name_in_owner = true
-offset_left = -12.0
-offset_top = -32.0
-offset_right = -12.0
-offset_bottom = -32.0
-
-[node name="buttonBox" type="HBoxContainer" parent="GUI/pause/settingsMenu"]
-layout_mode = 0
-offset_left = 37.0
-offset_top = 549.0
-offset_right = 223.0
-offset_bottom = 589.0
-
-[node name="resume" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Resume"
-
-[node name="quit" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Quit"
-
-[node name="sure" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Sure"

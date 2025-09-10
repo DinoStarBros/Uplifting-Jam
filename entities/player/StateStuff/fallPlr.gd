@@ -15,6 +15,7 @@ func process(delta: float)-> void:
 		p.jump_buffer_time = 0
 	
 	if p.is_on_floor():
+		%land.play()
 		p.sm.change_state("walk")
 		
 		if p.jump_buffer_time < 0.3 and p.jump_buffer_time > 0:

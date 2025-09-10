@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AudioSettings" load_steps=3 format=3 uid="uid://e1qr2jxqmeq7"]
+
+[ext_resource type="Script" uid="uid://dev818h8ibdxg" path="res://globals/audioManagerGlobals/audio_settings_res.gd" id="1_j6uso"]
+[ext_resource type="AudioStream" uid="uid://blcay1tfimw0e" path="res://Audio/cardtowersfx/player_hit.wav" id="1_kdrpu"]
+
+[resource]
+script = ExtResource("1_j6uso")
+audio_stream = ExtResource("1_kdrpu")
+limit = 3
+type = 3
+volume_db = 0.0
+min_pitch = 1.5
+max_pitch = 2.0
+starting_point = 0.0
+duration = 1.5
+metadata/_custom_type_script = "uid://dev818h8ibdxg"

@@ -3,14 +3,14 @@ class_name SplashTXT
 
 var text : String
 var velocity : Vector2
-
+var duration : float = 0.2
 
 func _ready() -> void:
 	%text.text = text
 	velocity.y = randi_range(-300, -700)
 	velocity.x = randi_range(-500, 500)
 	
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(duration).timeout
 	queue_free()
 
 func _physics_process(delta: float) -> void:

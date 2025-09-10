@@ -11,8 +11,13 @@ func _physics_process(delta: float) -> void:
 func damaged(attack:Attack) -> void:
 	velocity = attack.knockback_direction * attack.knockback
 	
-	%ene_hit.pitch_scale = randf_range(0.8, 1.2)
-	%ene_hit.play()
+	AudioManager.create_2d_audio(global_position, 
+	AudioSettings.types.ENEMY_HIT1)
+	AudioManager.create_2d_audio(global_position, 
+	AudioSettings.types.ENEMY_HIT2)
+	AudioManager.create_2d_audio(global_position, 
+	AudioSettings.types.ENEMY_HIT3)
 
 func dead(attack:Attack) -> void:
-	queue_free()
+	AudioManager.create_2d_audio(global_position,
+	AudioSettings.types.ENEMY_DEATH)
