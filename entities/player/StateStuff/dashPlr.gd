@@ -17,11 +17,12 @@ func on_enter()-> void:
 	state_duration = p.DASH_DURATION
 
 func process(delta: float)-> void:
-	p.velocity.y = 0
-	
 	state_duration = max(state_duration - delta, 0)
+	p.velocity.y = 0
 	if state_duration <= 0:
 		p.sm.change_state("walk")
+	
+
 
 func on_exit()-> void:
 	pass

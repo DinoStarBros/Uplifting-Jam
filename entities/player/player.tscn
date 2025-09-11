@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=44 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -13,11 +13,13 @@
 [ext_resource type="Script" uid="uid://prtybmq88jau" path="res://entities/player/StateStuff/dashPlr.gd" id="6_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://diihmdabfwa8g" path="res://Art/Placeholder/Trail2.png" id="8_26q78"]
 [ext_resource type="Script" uid="uid://br0jxj83cm6v0" path="res://entities/player/StateStuff/pogoJumpPlr.gd" id="9_a1qjk"]
+[ext_resource type="AudioStream" uid="uid://c2ab15810bexd" path="res://Audio/whip_windup.wav" id="9_wq0jh"]
+[ext_resource type="AudioStream" uid="uid://bxsjyi03yan6l" path="res://Audio/whip_hit.wav" id="10_gt4e4"]
 [ext_resource type="Script" uid="uid://cdschvmpwj5fr" path="res://entities/player/StateStuff/slashKnockbackPlr.gd" id="10_j3ovn"]
 [ext_resource type="Script" uid="uid://d2a5ol1v657d8" path="res://entities/player/camera.gd" id="11_afbqv"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="13_j3ovn"]
 [ext_resource type="Script" uid="uid://cd0rt1c62nhq1" path="res://entities/player/gui.gd" id="15_gx6sm"]
-[ext_resource type="Script" uid="uid://cxmtn3dvonly2" path="res://entities/player/drawnAbilities/superJump.gd" id="16_ghoj8"]
+[ext_resource type="Script" uid="uid://cxmtn3dvonly2" path="res://entities/player/drawnAbilities/droneAbility.gd" id="16_ghoj8"]
 [ext_resource type="Script" uid="uid://ffjeymbod5lq" path="res://entities/player/StateStuff/damagedPlayer.gd" id="16_qpopc"]
 [ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://PauseUI/settingsMenu/settings_menu.tscn" id="16_yqrof"]
 [ext_resource type="Script" uid="uid://b1qaqqi4pn5u2" path="res://entities/player/drawnAbilities/superAss.gd" id="17_wuv6x"]
@@ -87,6 +89,35 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [32, 33, 34, 35, 36, 32, 33]
+}
+
+[sub_resource type="Animation" id="Animation_wuv6x"]
+resource_name = "draw_side"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.98023e-08, 0.05, 0.1, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [21, 22, 23, 18, 19, 20]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1.8, 2.2), Vector2(2.2, 1.8)]
 }
 
 [sub_resource type="Animation" id="Animation_bectd"]
@@ -227,23 +258,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_wuv6x"]
-resource_name = "draw_side"
-length = 0.15
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Mow:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [18, 19, 20]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8fjmc"]
@@ -398,9 +412,13 @@ unique_name_in_owner = true
 shape = SubResource("CapsuleShape2D_eyb6c")
 debug_color = Color(0.925038, 0.138517, 3.85046e-07, 0.42)
 
-[node name="health_component" parent="." instance=ExtResource("21_221hk")]
+[node name="health_component" parent="." node_paths=PackedStringArray("hp_bar", "hp_txt") instance=ExtResource("21_221hk")]
 unique_name_in_owner = true
+position = Vector2(-58, -79)
+max_hp = 50.0
 dmg_txt = false
+hp_bar = NodePath("../GUI/hpbar")
+hp_txt = NodePath("../GUI/hpbar/hptxt")
 
 [node name="ability_handler" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -430,6 +448,19 @@ unique_name_in_owner = true
 stream = ExtResource("5_b2kln")
 volume_db = -10.0
 pitch_scale = 3.0
+bus = &"SFX"
+
+[node name="fist_wind" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("9_wq0jh")
+pitch_scale = 0.9
+bus = &"SFX"
+
+[node name="fist_go" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("10_gt4e4")
+volume_db = -9.0
+pitch_scale = 0.8
 bus = &"SFX"
 
 [node name="timers" type="Node" parent="."]
@@ -469,7 +500,7 @@ unique_name_in_owner = true
 [node name="fist" type="Node" parent="SM/abilities"]
 script = ExtResource("18_qpopc")
 
-[node name="superJump" type="Node" parent="SM/abilities"]
+[node name="drone" type="Node" parent="SM/abilities"]
 script = ExtResource("16_ghoj8")
 
 [node name="superDash" type="Node" parent="SM/abilities"]
@@ -569,6 +600,18 @@ offset_bottom = 309.0
 unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
+
+[node name="hpbar" type="ProgressBar" parent="GUI"]
+offset_left = 36.0
+offset_top = 25.0
+offset_right = 368.0
+offset_bottom = 47.0
+show_percentage = false
+
+[node name="hptxt" type="Label" parent="GUI/hpbar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 18.0
 
 [node name="Mow" type="Sprite2D" parent="."]
 unique_name_in_owner = true

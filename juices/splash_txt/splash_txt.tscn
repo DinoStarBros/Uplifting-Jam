@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dk10q23hpe03b"]
 
-[ext_resource type="Script" uid="uid://dpvje8f1do3x0" path="res://juices/splash_txt.gd" id="1_1gul7"]
+[ext_resource type="Script" uid="uid://dpvje8f1do3x0" path="res://juices/splash_txt/splash_txt.gd" id="1_1gul7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1gul7"]
 font_size = 30

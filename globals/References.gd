@@ -8,5 +8,10 @@ const screen_scenes : Dictionary = {
 
 const projectiles : Dictionary = {
 	"fist": preload("res://projectiles/fist/fist_projectile.tscn"),
-	
+	"drone": preload("res://projectiles/droneSummon/drone_summon.tscn"),
+	"bullet": preload("res://projectiles/bullet/bullet.tscn")
+}
+
+const juices : Dictionary = {
+	"splash_txt": preload("res://juices/splash_txt/splash_txt.tscn"),
 }

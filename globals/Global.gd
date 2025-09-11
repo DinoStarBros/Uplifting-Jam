@@ -44,7 +44,7 @@ func volume_handle() -> void:
 		linear_to_db(sfx_volume)
 	)
 
-var txt_scn : PackedScene = preload("res://juices/splash_txt.tscn")
+var txt_scn : PackedScene = References.juices["splash_txt"]
 func spawn_txt(text: Variant, global_pos: Vector2, duration: float = 0.5)->void: ## Spawns a splash text effect, can be used for damage numbers, or score
 	var txt : SplashTXT = txt_scn.instantiate()
 	txt.duration = duration

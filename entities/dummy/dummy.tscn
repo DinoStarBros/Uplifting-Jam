@@ -106,7 +106,8 @@ size = Vector2(130, 128)
 radius = 43.1856
 
 [node name="dummy" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 8
+collision_mask = 9
 script = ExtResource("1_nih5e")
 
 [node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component", "ouchnim", "deathnim") instance=ExtResource("3_1mvqt")]

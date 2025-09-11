@@ -14,8 +14,8 @@ class_name Player
 @onready var health_component: HealthComponent = %health_component
 
 var coyote_time : float = 0
-var x_input : int = 0
-var last_x_input : int = 0
+var x_input : int = 1
+var last_x_input : int = 1
 var y_input : int = 0
 var last_y_input : int = 0
 var jump_buffer_time : float = 0

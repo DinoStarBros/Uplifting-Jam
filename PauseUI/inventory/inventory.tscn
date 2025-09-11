@@ -30,7 +30,7 @@ grow_vertical = 2
 
 [node name="Tabs" type="TabContainer" parent="PanelContainer"]
 layout_mode = 2
-current_tab = 2
+current_tab = 1
 
 [node name="Inventory" type="VBoxContainer" parent="PanelContainer/Tabs"]
 visible = false
@@ -43,7 +43,6 @@ layout_mode = 2
 text = "YOU HAVE STUFF IDK"
 
 [node name="Abilities" type="VBoxContainer" parent="PanelContainer/Tabs"]
-visible = false
 layout_mode = 2
 alignment = 1
 metadata/_tab_index = 1
@@ -53,6 +52,7 @@ layout_mode = 2
 text = "abilities"
 
 [node name="Skill Tree" type="VBoxContainer" parent="PanelContainer/Tabs"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 

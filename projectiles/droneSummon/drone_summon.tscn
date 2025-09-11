@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://o54of6uhuxt6"]
+
+[ext_resource type="Script" uid="uid://dormchn3qmupl" path="res://projectiles/droneSummon/drone_summon.gd" id="1_ip47a"]
+[ext_resource type="Texture2D" uid="uid://b4qycvmecdv0m" path="res://Art/planestuff/Dumby Plane1.png" id="2_ckaig"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ckaig"]
+radius = 200.0
+
+[node name="droneSummon" type="Node2D"]
+script = ExtResource("1_ip47a")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ckaig")
+
+[node name="detect_radius" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 8
+
+[node name="drc" type="CollisionShape2D" parent="detect_radius"]
+shape = SubResource("CircleShape2D_ckaig")
+
+[node name="shootTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+autostart = true
