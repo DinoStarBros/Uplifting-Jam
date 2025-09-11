@@ -6,17 +6,27 @@ var velocity : Vector2
 var target : CharacterBody2D
 var dir_to_target : Vector2
 var shooty : bool = false
+var offset_x : float = 0
+var index : int = 0
+
+static var amount : int = 0
 
 const SPEED : float = 4
 const BULLET_SPD : float = 600
+
 func _ready() -> void:
 	%shootTimer.timeout.connect(_shooty_timeout)
+	%lifeTimer.timeout.connect(_lifetimer_timeout)
+	amount += 1
+	index = amount
+	
 
 func _physics_process(delta: float) -> void:
 	_move(delta)
 	
+	offset_x = (index * 50 / amount) * parent.last_x_input
 	velocity = (
-		(parent.global_position + Vector2(0, -100)) - global_position
+		(parent.global_position + Vector2(offset_x, -100)) - global_position
 		) * SPEED
 	
 	if %detect_radius.get_overlapping_bodies().size() != 0:
@@ -42,3 +52,8 @@ func _spawn_bullet() -> void:
 func _shooty_timeout() -> void:
 	if shooty:
 		_spawn_bullet()
+
+func _lifetimer_timeout() -> void:
+	queue_free()
+	amount -= 1
+	index = amount + 1

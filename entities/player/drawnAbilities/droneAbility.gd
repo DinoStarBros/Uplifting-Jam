@@ -1,13 +1,14 @@
 extends StatePlr
 
-var drone_spawned : bool = false
-func on_enter()-> void:
+func on_enter() -> void:
 	state_duration = 0.2
-	if not drone_spawned:
-		_spawn_drone()
-	drone_spawned = true
+	_spawn_drone()
+	
+	p.enable_gravity = false
 
 func process(delta: float)-> void:
+	
+	p.velocity *= 0.9
 	
 	state_duration = max(state_duration-delta, 0)
 	if state_duration <= 0:

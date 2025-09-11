@@ -5,7 +5,7 @@ class_name Ability_Handler
 @onready var sm: StateMachinePlayer = %SM
 
 var abilities : Array
-var equipped_abilities : Array ## [0] is Neutral, [1] is Up, [2] is Down, [3] is Side
+var equipped_abilities : Array ## [0] is Neutral, [1] is Up, [2] is Down / Side
 
 func _ready() -> void:
 	for n in %abilities.get_children():
@@ -33,17 +33,11 @@ func directional_ability(delta: float) -> void:
 		)
 		
 		
-	
-	elif Input.is_action_pressed("Left") or Input.is_action_pressed("Right"): 
-		# SIDE ABILITY
-		sm.change_state(
-			equipped_abilities[3]
-		)
 		
 		
 	
 	else: 
-		# NEUTRAL ABILITY
+		# NEUTRAL/SIDE ABILITY
 		sm.change_state(
 			equipped_abilities[0]
 		)
