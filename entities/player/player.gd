@@ -140,3 +140,28 @@ func _hitbox_hit(attack:Attack) -> void:
 
 func ability_handling(delta: float) -> void:
 	ability_handler.ability_handling(delta)
+
+func damaged(attack:Attack) -> void:
+	Global.frame_freeze(0.5, 0.1)
+	Global.cam.screen_shake(7, 0.1)
+	var dir_atk_pos : Vector2 = global_position.direction_to(attack.attack_pos)
+	velocity = -dir_atk_pos * attack.knockback
+	sm.change_state("damaged")
+	
+	AudioManager.create_2d_audio(global_position, 
+	AudioSettings.types.ENEMY_HIT1)
+	AudioManager.create_2d_audio(global_position, 
+	AudioSettings.types.ENEMY_HIT2)
+	AudioManager.create_2d_audio(global_position, 
+	AudioSettings.types.ENEMY_HIT3)
+
+func dead(attack:Attack) -> void:
+	Global.frame_freeze(0.2, 0.5)
+	Global.cam.screen_shake(20, 1)
+	velocity = attack.knockback_direction * attack.knockback * 3
+	
+	AudioManager.create_2d_audio(global_position,
+	AudioSettings.types.ENEMY_DEATH)
+
+func damage_interrupt_handling() -> void:
+	pass

@@ -7,7 +7,13 @@ func _ready() -> void:
 func on_enter() -> void:
 	pass
 
-func process(delta: float)-> void:
+func process(delta: float) -> void:
+	
+	if p.velocity.x == 0:
+		p.anim.play("idle")
+	else:
+		p.anim.play("walk")
+	
 	p.enable_gravity = true
 	p.override_flip_sprite = false
 	p.velocity.x = p.x_input * p.SPEED
@@ -16,11 +22,6 @@ func process(delta: float)-> void:
 	
 	if not Input.is_action_pressed("jump") and p.velocity.y < 0:
 		p.velocity.y = 0
-	
-	if p.velocity.x == 0:
-		p.anim.play("idle")
-	else:
-		p.anim.play("walk")
 	
 	if (Input.is_action_just_pressed("jump") or p.next_buffered_state == "jump") and p.is_on_floor():
 		p.sm.change_state("jump")

@@ -10,7 +10,7 @@ var previous_state : StatePlr
 func _ready()-> void:
 	initial_state = get_child(0).name
 	
-	current_state = find_child(initial_state) as StatePlr
+	current_state = find_child(initial_state)
 	previous_state = current_state
 	current_state.enter()
 
@@ -23,8 +23,10 @@ func change_state(state: String)-> void:
 	
 	if previous_state.name != current_state.name:
 		current_state.enter()
+		current_state.is_current = true
 	
 	if previous_state.name != current_state.name:
 		previous_state.exit()
+		previous_state.is_current = false
 	
 	previous_state = current_state

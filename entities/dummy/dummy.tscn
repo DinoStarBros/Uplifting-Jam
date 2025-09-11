@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c550uj2jof6xt"]
+[gd_scene load_steps=15 format=3 uid="uid://c550uj2jof6xt"]
 
 [ext_resource type="Script" uid="uid://q3ffus1x8g4x" path="res://entities/dummy/dummy.gd" id="1_nih5e"]
 [ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="2_vlfdi"]
 [ext_resource type="PackedScene" uid="uid://c457ehqfb1g6c" path="res://Components/Hurtbox/hurtbox_component.tscn" id="3_1mvqt"]
 [ext_resource type="PackedScene" uid="uid://bghmfsudxxrio" path="res://Components/Health/health_component.tscn" id="3_uo211"]
+[ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="5_cshfw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo211"]
 size = Vector2(144, 138)
@@ -101,6 +102,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mvqt"]
 size = Vector2(130, 128)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wfdha"]
+radius = 43.1856
+
 [node name="dummy" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_nih5e")
@@ -136,3 +140,11 @@ shape = SubResource("RectangleShape2D_1mvqt")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("2_vlfdi")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("5_cshfw")]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_wfdha")

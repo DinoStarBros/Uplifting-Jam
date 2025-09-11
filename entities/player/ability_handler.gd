@@ -18,28 +18,32 @@ func ability_handling(delta: float) -> void:
 		directional_ability(delta)
 
 func directional_ability(delta: float) -> void:
-	if Input.is_action_pressed("Up"): # UPBILITY
+	if Input.is_action_pressed("Up"): 
+		# UP ABILITY
 		sm.change_state(
 			equipped_abilities[1]
 		)
 		
 		
 	
-	elif Input.is_action_pressed("Down"): # DOWNBILITY
+	elif Input.is_action_pressed("Down"): 
+		# DOWN ABILITY
 		sm.change_state(
 			equipped_abilities[2]
 		)
 		
 		
 	
-	elif Input.is_action_pressed("Left") or Input.is_action_pressed("Right"): # SIDEBILITY
+	elif Input.is_action_pressed("Left") or Input.is_action_pressed("Right"): 
+		# SIDE ABILITY
 		sm.change_state(
 			equipped_abilities[3]
 		)
 		
 		
 	
-	else: # NEUTRALBILITY
+	else: 
+		# NEUTRAL ABILITY
 		sm.change_state(
 			equipped_abilities[0]
 		)

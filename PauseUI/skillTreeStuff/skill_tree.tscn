@@ -18,3 +18,19 @@ offset_left = 578.0
 offset_top = 49.0
 offset_right = 610.0
 offset_bottom = 81.0
+
+[node name="SkillButton2" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 121.0
+offset_right = 539.0
+offset_bottom = 153.0
+prerequisite_skills = [NodePath("../SkillButton")]
+
+[node name="SkillButton3" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+layout_mode = 0
+offset_left = 653.0
+offset_top = 121.0
+offset_right = 685.0
+offset_bottom = 153.0
+prerequisite_skills = [NodePath("../SkillButton")]

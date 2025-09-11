@@ -3,6 +3,9 @@ class_name StatePlr
 
 @onready var p : Player = owner
 
+var state_duration : float = 0 
+var is_current : bool = false
+
 func _ready()-> void:
 	exit()
 
@@ -13,6 +16,7 @@ func enter()-> void:
 func exit()-> void:
 	on_exit()
 	set_physics_process(false)
+	state_duration = 0
 
 func on_enter()-> void:
 	pass

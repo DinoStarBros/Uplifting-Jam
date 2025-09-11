@@ -24,8 +24,8 @@ func _ready() -> void:
 	label.text = str(level) + "/" + str(MAX_LEVEL)
 	#if get_parent() is SkillButton:
 	for prereq_skill in prerequisite_skills:
-		line_2d.add_point(global_position + size/2)
-		line_2d.add_point(prereq_skill.global_position + size/2)
+		line_2d.add_point(global_position + (size*scale)/2)
+		line_2d.add_point(prereq_skill.global_position + (size*scale)/2)
 		
 		#ndex += 1
 		#line_2d.points[ndex-1].y += size.y / 2

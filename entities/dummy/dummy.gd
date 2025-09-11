@@ -1,6 +1,12 @@
 extends CharacterBody2D
 class_name Dummy
 
+@onready var hitbox_component: HitboxComponent = %HitboxComponent
+
+func _ready() -> void:
+	hitbox_component.attack.damage = 1
+	hitbox_component.attack.knockback = 600
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += Global.GRAVITY * delta

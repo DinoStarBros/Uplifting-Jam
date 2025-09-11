@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=42 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -18,9 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="13_j3ovn"]
 [ext_resource type="Script" uid="uid://cd0rt1c62nhq1" path="res://entities/player/gui.gd" id="15_gx6sm"]
 [ext_resource type="Script" uid="uid://cxmtn3dvonly2" path="res://entities/player/drawnAbilities/superJump.gd" id="16_ghoj8"]
+[ext_resource type="Script" uid="uid://ffjeymbod5lq" path="res://entities/player/StateStuff/damagedPlayer.gd" id="16_qpopc"]
 [ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://PauseUI/settingsMenu/settings_menu.tscn" id="16_yqrof"]
 [ext_resource type="Script" uid="uid://b1qaqqi4pn5u2" path="res://entities/player/drawnAbilities/superAss.gd" id="17_wuv6x"]
-[ext_resource type="Script" uid="uid://kfbylg3w2mpf" path="res://entities/player/drawnAbilities/superSlam.gd" id="18_qpopc"]
+[ext_resource type="Script" uid="uid://kfbylg3w2mpf" path="res://entities/player/drawnAbilities/fist.gd" id="18_qpopc"]
 [ext_resource type="PackedScene" uid="uid://cirmuwc630gtr" path="res://PauseUI/inventory/inventory.tscn" id="19_221hk"]
 [ext_resource type="Script" uid="uid://4o1uq1ih5l5u" path="res://entities/player/ability_handler.gd" id="19_we0b7"]
 [ext_resource type="Script" uid="uid://cik4g17aq323b" path="res://entities/player/drawnAbilities/superDash.gd" id="19_wq0jh"]
@@ -228,10 +229,28 @@ tracks/2/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_wuv6x"]
+resource_name = "draw_side"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [18, 19, 20]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8fjmc"]
 _data = {
 &"RESET": SubResource("Animation_8fjmc"),
 &"dash": SubResource("Animation_wvtmh"),
+&"draw_side": SubResource("Animation_wuv6x"),
 &"fall": SubResource("Animation_bectd"),
 &"idle": SubResource("Animation_fkugw"),
 &"jump": SubResource("Animation_26q78"),
@@ -366,13 +385,19 @@ offset_right = 18.0
 offset_bottom = -35.0
 text = "Walk"
 
-[node name="hurtbox_component" parent="." instance=ExtResource("20_eyb6c")]
+[node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("20_eyb6c")]
+z_index = 1
+collision_layer = 4
+collision_mask = 4
+health_component = NodePath("../health_component")
+hitspark_scale = Vector2(1.2, 1.2)
 
 [node name="hurtbox" type="CollisionShape2D" parent="hurtbox_component"]
 shape = SubResource("CapsuleShape2D_eyb6c")
 debug_color = Color(0.925038, 0.138517, 3.85046e-07, 0.42)
 
 [node name="health_component" parent="." instance=ExtResource("21_221hk")]
+dmg_txt = false
 
 [node name="ability_handler" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -424,14 +449,7 @@ script = ExtResource("4_fkugw")
 script = ExtResource("5_8fjmc")
 
 [node name="dash" type="Node" parent="SM"]
-unique_name_in_owner = true
 script = ExtResource("6_qiwj3")
-
-[node name="dashTimer" type="Timer" parent="SM/dash"]
-unique_name_in_owner = true
-wait_time = 0.1
-one_shot = true
-autostart = true
 
 [node name="pogoJump" type="Node" parent="SM"]
 script = ExtResource("9_a1qjk")
@@ -439,17 +457,20 @@ script = ExtResource("9_a1qjk")
 [node name="slashKnockback" type="Node" parent="SM"]
 script = ExtResource("10_j3ovn")
 
+[node name="damaged" type="Node" parent="SM"]
+script = ExtResource("16_qpopc")
+
 [node name="abilities" type="Node" parent="SM"]
 unique_name_in_owner = true
+
+[node name="fist" type="Node" parent="SM/abilities"]
+script = ExtResource("18_qpopc")
 
 [node name="superJump" type="Node" parent="SM/abilities"]
 script = ExtResource("16_ghoj8")
 
 [node name="superDash" type="Node" parent="SM/abilities"]
 script = ExtResource("19_wq0jh")
-
-[node name="superSlam" type="Node" parent="SM/abilities"]
-script = ExtResource("18_qpopc")
 
 [node name="superAss" type="Node" parent="SM/abilities"]
 script = ExtResource("17_wuv6x")
