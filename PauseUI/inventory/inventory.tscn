@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cirmuwc630gtr"]
+[gd_scene load_steps=3 format=3 uid="uid://cirmuwc630gtr"]
 
-[ext_resource type="Script" uid="uid://ipdl2ppslru3" path="res://inventory/inventory.gd" id="1_62wf1"]
+[ext_resource type="Script" uid="uid://ipdl2ppslru3" path="res://PauseUI/inventory/inventory.gd" id="1_62wf1"]
+[ext_resource type="PackedScene" uid="uid://kf837f0oenvj" path="res://PauseUI/skillTreeStuff/skill_tree.tscn" id="2_mv8p3"]
 
 [node name="inventoryStuff" type="Control"]
 layout_mode = 3
@@ -29,9 +30,10 @@ grow_vertical = 2
 
 [node name="Tabs" type="TabContainer" parent="PanelContainer"]
 layout_mode = 2
-current_tab = 0
+current_tab = 2
 
 [node name="Inventory" type="VBoxContainer" parent="PanelContainer/Tabs"]
+visible = false
 layout_mode = 2
 alignment = 1
 metadata/_tab_index = 0
@@ -51,11 +53,8 @@ layout_mode = 2
 text = "abilities"
 
 [node name="Skill Tree" type="VBoxContainer" parent="PanelContainer/Tabs"]
-visible = false
 layout_mode = 2
-alignment = 1
 metadata/_tab_index = 2
 
-[node name="s" type="Label" parent="PanelContainer/Tabs/Skill Tree"]
+[node name="SkillTree" parent="PanelContainer/Tabs/Skill Tree" instance=ExtResource("2_mv8p3")]
 layout_mode = 2
-text = "skill tree lmao"
