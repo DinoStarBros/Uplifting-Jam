@@ -8,8 +8,9 @@ atlas = ExtResource("1_d6kq2")
 region = Rect2(96, 0, 32, 32)
 
 [node name="SkillButton" type="TextureButton"]
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
 toggle_mode = true
 texture_normal = SubResource("AtlasTexture_fobwf")
 ignore_texture_size = true
@@ -18,15 +19,17 @@ script = ExtResource("2_04mw8")
 
 [node name="Panel" type="Panel" parent="."]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 32.0
+offset_bottom = 32.0
 mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 32.0
+offset_bottom = 32.0
 
 [node name="Label" type="Label" parent="MarginContainer"]
 unique_name_in_owner = true
@@ -42,5 +45,4 @@ vertical_alignment = 2
 unique_name_in_owner = true
 top_level = true
 z_index = -1
-width = 3.0
-default_color = Color(0.219501, 0.219501, 0.219501, 1)
+position = Vector2(0, 32)
