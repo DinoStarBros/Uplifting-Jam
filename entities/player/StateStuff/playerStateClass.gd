@@ -16,7 +16,6 @@ func enter()-> void:
 func exit()-> void:
 	on_exit()
 	set_physics_process(false)
-	state_duration = 0
 
 func on_enter()-> void:
 	pass

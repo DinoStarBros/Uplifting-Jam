@@ -3,6 +3,8 @@ extends StatePlr
 
 func on_enter()-> void:
 	state_duration = 0.3
+	await get_tree().process_frame
+	p.hurtbox.disabled = true
 
 func process(delta: float)-> void:
 	state_duration = max(state_duration - delta, 0)
@@ -11,4 +13,5 @@ func process(delta: float)-> void:
 		p.sm.change_state("walk")
 
 func on_exit()-> void:
-	pass
+	await get_tree().process_frame
+	p.hurtbox.disabled = false

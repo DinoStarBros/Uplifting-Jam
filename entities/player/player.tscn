@@ -386,6 +386,7 @@ offset_bottom = -35.0
 text = "Walk"
 
 [node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("20_eyb6c")]
+unique_name_in_owner = true
 z_index = 1
 collision_layer = 4
 collision_mask = 4
@@ -393,10 +394,12 @@ health_component = NodePath("../health_component")
 hitspark_scale = Vector2(1.2, 1.2)
 
 [node name="hurtbox" type="CollisionShape2D" parent="hurtbox_component"]
+unique_name_in_owner = true
 shape = SubResource("CapsuleShape2D_eyb6c")
 debug_color = Color(0.925038, 0.138517, 3.85046e-07, 0.42)
 
 [node name="health_component" parent="." instance=ExtResource("21_221hk")]
+unique_name_in_owner = true
 dmg_txt = false
 
 [node name="ability_handler" type="Node2D" parent="."]

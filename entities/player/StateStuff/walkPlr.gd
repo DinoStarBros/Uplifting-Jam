@@ -8,7 +8,6 @@ func on_enter() -> void:
 	pass
 
 func process(delta: float) -> void:
-	
 	if p.velocity.x == 0:
 		p.anim.play("idle")
 	else:

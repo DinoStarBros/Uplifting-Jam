@@ -9,6 +9,9 @@ class_name Player
 @onready var hitbox_component: HitboxComponent = %HitboxComponent
 @onready var camera: Cam = %Camera
 @onready var ability_handler: Ability_Handler = %ability_handler
+@onready var hurtbox: CollisionShape2D = %hurtbox
+@onready var hurtbox_component: HurtboxComponent = %hurtbox_component
+@onready var health_component: HealthComponent = %health_component
 
 var coyote_time : float = 0
 var x_input : int = 0
@@ -162,6 +165,3 @@ func dead(attack:Attack) -> void:
 	
 	AudioManager.create_2d_audio(global_position,
 	AudioSettings.types.ENEMY_DEATH)
-
-func damage_interrupt_handling() -> void:
-	pass
