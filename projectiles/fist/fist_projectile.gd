@@ -17,7 +17,7 @@ func _ready() -> void:
 	hitbox_component.Hit.connect(_on_hit)
 
 func _physics_process(delta: float) -> void:
-	velocity *= 0.9
+	velocity *= 0.8
 	look_at(velocity + global_position)
 	_move(delta)
 
@@ -26,4 +26,4 @@ func _move(delta: float) -> void:
 
 func _on_hit(attack: Attack) -> void:
 	Global.frame_freeze(0.1, 0.1)
-	Global.cam.screen_shake(10, 0.2)
+	Global.cam.screen_shake(15, 0.2)

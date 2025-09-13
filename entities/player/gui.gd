@@ -17,7 +17,7 @@ func _ready() -> void:
 	%resume.pressed.connect(_resume_pressed)
 	%sure.pressed.connect(_sure_pressed)
 	%quit.pressed.connect(_quit_pressed)
-	%inv_resume.pressed.connect(_inv_resum_pressed)
+	%inv_resume.pressed.connect(_inv_resume_pressed)
 
 func _process(_delta: float) -> void:
 	pause.visible = (
@@ -83,5 +83,5 @@ func _sure_pressed() -> void:
 func _quit_pressed() -> void:
 	sure_quit = not sure_quit
 
-func _inv_resum_pressed() -> void:
+func _inv_resume_pressed() -> void:
 	_inventory()

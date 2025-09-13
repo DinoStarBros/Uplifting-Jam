@@ -5,6 +5,7 @@ class_name StatePlr
 
 var state_duration : float = 0 
 var is_current : bool = false
+@export var sharpness_cost : int = 0
 
 func _ready()-> void:
 	exit()

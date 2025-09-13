@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=44 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -25,7 +25,7 @@
 [ext_resource type="Script" uid="uid://kfbylg3w2mpf" path="res://entities/player/drawnAbilities/fist.gd" id="18_qpopc"]
 [ext_resource type="PackedScene" uid="uid://cirmuwc630gtr" path="res://PauseUI/inventory/inventory.tscn" id="19_221hk"]
 [ext_resource type="Script" uid="uid://4o1uq1ih5l5u" path="res://entities/player/ability_handler.gd" id="19_we0b7"]
-[ext_resource type="Script" uid="uid://cik4g17aq323b" path="res://entities/player/drawnAbilities/superDash.gd" id="19_wq0jh"]
+[ext_resource type="Script" uid="uid://cik4g17aq323b" path="res://entities/player/drawnAbilities/pistolAbility.gd" id="19_wq0jh"]
 [ext_resource type="PackedScene" uid="uid://c457ehqfb1g6c" path="res://Components/Hurtbox/hurtbox_component.tscn" id="20_eyb6c"]
 [ext_resource type="PackedScene" uid="uid://bghmfsudxxrio" path="res://Components/Health/health_component.tscn" id="21_221hk"]
 
@@ -117,6 +117,47 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.5, 0.5, 1),
 "update": 0,
 "values": [Vector2(2, 2), Vector2(1.8, 2.2), Vector2(2.2, 1.8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mow:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wq0jh"]
+resource_name = "draw_up"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [18, 19, 20, 21]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mow:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(0.5, 1, 0.5),
+"update": 0,
+"values": [0.0, -1.5708, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_bectd"]
@@ -264,6 +305,7 @@ _data = {
 &"RESET": SubResource("Animation_8fjmc"),
 &"dash": SubResource("Animation_wvtmh"),
 &"draw_side": SubResource("Animation_wuv6x"),
+&"draw_up": SubResource("Animation_wq0jh"),
 &"fall": SubResource("Animation_bectd"),
 &"idle": SubResource("Animation_fkugw"),
 &"jump": SubResource("Animation_26q78"),
@@ -415,13 +457,14 @@ debug_color = Color(0.925038, 0.138517, 3.85046e-07, 0.42)
 unique_name_in_owner = true
 position = Vector2(-58, -79)
 max_hp = 50.0
-dmg_txt = false
 hp_bar = NodePath("../GUI/hpbar")
 hp_txt = NodePath("../GUI/hpbar/hptxt")
 
-[node name="ability_handler" type="Node2D" parent="."]
+[node name="ability_handler" type="Node2D" parent="." node_paths=PackedStringArray("sharpness_bar", "sharpness_txt")]
 unique_name_in_owner = true
 script = ExtResource("19_we0b7")
+sharpness_bar = NodePath("../GUI/sharpbar")
+sharpness_txt = NodePath("../GUI/sharpbar/sharptxt")
 
 [node name="sfx" type="Node2D" parent="."]
 visible = false
@@ -499,12 +542,15 @@ unique_name_in_owner = true
 
 [node name="fist" type="Node" parent="SM/abilities"]
 script = ExtResource("18_qpopc")
+sharpness_cost = 2
 
 [node name="drone" type="Node" parent="SM/abilities"]
 script = ExtResource("16_ghoj8")
+sharpness_cost = 3
 
-[node name="superDash" type="Node" parent="SM/abilities"]
+[node name="pistol" type="Node" parent="SM/abilities"]
 script = ExtResource("19_wq0jh")
+sharpness_cost = 2
 
 [node name="anim" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -524,6 +570,38 @@ shape = SubResource("RectangleShape2D_bls4j")
 [node name="GUI" type="CanvasLayer" parent="."]
 process_mode = 3
 script = ExtResource("15_gx6sm")
+
+[node name="hpbar" type="ProgressBar" parent="GUI"]
+offset_left = 36.0
+offset_top = 25.0
+offset_right = 368.0
+offset_bottom = 47.0
+show_percentage = false
+
+[node name="hptxt" type="Label" parent="GUI/hpbar"]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 83.0
+offset_bottom = 18.0
+text = "HP: 50 / 50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sharpbar" type="ProgressBar" parent="GUI"]
+offset_left = 36.0
+offset_top = 60.0
+offset_right = 368.0
+offset_bottom = 82.0
+show_percentage = false
+
+[node name="sharptxt" type="Label" parent="GUI/sharpbar"]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 83.0
+offset_bottom = 18.0
+text = "Sharp: 10 / 10"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="pause" type="Control" parent="GUI"]
 unique_name_in_owner = true
@@ -569,6 +647,7 @@ text = "Sure"
 
 [node name="inventory" type="Control" parent="GUI"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -597,18 +676,6 @@ offset_bottom = 309.0
 unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
-
-[node name="hpbar" type="ProgressBar" parent="GUI"]
-offset_left = 36.0
-offset_top = 25.0
-offset_right = 368.0
-offset_bottom = 47.0
-show_percentage = false
-
-[node name="hptxt" type="Label" parent="GUI/hpbar"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 18.0
 
 [node name="Mow" type="Sprite2D" parent="."]
 unique_name_in_owner = true

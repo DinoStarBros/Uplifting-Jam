@@ -12,9 +12,11 @@ func _ready() -> void:
 	hp_visuals()
 
 func took_damage(attack : Attack) -> void:
-	hp_visuals()
 	if dmg_txt:
 		Global.spawn_txt(str(roundi(attack.damage)), global_position)
+	
+func _process(delta: float) -> void:
+	hp_visuals()
 
 func hp_visuals() -> void:
 	if hp_bar:
@@ -23,5 +25,8 @@ func hp_visuals() -> void:
 	
 	if hp_txt:
 		hp_txt.text = str(
-			roundi(hp), " / ", roundi(max_hp)
+			"HP: ",
+			roundi(hp),
+			" / ",
+			roundi(max_hp)
 		)

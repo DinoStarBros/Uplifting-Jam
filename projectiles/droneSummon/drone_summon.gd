@@ -7,12 +7,12 @@ var target : CharacterBody2D
 var dir_to_target : Vector2
 var shooty : bool = false
 var offset_x : float = 0
-var index : int = 0
+var index : float = 0
 
-static var amount : int = 0
+static var amount : float = 0
 
 const SPEED : float = 4
-const BULLET_SPD : float = 600
+const BULLET_SPD : float = 2500
 
 func _ready() -> void:
 	%shootTimer.timeout.connect(_shooty_timeout)

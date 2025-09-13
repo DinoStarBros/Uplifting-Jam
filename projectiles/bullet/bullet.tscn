@@ -1,19 +1,82 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy2yaihntpbtv"]
+[gd_scene load_steps=12 format=3 uid="uid://cy2yaihntpbtv"]
 
 [ext_resource type="Script" uid="uid://cc24br7s4gq5v" path="res://projectiles/bullet/bullet.gd" id="1_hwob3"]
-[ext_resource type="Texture2D" uid="uid://cr8v60ue1jsl7" path="res://Art/Bitlytic/bullet.png" id="2_1mdu2"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="3_g1w5t"]
+[ext_resource type="PackedScene" uid="uid://cg1j2ioabubjc" path="res://juices/trail/trail_fx.tscn" id="4_sils6"]
+[ext_resource type="Texture2D" uid="uid://bqubavsk5td7m" path="res://Art/newsprites.png" id="5_pofd3"]
+[ext_resource type="Texture2D" uid="uid://b2e50hn2busxu" path="res://Art/Stuff2/2d_lights_and_shadows_neutral_point_light.webp" id="5_s8i05"]
+[ext_resource type="Texture2D" uid="uid://bij3lt28bf2wm" path="res://Art/planestuff/fx/bulletweffect-Sheet.png" id="6_s8i05"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1w5t"]
-size = Vector2(20, 6)
+size = Vector2(14, 6)
+
+[sub_resource type="Gradient" id="Gradient_sils6"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 0, 1)
+
+[sub_resource type="Animation" id="Animation_hurb3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_s8i05"]
+resource_name = "start"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hurb3"]
+_data = {
+&"RESET": SubResource("Animation_hurb3"),
+&"start": SubResource("Animation_s8i05")
+}
 
 [node name="bullet" type="Node2D"]
 script = ExtResource("1_hwob3")
-
-[node name="Bullet" type="Sprite2D" parent="."]
-rotation = 1.5708
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("2_1mdu2")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("3_g1w5t")]
 unique_name_in_owner = true
@@ -22,3 +85,32 @@ collision_mask = 2
 
 [node name="hitbox" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("RectangleShape2D_g1w5t")
+
+[node name="trail_fx" parent="." instance=ExtResource("4_sils6")]
+gradient = SubResource("Gradient_sils6")
+MAX_LENGTH = 10
+
+[node name="flash" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0.4, 1)
+texture = ExtResource("6_s8i05")
+hframes = 12
+frame = 2
+
+[node name="sprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("5_pofd3")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 1, 0, 1)
+energy = 0.8
+texture = ExtResource("5_s8i05")
+texture_scale = 1.5
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hurb3")
+}
+autoplay = "start"
