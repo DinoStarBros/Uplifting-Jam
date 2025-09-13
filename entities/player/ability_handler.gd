@@ -27,26 +27,39 @@ func ability_handling(delta: float) -> void:
 		directional_ability(delta)
 		update_sharpness_visual()
 
+var ability_sharpness_cost : int
 func directional_ability(delta: float) -> void:
-	
+	%slash_sfx2.play()
 	if Input.is_action_pressed("Up"): 
 		# UP ABILITY
+		
+		ability_sharpness_cost = sm.find_ability_state(
+			equipped_abilities[1]).sharpness_cost
+		
+		
 		sm.change_state(
 			equipped_abilities[1]
 		)
 	
 	elif Input.is_action_pressed("Down"): 
 		# DOWN ABILITY
+		
+		ability_sharpness_cost = sm.find_ability_state(
+			equipped_abilities[2]).sharpness_cost
+		
+		
 		sm.change_state(
 			equipped_abilities[2]
 		)
 		
-		
-		
-		
 	
 	else: 
 		# NEUTRAL/SIDE ABILITY
+		
+		ability_sharpness_cost = sm.find_ability_state(
+			equipped_abilities[0]).sharpness_cost
+		
+		
 		sm.change_state(
 			equipped_abilities[0]
 		)
@@ -54,6 +67,12 @@ func directional_ability(delta: float) -> void:
 	sharpness -= p.sm.current_state.sharpness_cost
 
 func update_sharpness_visual() -> void:
+	if sharpness > max_sharpness:
+		sharpness = max_sharpness
+	
+	if sharpness <= 0:
+		sharpness = 0
+	
 	sharpness_bar.max_value = max_sharpness
 	sharpness_bar.value = sharpness
 	
@@ -63,3 +82,6 @@ func update_sharpness_visual() -> void:
 		" / ",
 		roundi(max_sharpness)
 	)
+
+func update_equippped_abilities() -> void:
+	pass

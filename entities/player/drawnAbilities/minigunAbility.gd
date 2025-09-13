@@ -5,7 +5,7 @@ func on_enter()-> void:
 	_spawn_pistol()
 	p.anim.play("draw_side")
 
-func process(delta: float)-> void:
+func process(delta: float) -> void:
 	
 	p.velocity.x *= 0.8
 	p.velocity.y = 0
@@ -20,12 +20,12 @@ func process(delta: float)-> void:
 func on_exit()-> void:
 	pass
 
-var pistol_scn : PackedScene = References.projectiles["pistol"]
+var minigun_scn : PackedScene = References.projectiles["minigun"]
 func _spawn_pistol() -> void:
 	
-	var pistol : Pistol = pistol_scn.instantiate()
+	var mg : Minigun = minigun_scn.instantiate()
 	
-	pistol.global_position = p.global_position
-	pistol.global_position.x += 35 * p.last_x_input
-	pistol.dir = Vector2(p.last_x_input, 0)
-	Global.game.add_child(pistol)
+	mg.global_position = p.global_position
+	mg.global_position.x += 35 * p.last_x_input
+	mg.dir = Vector2(p.last_x_input, 0)
+	Global.game.add_child(mg)

@@ -30,3 +30,6 @@ func change_state(state: String)-> void:
 		previous_state.is_current = false
 	
 	previous_state = current_state
+
+func find_ability_state(state_name : String) -> StatePlr:
+	return %abilities.find_child(state_name)

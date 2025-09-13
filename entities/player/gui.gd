@@ -52,6 +52,7 @@ func _inventory() -> void:
 		settings_menu._on_load_pressed()
 		gui_mode = GUI_MODES.INVENTORY
 		%inv_resume.grab_focus()
+		%inventoryStuff.on_pause()
 	else:
 		settings_menu._on_save_pressed()
 		gui_mode = GUI_MODES.UNPAUSED

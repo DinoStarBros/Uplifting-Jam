@@ -9,8 +9,10 @@ var resolution_index : int
 
 var game : Node2D
 var cam : Cam
+var player : Player
 
 const GRAVITY : float = 980
+const GRAVITY_LIMIT : float = 2000
 
 enum GAME_STATES {
 	TITLE, MAIN, INVENTORY

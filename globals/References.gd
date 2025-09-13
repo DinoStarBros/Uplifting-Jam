@@ -11,7 +11,7 @@ const projectiles : Dictionary = {
 	"drone": preload("res://projectiles/droneSummon/drone_summon.tscn"),
 	"bullet": preload("res://projectiles/bullet/bullet.tscn"),
 	"pistol": preload("res://projectiles/pistol/pistol.tscn"),
-	
+	"minigun": preload("res://projectiles/minigun/minigun.tscn")
 }
 
 const juices : Dictionary = {

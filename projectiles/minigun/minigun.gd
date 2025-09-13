@@ -1,5 +1,5 @@
 extends Node2D
-class_name Pistol
+class_name Minigun
 
 @onready var sprite: Sprite2D = %sprite
 
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func shoot() -> void:
 	_spawn_bullet()
-	%gunshot.pitch_scale = randf_range(0.8,1.2)
+	%gunshot.pitch_scale = randf_range(1.0,1.5)
 	%gunshot.play(0.08)
 	Global.cam.screen_shake(10, 0.05)
 
@@ -25,7 +25,7 @@ var bullet_scn : PackedScene = preload("res://projectiles/bullet/bullet.tscn")
 func _spawn_bullet() -> void:
 	var bullet : Bullet = bullet_scn.instantiate()
 	
-	bullet.damage = randi_range(8,10)
+	bullet.damage = randi_range(2,3)
 	bullet.global_position = %flash.global_position
 	bullet.velocity = dir * BULLET_SPD
 	Global.game.add_child(bullet)

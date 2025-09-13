@@ -42,14 +42,9 @@ metadata/_tab_index = 0
 layout_mode = 2
 text = "YOU HAVE STUFF IDK"
 
-[node name="Abilities" type="VBoxContainer" parent="PanelContainer/Tabs"]
+[node name="Abilities" type="Control" parent="PanelContainer/Tabs"]
 layout_mode = 2
-alignment = 1
 metadata/_tab_index = 1
-
-[node name="Label" type="Label" parent="PanelContainer/Tabs/Abilities"]
-layout_mode = 2
-text = "abilities"
 
 [node name="Skill Tree" type="VBoxContainer" parent="PanelContainer/Tabs"]
 visible = false

@@ -25,6 +25,7 @@ var air_dashes : int = 1
 var override_flip_sprite : bool = false
 var can_slash : bool = true
 var can_dash : bool = true
+var sharpness_gain : int = 1
 
 const MAX_DASHES : int = 1
 const SPEED : float = 400.0
@@ -40,6 +41,7 @@ func _ready() -> void:
 	hitbox_component.Hit.connect(_hitbox_hit)
 	hitbox_component.attack.damage = 10
 	hitbox_component.attack.knockback = 350
+	Global.player = self
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -49,6 +51,9 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity.y += Global.GRAVITY * delta * 1.5
 		coyote_time += delta
+		
+		velocity.y = min(velocity.y, Global.GRAVITY_LIMIT)
+		
 	else:
 		air_dashes = MAX_DASHES
 		coyote_time = 0
@@ -128,6 +133,12 @@ func dash_handling() -> void:
 		sm.change_state("dash")
 
 func _hitbox_hit(attack:Attack) -> void:
+	ability_handler.sharpness += sharpness_gain
+	ability_handler.update_sharpness_visual()
+	
+	AudioManager.create_2d_audio(global_position, 
+	AudioSettings.types.ENEMY_HIT3)
+	
 	Global.frame_freeze(0.1, 0.075)
 	camera.screen_shake(5, 0.1)
 	
@@ -155,8 +166,6 @@ func damaged(attack:Attack) -> void:
 	AudioSettings.types.ENEMY_HIT1)
 	AudioManager.create_2d_audio(global_position, 
 	AudioSettings.types.ENEMY_HIT2)
-	AudioManager.create_2d_audio(global_position, 
-	AudioSettings.types.ENEMY_HIT3)
 
 func dead(attack:Attack) -> void:
 	Global.frame_freeze(0.2, 0.5)

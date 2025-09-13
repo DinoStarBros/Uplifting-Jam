@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=46 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dvkkkswc8fliu" path="res://entities/player/StateStuff/fallPlr.gd" id="4_fkugw"]
 [ext_resource type="Script" uid="uid://drr7ccpqlh4b5" path="res://entities/player/StateStuff/jumpPlr.gd" id="5_8fjmc"]
 [ext_resource type="AudioStream" uid="uid://cppxtyh63shtf" path="res://Audio/tresure/walkStep.wav" id="5_b2kln"]
+[ext_resource type="AudioStream" uid="uid://daiixog5jq884" path="res://Audio/cardtowersfx/sword_slash.wav" id="6_gt4e4"]
 [ext_resource type="Script" uid="uid://prtybmq88jau" path="res://entities/player/StateStuff/dashPlr.gd" id="6_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://diihmdabfwa8g" path="res://Art/Placeholder/Trail2.png" id="8_26q78"]
 [ext_resource type="Script" uid="uid://br0jxj83cm6v0" path="res://entities/player/StateStuff/pogoJumpPlr.gd" id="9_a1qjk"]
@@ -28,6 +29,7 @@
 [ext_resource type="Script" uid="uid://cik4g17aq323b" path="res://entities/player/drawnAbilities/pistolAbility.gd" id="19_wq0jh"]
 [ext_resource type="PackedScene" uid="uid://c457ehqfb1g6c" path="res://Components/Hurtbox/hurtbox_component.tscn" id="20_eyb6c"]
 [ext_resource type="PackedScene" uid="uid://bghmfsudxxrio" path="res://Components/Health/health_component.tscn" id="21_221hk"]
+[ext_resource type="Script" uid="uid://cvpob6nsrljpj" path="res://entities/player/drawnAbilities/minigunAbility.gd" id="23_24ehl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyb6c"]
 radius = 15.0
@@ -474,6 +476,11 @@ unique_name_in_owner = true
 stream = ExtResource("2_bectd")
 bus = &"SFX"
 
+[node name="slash_sfx2" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("6_gt4e4")
+bus = &"SFX"
+
 [node name="dash_sfx" type="AudioStreamPlayer" parent="sfx"]
 unique_name_in_owner = true
 stream = ExtResource("3_wvtmh")
@@ -540,16 +547,20 @@ script = ExtResource("16_qpopc")
 [node name="abilities" type="Node" parent="SM"]
 unique_name_in_owner = true
 
-[node name="fist" type="Node" parent="SM/abilities"]
-script = ExtResource("18_qpopc")
+[node name="minigun" type="Node" parent="SM/abilities"]
+script = ExtResource("23_24ehl")
+sharpness_cost = 3
+
+[node name="pistol" type="Node" parent="SM/abilities"]
+script = ExtResource("19_wq0jh")
 sharpness_cost = 2
 
 [node name="drone" type="Node" parent="SM/abilities"]
 script = ExtResource("16_ghoj8")
 sharpness_cost = 3
 
-[node name="pistol" type="Node" parent="SM/abilities"]
-script = ExtResource("19_wq0jh")
+[node name="fist" type="Node" parent="SM/abilities"]
+script = ExtResource("18_qpopc")
 sharpness_cost = 2
 
 [node name="anim" type="AnimationPlayer" parent="."]

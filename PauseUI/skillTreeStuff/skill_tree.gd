@@ -1,6 +1,7 @@
 extends Control
 class_name SkillTree
 
+
 var skills_in_tree : Array
 var skills_levels : Array
 

@@ -2,7 +2,7 @@ extends StatePlr
 
 
 func on_enter()-> void:
-	state_duration = 0.3
+	state_duration = 0.25
 	await get_tree().process_frame
 	p.hurtbox.disabled = true
 
@@ -11,6 +11,7 @@ func process(delta: float)-> void:
 	p.velocity *= 0.9
 	if state_duration <= 0:
 		p.sm.change_state("walk")
+	
 
 func on_exit()-> void:
 	await get_tree().process_frame

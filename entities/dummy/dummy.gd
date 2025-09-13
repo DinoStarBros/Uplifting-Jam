@@ -21,8 +21,6 @@ func damaged(attack:Attack) -> void:
 	AudioSettings.types.ENEMY_HIT1)
 	AudioManager.create_2d_audio(global_position, 
 	AudioSettings.types.ENEMY_HIT2)
-	AudioManager.create_2d_audio(global_position, 
-	AudioSettings.types.ENEMY_HIT3)
 
 func dead(attack:Attack) -> void:
 	velocity = attack.knockback_direction * attack.knockback * 3
