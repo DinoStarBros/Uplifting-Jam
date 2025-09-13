@@ -4,6 +4,7 @@ func on_enter()-> void:
 	state_duration = 0.3
 	_spawn_pistol()
 	p.anim.play("draw_side")
+	p.velocity.x = -p.last_x_input * 500
 
 func process(delta: float)-> void:
 	
