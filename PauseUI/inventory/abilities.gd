@@ -44,9 +44,9 @@ func _a3_press() -> void:
 
 func update_ability_visuals() -> void:
 	await get_tree().process_frame
-	a1.text = str("Neutral: \n", ability_handler.equipped_abilities[0])
-	a2.text = str("Up: \n", ability_handler.equipped_abilities[1])
-	a3.text = str("Down: \n", ability_handler.equipped_abilities[2])
+	a1.text = str("Neutral / 1: \n", ability_handler.equipped_abilities[0])
+	a2.text = str("Up / 2: \n", ability_handler.equipped_abilities[1])
+	a3.text = str("Down / 3: \n", ability_handler.equipped_abilities[2])
 
 func _process(delta: float) -> void:
 	
@@ -55,15 +55,15 @@ func _process(delta: float) -> void:
 			update_ability_visuals()
 		1:
 			a1.text = str("Choose a \n drawing")
-			a2.text = str("Up: \n", ability_handler.equipped_abilities[1])
-			a3.text = str("Down: \n", ability_handler.equipped_abilities[2])
+			a2.text = str("Up / 2: \n", ability_handler.equipped_abilities[1])
+			a3.text = str("Down / 3: \n", ability_handler.equipped_abilities[2])
 		2:
-			a1.text = str("Neutral: \n", ability_handler.equipped_abilities[0])
+			a1.text = str("Neutral / 1: \n", ability_handler.equipped_abilities[0])
 			a2.text = str("Choose a \n drawing")
-			a3.text = str("Down: \n", ability_handler.equipped_abilities[2])
+			a3.text = str("Down / 3: \n", ability_handler.equipped_abilities[2])
 		3:
-			a1.text = str("Neutral: \n", ability_handler.equipped_abilities[0])
-			a2.text = str("Up: \n", ability_handler.equipped_abilities[1])
+			a1.text = str("Neutral / 1: \n", ability_handler.equipped_abilities[0])
+			a2.text = str("Up / 2: \n", ability_handler.equipped_abilities[1])
 			a3.text = str("Choose a \n drawing")
 	
 	all_abilities.visible = which_equipping != 0

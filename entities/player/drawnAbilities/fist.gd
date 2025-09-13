@@ -44,7 +44,8 @@ func spawn_fist() -> void:
 	%fist_go.play()
 	var fist : Fist = fist_scn.instantiate()
 	fist.global_position = p.global_position
-	fist.damage = 30
+	fist.damage = 50
+	fist.p = p
 	fist.starting_velocity.x = p.last_x_input * 2500
 	fist.knockback_dir = Vector2(p.last_x_input, 0)
 	fist.starting_velocity.y = 200
