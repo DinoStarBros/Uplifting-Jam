@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cirmuwc630gtr"]
+[gd_scene load_steps=5 format=3 uid="uid://cirmuwc630gtr"]
 
 [ext_resource type="Script" uid="uid://ipdl2ppslru3" path="res://PauseUI/inventory/inventory.gd" id="1_62wf1"]
 [ext_resource type="PackedScene" uid="uid://kf837f0oenvj" path="res://PauseUI/skillTreeStuff/skill_tree.tscn" id="2_mv8p3"]
 [ext_resource type="Script" uid="uid://c6k1q8w0bawu6" path="res://PauseUI/inventory/abilities.gd" id="2_xm4pm"]
+[ext_resource type="PackedScene" uid="uid://bcycb2gi833ot" path="res://PauseUI/inventory/ability_buttons/ability_button.tscn" id="3_llkei"]
 
 [node name="inventoryStuff" type="Control"]
 layout_mode = 3
@@ -75,28 +76,29 @@ text = "A3:
 Fist"
 
 [node name="all_abilities" type="GridContainer" parent="PanelContainer/Tabs/Abilities"]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 570.5
-offset_top = 252.0
-offset_right = 648.5
-offset_bottom = 314.0
+offset_left = 374.5
+offset_top = 134.0
+offset_right = 452.5
+offset_bottom = 250.0
 
-[node name="minigun" type="Button" parent="PanelContainer/Tabs/Abilities/all_abilities"]
+[node name="minigun" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 layout_mode = 2
-text = "minigun
+text = "Minigun"
+
+[node name="pistol" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
+layout_mode = 2
+text = "Pistol"
+
+[node name="drone" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
+layout_mode = 2
+text = "drone
 "
 
-[node name="pistol" type="Button" parent="PanelContainer/Tabs/Abilities/all_abilities"]
+[node name="fist" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 layout_mode = 2
-text = "pistol"
-
-[node name="drone" type="Button" parent="PanelContainer/Tabs/Abilities/all_abilities"]
-layout_mode = 2
-text = "drone"
-
-[node name="fist" type="Button" parent="PanelContainer/Tabs/Abilities/all_abilities"]
-layout_mode = 2
-text = "fist"
+text = "Fist"
 
 [node name="Skill Tree" type="VBoxContainer" parent="PanelContainer/Tabs"]
 visible = false

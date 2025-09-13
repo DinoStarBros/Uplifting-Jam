@@ -10,6 +10,7 @@ var resolution_index : int
 var game : Node2D
 var cam : Cam
 var player : Player
+var abilities_inv : AbilitiesInventory
 
 const GRAVITY : float = 980
 const GRAVITY_LIMIT : float = 2000

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcycb2gi833ot"]
+
+[ext_resource type="Script" uid="uid://dab4e47g4ox1v" path="res://PauseUI/inventory/ability_buttons/ability_button.gd" id="1_hjbsg"]
+
+[node name="ability_button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_hjbsg")

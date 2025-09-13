@@ -20,7 +20,12 @@ func _ready() -> void:
 	for n in %abilities.get_children():
 		abilities.append(n.name)
 	
-	equipped_abilities = abilities
+	var ndex : int = -1
+	for ability : String in abilities:
+		ndex += 1
+		equipped_abilities.append(ability)
+		if ndex == 2:
+			break
 
 func ability_handling(delta: float) -> void:
 	if Input.is_action_just_pressed("ability"):
