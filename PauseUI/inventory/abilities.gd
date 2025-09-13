@@ -18,10 +18,11 @@ func _ready() -> void:
 	Global.abilities_inv = self
 
 func on_pause() -> void:
+	_load_ability_data()
 	which_equipping = 0
 
 func on_resume() -> void:
-	pass
+	_save_ability_data()
 
 func _a1_press() -> void:
 	if which_equipping == 0:
@@ -55,35 +56,22 @@ func _process(delta: float) -> void:
 			a1.text = str("Choose a \n drawing")
 			a2.text = str("Up: \n", ability_handler.equipped_abilities[1])
 			a3.text = str("Down: \n", ability_handler.equipped_abilities[2])
-			which_equipping_1()
 		2:
 			a1.text = str("Neutral: \n", ability_handler.equipped_abilities[0])
 			a2.text = str("Choose a \n drawing")
 			a3.text = str("Down: \n", ability_handler.equipped_abilities[2])
-			which_equipping_2()
 		3:
 			a1.text = str("Neutral: \n", ability_handler.equipped_abilities[0])
 			a2.text = str("Up: \n", ability_handler.equipped_abilities[1])
 			a3.text = str("Choose a \n drawing")
-			which_equipping_3()
 	
 	all_abilities.visible = which_equipping != 0
-
-func which_equipping_1() -> void:
-	pass
-
-func which_equipping_2() -> void:
-	pass
-
-func which_equipping_3() -> void:
-	pass
 
 var same_abilities : bool = false
 func ability_button_pressed(ability_name: String) -> void:
 	var ability : String
 	for ab: String in ability_handler.equipped_abilities:
 		if ab == ability_name:
-			#ability_handler.equipped_abilities[idx_with_same]
 			same_abilities = true
 			ability = ab
 			break
@@ -103,4 +91,13 @@ func ability_button_pressed(ability_name: String) -> void:
 	else:
 		ability_handler.equipped_abilities[which_equipping - 1] = ability_name
 	
+	
 	which_equipping = 0
+
+func _save_ability_data() -> void:
+	SaveLoad.SaveFileData.equipped_abilities = ability_handler.equipped_abilities
+	SaveLoad._save()
+
+func _load_ability_data() -> void:
+	SaveLoad._load()
+	ability_handler.equipped_abilities = SaveLoad.SaveFileData.equipped_abilities

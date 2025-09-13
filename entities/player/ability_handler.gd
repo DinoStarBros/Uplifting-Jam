@@ -31,6 +31,8 @@ func ability_handling(delta: float) -> void:
 	if Input.is_action_just_pressed("ability"):
 		directional_ability(delta)
 		update_sharpness_visual()
+	
+	
 
 var ability_sharpness_cost : int
 func directional_ability(delta: float) -> void:

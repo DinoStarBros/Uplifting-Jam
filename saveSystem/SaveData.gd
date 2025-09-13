@@ -12,3 +12,15 @@ class_name SaveDataResource
 
 @export var switch_acc_roll : bool = false 
 @export var language_idx : int = 0 ## English = 0
+
+@export var equipped_abilities : Array = [
+	"minigun",
+	"pistol",
+	"drone"
+]
+@export var unlocked_abilities : Array = [
+	"minigun",
+	"pistol",
+	"drone",
+	"fist"
+]

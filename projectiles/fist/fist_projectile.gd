@@ -6,12 +6,13 @@ class_name Fist
 var starting_velocity : Vector2
 var velocity : Vector2
 var knockback_dir : Vector2
+var damage: float = 20
 
 func _ready() -> void:
 	hitbox_component.attack.knockback_direction = knockback_dir
 	velocity = starting_velocity
 	
-	hitbox_component.attack.damage = 20
+	hitbox_component.attack.damage = damage
 	hitbox_component.attack.knockback = 1500
 	
 	hitbox_component.Hit.connect(_on_hit)

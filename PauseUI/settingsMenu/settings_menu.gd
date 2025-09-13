@@ -1,7 +1,7 @@
 extends Control
 class_name Settings
 
-func _ready()->void:
+func _ready() -> void:
 	
 	_on_load_pressed()
 	

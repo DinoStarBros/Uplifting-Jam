@@ -1,5 +1,8 @@
 extends Button
 
+### VERY IMPORTANT: The node's name has to be the same as the 
+### ability's state name
+
 var abilities_inv : AbilitiesInventory
 
 func _ready() -> void:
