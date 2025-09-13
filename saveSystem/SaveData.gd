@@ -18,9 +18,3 @@ class_name SaveDataResource
 	"pistol",
 	"drone"
 ]
-@export var unlocked_abilities : Array = [
-	"minigun",
-	"pistol",
-	"drone",
-	"fist"
-]

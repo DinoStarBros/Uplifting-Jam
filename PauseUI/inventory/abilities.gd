@@ -43,6 +43,7 @@ func _a3_press() -> void:
 		which_equipping = 0
 
 func update_ability_visuals() -> void:
+	await get_tree().process_frame
 	a1.text = str("Neutral: \n", ability_handler.equipped_abilities[0])
 	a2.text = str("Up: \n", ability_handler.equipped_abilities[1])
 	a3.text = str("Down: \n", ability_handler.equipped_abilities[2])
@@ -91,7 +92,6 @@ func ability_button_pressed(ability_name: String) -> void:
 	else:
 		ability_handler.equipped_abilities[which_equipping - 1] = ability_name
 	
-	
 	which_equipping = 0
 
 func _save_ability_data() -> void:
@@ -99,5 +99,10 @@ func _save_ability_data() -> void:
 	SaveLoad._save()
 
 func _load_ability_data() -> void:
+	SaveLoad._load()
+	ability_handler.equipped_abilities = SaveLoad.SaveFileData.equipped_abilities
+
+func _on_reset()->void:
+	SaveLoad._reset_save_file()
 	SaveLoad._load()
 	ability_handler.equipped_abilities = SaveLoad.SaveFileData.equipped_abilities
