@@ -19,12 +19,3 @@ z_index = 2
 
 [node name="dummy" parent="entities" instance=ExtResource("4_tubg1")]
 position = Vector2(597, 33)
-
-[node name="dummy2" parent="entities" instance=ExtResource("4_tubg1")]
-position = Vector2(1176, -113)
-
-[node name="dummy3" parent="entities" instance=ExtResource("4_tubg1")]
-position = Vector2(868, 15)
-
-[node name="dummy4" parent="entities" instance=ExtResource("4_tubg1")]
-position = Vector2(-131, 64)

@@ -7,7 +7,7 @@ class_name Ability_Handler
 @export var sharpness_bar : ProgressBar
 @export var sharpness_txt : Label
 
-var max_sharpness : float = 10
+var max_sharpness : float = 20
 var sharpness : float = 0
 
 var abilities : Array

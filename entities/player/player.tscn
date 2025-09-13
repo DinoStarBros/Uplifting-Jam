@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=50 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cirmuwc630gtr" path="res://PauseUI/inventory/inventory.tscn" id="19_221hk"]
 [ext_resource type="Script" uid="uid://4o1uq1ih5l5u" path="res://entities/player/ability_handler.gd" id="19_we0b7"]
 [ext_resource type="Script" uid="uid://cik4g17aq323b" path="res://entities/player/drawnAbilities/pistolAbility.gd" id="19_wq0jh"]
+[ext_resource type="Script" uid="uid://c2rw8fbp52gya" path="res://entities/player/StateStuff/deadPlr.gd" id="20_bwdx1"]
 [ext_resource type="PackedScene" uid="uid://c457ehqfb1g6c" path="res://Components/Hurtbox/hurtbox_component.tscn" id="20_eyb6c"]
 [ext_resource type="PackedScene" uid="uid://bghmfsudxxrio" path="res://Components/Health/health_component.tscn" id="21_221hk"]
 [ext_resource type="Script" uid="uid://cvpob6nsrljpj" path="res://entities/player/drawnAbilities/minigunAbility.gd" id="23_24ehl"]
@@ -34,6 +35,33 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyb6c"]
 radius = 15.0
 height = 52.0
+
+[sub_resource type="Animation" id="Animation_bwdx1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%hurtbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Mow:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_24ehl"]
 resource_name = "iframed"
@@ -62,33 +90,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.466667), Color(1, 1, 1, 1), Color(1, 1, 1, 0.466667), Color(1, 1, 1, 1), Color(1, 1, 1, 0.466667), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_bwdx1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%hurtbox:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%Mow:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bwdx1"]
@@ -511,6 +512,7 @@ collision_layer = 4
 collision_mask = 4
 health_component = NodePath("../health_component")
 hitspark_scale = Vector2(1.2, 1.2)
+spawn_hitspark = true
 
 [node name="hurtbox" type="CollisionShape2D" parent="hurtbox_component"]
 unique_name_in_owner = true
@@ -536,6 +538,7 @@ visible = false
 [node name="slash_sfx" type="AudioStreamPlayer" parent="sfx"]
 unique_name_in_owner = true
 stream = ExtResource("2_bectd")
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="slash_sfx2" type="AudioStreamPlayer" parent="sfx"]
@@ -579,6 +582,7 @@ bus = &"SFX"
 
 [node name="slashTimer" type="Timer" parent="timers"]
 unique_name_in_owner = true
+one_shot = true
 
 [node name="SM" type="Node" parent="." node_paths=PackedStringArray("debug_txt")]
 unique_name_in_owner = true
@@ -611,6 +615,9 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_bwdx1")
 }
+
+[node name="dead" type="Node" parent="SM"]
+script = ExtResource("20_bwdx1")
 
 [node name="abilities" type="Node" parent="SM"]
 unique_name_in_owner = true

@@ -114,16 +114,22 @@ func _slash_dir_handling() -> void:
 			hitbox_component.attack.knockback_direction = Vector2.UP
 			
 
+var buffer_slash : bool = false
 func slash_handling() -> void:
-	if Input.is_action_just_pressed("slash") and can_slash:
+	if (Input.is_action_just_pressed("slash") or buffer_slash) and can_slash:
 		%slash.scale.y *= -1
 		_slash_dir_handling()
 		slashnim.play("slash")
 		can_slash = false
+		buffer_slash = false
 		%slashTimer.start(SLASH_COOLDOWN)
 		
 		%slash_sfx.pitch_scale = randf_range(0.8, 1.2)
 		%slash_sfx.play()
+	
+	if %slashTimer.time_left <= SLASH_COOLDOWN * 0.5:
+		if Input.is_action_just_pressed("slash"):
+			buffer_slash = true
 
 func _slashCD_timeout() -> void:
 	can_slash = true
@@ -172,5 +178,6 @@ func dead(attack:Attack) -> void:
 	Global.cam.screen_shake(20, 1)
 	velocity = attack.knockback_direction * attack.knockback * 3
 	
+	sm.change_state("dead")
 	AudioManager.create_2d_audio(global_position,
 	AudioSettings.types.ENEMY_DEATH)

@@ -92,6 +92,7 @@ MAX_LENGTH = 10
 
 [node name="flash" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0.4, 1)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("6_s8i05")
 hframes = 12
 frame = 2

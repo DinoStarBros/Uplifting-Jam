@@ -4,7 +4,7 @@ class_name Dummy
 @onready var hitbox_component: HitboxComponent = %HitboxComponent
 
 func _ready() -> void:
-	hitbox_component.attack.damage = 1
+	hitbox_component.attack.damage = 2
 	hitbox_component.attack.knockback = 600
 
 func _physics_process(delta: float) -> void:

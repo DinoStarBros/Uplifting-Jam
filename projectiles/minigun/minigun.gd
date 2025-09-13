@@ -5,8 +5,10 @@ class_name Minigun
 
 var dir : Vector2
 var velocity : Vector2
+var rand_spread_vector : Vector2
 
 const BULLET_SPD : float = 2500
+const SPREAD_RANGE : float = .1
 
 func _ready() -> void:
 	if dir.x >= 0:
@@ -23,9 +25,16 @@ func shoot() -> void:
 var bullet_scn : PackedScene = preload("res://projectiles/bullet/bullet.tscn")
 
 func _spawn_bullet() -> void:
+	rand_spread_vector.x = randf_range(
+		-SPREAD_RANGE, SPREAD_RANGE
+	)
+	rand_spread_vector.y = randf_range(
+		-SPREAD_RANGE, SPREAD_RANGE
+	)
+	
 	var bullet : Bullet = bullet_scn.instantiate()
 	
 	bullet.damage = randi_range(2,3)
 	bullet.global_position = %flash.global_position
-	bullet.velocity = dir * BULLET_SPD
+	bullet.velocity = (dir + rand_spread_vector) * BULLET_SPD
 	Global.game.add_child(bullet)

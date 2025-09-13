@@ -11,6 +11,7 @@ var game : Node2D
 var cam : Cam
 var player : Player
 var abilities_inv : AbilitiesInventory
+var focused_node : Node
 
 const GRAVITY : float = 980
 const GRAVITY_LIMIT : float = 2000
@@ -26,6 +27,7 @@ func _init() -> void:
 
 func _process(delta: float) -> void:
 	volume_handle()
+	focused_node = get_viewport().gui_get_focus_owner()
 
 func frame_freeze(timescale: float, duration: float) -> void: ## Slows down the engine's time scale, slowing down the time, for a certain duration. Use for da juice
 	if frame_freeze_value:

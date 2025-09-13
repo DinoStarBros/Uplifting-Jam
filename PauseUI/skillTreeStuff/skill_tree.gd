@@ -1,6 +1,7 @@
 extends Control
 class_name SkillTree
 
+@onready var pointer: Sprite2D = %pointer
 
 var skills_in_tree : Array
 var skills_levels : Array
@@ -15,9 +16,6 @@ func update_skill_arrays() -> void:
 		if child is SkillButton:
 			skills_in_tree.append(child)
 			skills_levels.append(child.level)
-	
-	#print(skills_in_tree)
-	#print(skills_levels)
 
 func set_skills_values() -> void:
 	for skill : SkillButton in skills_in_tree:
@@ -26,3 +24,13 @@ func set_skills_values() -> void:
 func ability_pressed() -> void:
 	update_skill_arrays()
 	set_skills_values()
+
+func _process(delta: float) -> void:
+	if Global.focused_node is SkillButton:
+		pointer.visible = true
+		pointer.global_position = pointer.global_position.lerp(
+		Global.focused_node.global_position + Vector2(44,44),
+		12 * delta
+		)
+	else:
+		pointer.visible = false

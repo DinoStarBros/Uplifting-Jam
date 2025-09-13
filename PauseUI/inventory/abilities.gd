@@ -92,6 +92,8 @@ func ability_button_pressed(ability_name: String) -> void:
 	else:
 		ability_handler.equipped_abilities[which_equipping - 1] = ability_name
 	
+	a1.grab_focus()
+	
 	which_equipping = 0
 
 func _save_ability_data() -> void:

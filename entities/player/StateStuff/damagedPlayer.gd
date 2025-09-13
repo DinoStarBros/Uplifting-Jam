@@ -3,7 +3,7 @@ extends StatePlr
 
 func on_enter()-> void:
 	state_duration = 0.25
-	%iframeNim.play("iframed")
+	call_deferred("play_anim_iframe")
 
 func process(delta: float)-> void:
 	state_duration = max(state_duration - delta, 0)
@@ -13,3 +13,6 @@ func process(delta: float)-> void:
 
 func on_exit()-> void:
 	pass
+
+func play_anim_iframe() -> void:
+	%iframeNim.play("iframed")
