@@ -18,7 +18,7 @@ func shoot() -> void:
 	_spawn_bullet()
 	%gunshot.pitch_scale = randf_range(1.0,1.5)
 	%gunshot.play(0.08)
-	Global.cam.screen_shake(10, 0.05)
+	Global.cam.screen_shake(3, 0.05)
 
 var bullet_scn : PackedScene = preload("res://projectiles/bullet/bullet.tscn")
 

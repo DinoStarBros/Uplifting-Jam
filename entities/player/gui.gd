@@ -52,10 +52,11 @@ func _inventory() -> void:
 		settings_menu._on_load_pressed()
 		gui_mode = GUI_MODES.INVENTORY
 		%inv_resume.grab_focus()
-		%inventoryStuff.on_pause()
+		inventory_stuff.on_pause()
 	else:
 		settings_menu._on_save_pressed()
 		gui_mode = GUI_MODES.UNPAUSED
+		inventory_stuff.on_resume()
 
 func _pause() -> void:
 	if not Global.game_state == Global.GAME_STATES.MAIN:

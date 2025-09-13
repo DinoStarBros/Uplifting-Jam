@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cirmuwc630gtr"]
+[gd_scene load_steps=4 format=3 uid="uid://cirmuwc630gtr"]
 
 [ext_resource type="Script" uid="uid://ipdl2ppslru3" path="res://PauseUI/inventory/inventory.gd" id="1_62wf1"]
 [ext_resource type="PackedScene" uid="uid://kf837f0oenvj" path="res://PauseUI/skillTreeStuff/skill_tree.tscn" id="2_mv8p3"]
+[ext_resource type="Script" uid="uid://c6k1q8w0bawu6" path="res://PauseUI/inventory/abilities.gd" id="2_xm4pm"]
 
 [node name="inventoryStuff" type="Control"]
 layout_mode = 3
@@ -43,8 +44,59 @@ layout_mode = 2
 text = "YOU HAVE STUFF IDK"
 
 [node name="Abilities" type="Control" parent="PanelContainer/Tabs"]
+unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("2_xm4pm")
 metadata/_tab_index = 1
+
+[node name="buttons" type="VBoxContainer" parent="PanelContainer/Tabs/Abilities"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 116.0
+offset_right = 305.0
+offset_bottom = 202.0
+
+[node name="a1" type="Button" parent="PanelContainer/Tabs/Abilities/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "A1: 
+Minigun"
+
+[node name="a2" type="Button" parent="PanelContainer/Tabs/Abilities/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "A2: 
+Pistol"
+
+[node name="a3" type="Button" parent="PanelContainer/Tabs/Abilities/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "A3: 
+Fist"
+
+[node name="all_abilities" type="GridContainer" parent="PanelContainer/Tabs/Abilities"]
+layout_mode = 0
+offset_left = 570.5
+offset_top = 252.0
+offset_right = 648.5
+offset_bottom = 314.0
+
+[node name="minigun" type="Button" parent="PanelContainer/Tabs/Abilities/all_abilities"]
+layout_mode = 2
+text = "minigun
+"
+
+[node name="pistol" type="Button" parent="PanelContainer/Tabs/Abilities/all_abilities"]
+layout_mode = 2
+text = "pistol"
+
+[node name="drone" type="Button" parent="PanelContainer/Tabs/Abilities/all_abilities"]
+layout_mode = 2
+text = "drone"
+
+[node name="fist" type="Button" parent="PanelContainer/Tabs/Abilities/all_abilities"]
+layout_mode = 2
+text = "fist"
 
 [node name="Skill Tree" type="VBoxContainer" parent="PanelContainer/Tabs"]
 visible = false
