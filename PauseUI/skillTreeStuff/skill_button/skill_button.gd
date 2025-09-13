@@ -15,11 +15,10 @@ var level : int = 0:
 		label.text = str(level) + "/" + str(MAX_LEVEL)
 var skill_tree : SkillTree
 var ndex : int = 0
+var description : String
 
 func _ready() -> void:
 	skill_tree = get_parent()
-	
-	pressed.connect(_pressed)
 	
 	label.text = str(level) + "/" + str(MAX_LEVEL)
 	#if get_parent() is SkillButton:
@@ -32,7 +31,7 @@ func _ready() -> void:
 		#line_2d.points[ndex].y += size.y / 2
 
 var prereq_skl_lvls : Array
-func _pressed() -> void:
+func _pressed_b() -> void:
 	if level < MAX_LEVEL:
 		skill_up()
 
@@ -56,6 +55,9 @@ func skill_up() -> void:
 		level = min(level+1, MAX_LEVEL)
 		panel.show_behind_parent = true
 		
-		#line_2d.default_color = Color.GREEN
-		
 		skill_tree.ability_pressed()
+
+func _process(delta: float) -> void:
+	if Global.focused_node == self:
+		if Input.is_action_just_pressed("unlock_skill"):
+			_pressed_b()

@@ -12,7 +12,6 @@ custom_minimum_size = Vector2(32, 32)
 offset_right = 32.0
 offset_bottom = 32.0
 scale = Vector2(1.5, 1.5)
-tooltip_text = "NI"
 toggle_mode = true
 texture_normal = SubResource("AtlasTexture_fobwf")
 ignore_texture_size = true
