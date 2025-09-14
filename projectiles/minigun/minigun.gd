@@ -1,4 +1,4 @@
-extends Node2D
+extends Projectile
 class_name Minigun
 
 @onready var sprite: Sprite2D = %sprite
@@ -6,6 +6,8 @@ class_name Minigun
 var dir : Vector2
 var velocity : Vector2
 var rand_spread_vector : Vector2
+var damage : float = 2
+var knockback: float = 300
 
 const BULLET_SPD : float = 2500
 const SPREAD_RANGE : float = .1
@@ -34,7 +36,7 @@ func _spawn_bullet() -> void:
 	
 	var bullet : Bullet = bullet_scn.instantiate()
 	
-	bullet.damage = randi_range(2,3)
+	bullet.stats = stats
 	bullet.global_position = %flash.global_position
 	bullet.velocity = (dir + rand_spread_vector) * BULLET_SPD
 	Global.game.add_child(bullet)

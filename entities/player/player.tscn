@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=60 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -29,12 +29,113 @@
 [ext_resource type="Script" uid="uid://cik4g17aq323b" path="res://entities/player/drawnAbilities/pistolAbility.gd" id="19_wq0jh"]
 [ext_resource type="Script" uid="uid://c2rw8fbp52gya" path="res://entities/player/StateStuff/deadPlr.gd" id="20_bwdx1"]
 [ext_resource type="PackedScene" uid="uid://c457ehqfb1g6c" path="res://Components/Hurtbox/hurtbox_component.tscn" id="20_eyb6c"]
+[ext_resource type="Script" uid="uid://dfbir8t1pa0di" path="res://entities/player/StateStuff/cutscenePlr.gd" id="21_2soq1"]
 [ext_resource type="PackedScene" uid="uid://bghmfsudxxrio" path="res://Components/Health/health_component.tscn" id="21_221hk"]
 [ext_resource type="Script" uid="uid://cvpob6nsrljpj" path="res://entities/player/drawnAbilities/minigunAbility.gd" id="23_24ehl"]
+[ext_resource type="Shader" uid="uid://cne6u584nd6e4" path="res://shaders/hitFlash.gdshader" id="29_vewsg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyb6c"]
 radius = 15.0
 height = 52.0
+
+[sub_resource type="Animation" id="Animation_vewsg"]
+resource_name = "ouch"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Mow:material:shader_parameter/mix_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2soq1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Mow:material:shader_parameter/mix_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2soq1"]
+_data = {
+&"RESET": SubResource("Animation_2soq1"),
+&"ouch": SubResource("Animation_vewsg")
+}
+
+[sub_resource type="Animation" id="Animation_8q4fm"]
+resource_name = "death"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Mow:material:shader_parameter/mix_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Mow:material:shader_parameter/opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_np63p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Mow:material:shader_parameter/mix_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Mow:material:shader_parameter/opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_np63p"]
+_data = {
+&"RESET": SubResource("Animation_np63p"),
+&"death": SubResource("Animation_8q4fm")
+}
 
 [sub_resource type="Animation" id="Animation_bwdx1"]
 length = 0.001
@@ -365,9 +466,27 @@ tracks/2/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_0eo6o"]
+resource_name = "cutscene"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8fjmc"]
 _data = {
 &"RESET": SubResource("Animation_8fjmc"),
+&"cutscene": SubResource("Animation_0eo6o"),
 &"dash": SubResource("Animation_wvtmh"),
 &"draw_side": SubResource("Animation_wuv6x"),
 &"draw_up": SubResource("Animation_wq0jh"),
@@ -379,6 +498,12 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bls4j"]
 size = Vector2(36, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2soq1"]
+shader = ExtResource("29_vewsg")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/mix_value = 0.0
+shader_parameter/opacity = 1.0
 
 [sub_resource type="Animation" id="Animation_a1qjk"]
 length = 0.001
@@ -505,19 +630,30 @@ offset_right = 18.0
 offset_bottom = -35.0
 text = "Walk"
 
-[node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("20_eyb6c")]
+[node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component", "ouchnim") instance=ExtResource("20_eyb6c")]
 unique_name_in_owner = true
 z_index = 1
 collision_layer = 4
 collision_mask = 4
 health_component = NodePath("../health_component")
 hitspark_scale = Vector2(1.2, 1.2)
+ouchnim = NodePath("ouch")
 spawn_hitspark = true
 
 [node name="hurtbox" type="CollisionShape2D" parent="hurtbox_component"]
 unique_name_in_owner = true
 shape = SubResource("CapsuleShape2D_eyb6c")
 debug_color = Color(0.925038, 0.138517, 3.85046e-07, 0.42)
+
+[node name="ouch" type="AnimationPlayer" parent="hurtbox_component"]
+libraries = {
+&"": SubResource("AnimationLibrary_2soq1")
+}
+
+[node name="death" type="AnimationPlayer" parent="hurtbox_component"]
+libraries = {
+&"": SubResource("AnimationLibrary_np63p")
+}
 
 [node name="health_component" parent="." node_paths=PackedStringArray("hp_bar", "hp_txt") instance=ExtResource("21_221hk")]
 unique_name_in_owner = true
@@ -619,16 +755,19 @@ libraries = {
 [node name="dead" type="Node" parent="SM"]
 script = ExtResource("20_bwdx1")
 
+[node name="cutscene" type="Node" parent="SM"]
+script = ExtResource("21_2soq1")
+
 [node name="abilities" type="Node" parent="SM"]
 unique_name_in_owner = true
 
 [node name="minigun" type="Node" parent="SM/abilities"]
 script = ExtResource("23_24ehl")
-sharpness_cost = 3
+sharpness_cost = 4
 
 [node name="pistol" type="Node" parent="SM/abilities"]
 script = ExtResource("19_wq0jh")
-sharpness_cost = 2
+sharpness_cost = 3
 
 [node name="drone" type="Node" parent="SM/abilities"]
 script = ExtResource("16_ghoj8")
@@ -636,7 +775,7 @@ sharpness_cost = 3
 
 [node name="fist" type="Node" parent="SM/abilities"]
 script = ExtResource("18_qpopc")
-sharpness_cost = 2
+sharpness_cost = 3
 
 [node name="anim" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -763,8 +902,24 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
 
+[node name="black_bars" type="Node2D" parent="GUI"]
+unique_name_in_owner = true
+position = Vector2(640, 360)
+scale = Vector2(1.5, 1.5)
+
+[node name="bbu" type="Polygon2D" parent="GUI/black_bars"]
+position = Vector2(0, -360)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-800, -100, 800, -100, 800, 100, -800, 100)
+
+[node name="bbd" type="Polygon2D" parent="GUI/black_bars"]
+position = Vector2(0, 360)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-800, -100, 800, -100, 800, 100, -800, 100)
+
 [node name="Mow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_2soq1")
 scale = Vector2(2, 2)
 texture = ExtResource("3_sglur")
 hframes = 8

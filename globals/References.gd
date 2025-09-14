@@ -18,3 +18,11 @@ const juices : Dictionary = {
 	"splash_txt": preload("res://juices/splash_txt/splash_txt.tscn"),
 	
 }
+
+const statRes : Dictionary = {
+	"pencil": preload("res://Resources/Stats/pencil.tres"),
+	"fist": preload("res://Resources/Stats/fist.tres"),
+	"drone": preload("res://Resources/Stats/drone.tres"),
+	"pistol": preload("res://Resources/Stats/pistol.tres"),
+	"minigun": preload("res://Resources/Stats/minigun.tres")
+}

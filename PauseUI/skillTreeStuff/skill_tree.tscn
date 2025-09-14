@@ -13,12 +13,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o8exy")
 
-[node name="SkillButton" parent="." instance=ExtResource("2_lxfyo")]
+[node name="Pencil" parent="." instance=ExtResource("2_lxfyo")]
 layout_mode = 0
 offset_left = 578.0
 offset_top = 49.0
 offset_right = 610.0
 offset_bottom = 81.0
+description = "Draw stuff with it idk."
 
 [node name="SkillButton2" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
 layout_mode = 0
@@ -26,7 +27,7 @@ offset_left = 507.0
 offset_top = 121.0
 offset_right = 539.0
 offset_bottom = 153.0
-prerequisite_skills = [NodePath("../SkillButton")]
+prerequisite_skills = [NodePath("../Pencil")]
 
 [node name="SkillButton3" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
 layout_mode = 0
@@ -34,7 +35,7 @@ offset_left = 653.0
 offset_top = 121.0
 offset_right = 685.0
 offset_bottom = 153.0
-prerequisite_skills = [NodePath("../SkillButton")]
+prerequisite_skills = [NodePath("../Pencil")]
 
 [node name="pointer" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -64,3 +65,45 @@ rotation = 4.71239
 texture = ExtResource("3_s2kg6")
 region_enabled = true
 region_rect = Rect2(32, 32, 32, 32)
+
+[node name="descBox" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 59.0
+offset_top = 47.0
+offset_right = 378.0
+offset_bottom = 262.0
+
+[node name="vbox" type="VBoxContainer" parent="descBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="descTxt" type="Label" parent="descBox/vbox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+text = "Pencil:
+Shit urself"
+
+[node name="locked" type="Label" parent="descBox/vbox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+text = "Unlock previous skills first"
+
+[node name="unlock_hold" type="ProgressBar" parent="descBox/vbox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="unlock" type="Label" parent="descBox/vbox/unlock_hold"]
+layout_mode = 2
+offset_top = -22.0
+offset_right = 158.0
+offset_bottom = -4.0
+size_flags_horizontal = 0
+size_flags_vertical = 10
+text = "Hold Z to unlock"

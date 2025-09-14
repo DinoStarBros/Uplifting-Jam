@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://bvmj2hggig544"]
+
+[ext_resource type="Script" uid="uid://dj0vvw27ixrh8" path="res://scripts/StatsResClass.gd" id="1_jphni"]
+
+[resource]
+script = ExtResource("1_jphni")
+damage = 6.0
+knockback = 400.0
+metadata/_custom_type_script = "uid://dj0vvw27ixrh8"

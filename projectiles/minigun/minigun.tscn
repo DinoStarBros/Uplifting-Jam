@@ -329,7 +329,6 @@ unique_name_in_owner = true
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_nkx12")
 offset = Vector2(-131.44, -89.23)
-flip_h = true
 region_enabled = true
 region_rect = Rect2(1, 82, 254, 84)
 

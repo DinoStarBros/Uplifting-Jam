@@ -26,6 +26,8 @@ func _spawn_pistol() -> void:
 	
 	var mg : Minigun = minigun_scn.instantiate()
 	
+	mg.stats = References.statRes["minigun"]
+	
 	mg.global_position = p.global_position
 	mg.global_position.x += 35 * p.last_x_input
 	mg.dir = Vector2(p.last_x_input, 0)

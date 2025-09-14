@@ -6,6 +6,7 @@ class_name HurtboxComponent
 @export var ouchnim : AnimationPlayer
 @export var deathnim : AnimationPlayer
 @export var spawn_hitspark : bool = false
+@export var hitspark_speed_scale : float = 1.0
 
 var collision_shape : CollisionShape2D ## DISCLAIMER: Hurtbox Components should only have one collision shape cuz this is only one variable
 
@@ -46,6 +47,7 @@ func _spawn_hitspark(attack:Attack) -> void:
 	
 	hitspark.global_position = global_position
 	hitspark.scale = hitspark_scale
+	hitspark.speedscale = hitspark_speed_scale
 	hitspark.look_at(global_position-attack.knockback_direction)
 	hitspark.rotation_degrees += 180
 	Global.game.add_child(hitspark)

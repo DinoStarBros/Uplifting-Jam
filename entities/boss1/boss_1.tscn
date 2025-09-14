@@ -1,0 +1,287 @@
+[gd_scene load_steps=22 format=3 uid="uid://dhpm21pr4nud2"]
+
+[ext_resource type="Script" uid="uid://dw0242fkbv4go" path="res://entities/boss1/boss_1.gd" id="1_sap0a"]
+[ext_resource type="Script" uid="uid://dlh2miu8tdb5s" path="res://entities/boss1/stateStuff/boss1StateMachine.gd" id="2_ga3re"]
+[ext_resource type="Script" uid="uid://dhrtsjewoqqqb" path="res://entities/boss1/stateStuff/walkB1.gd" id="3_awlfk"]
+[ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="4_rgr7k"]
+[ext_resource type="PackedScene" uid="uid://c457ehqfb1g6c" path="res://Components/Hurtbox/hurtbox_component.tscn" id="5_gr070"]
+[ext_resource type="Shader" uid="uid://cne6u584nd6e4" path="res://shaders/hitFlash.gdshader" id="6_4evkx"]
+[ext_resource type="PackedScene" uid="uid://bghmfsudxxrio" path="res://Components/Health/health_component.tscn" id="6_h8ljm"]
+[ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="6_l7728"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ga3re"]
+size = Vector2(206, 382)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gr070"]
+size = Vector2(252, 388)
+
+[sub_resource type="Animation" id="Animation_h8ljm"]
+resource_name = "ouch"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../sprite:material:shader_parameter/mix_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4evkx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../sprite:material:shader_parameter/mix_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4evkx"]
+_data = {
+&"RESET": SubResource("Animation_4evkx"),
+&"ouch": SubResource("Animation_h8ljm")
+}
+
+[sub_resource type="Animation" id="Animation_yl5t8"]
+resource_name = "death"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%HitboxComponent/hitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../sprite:material:shader_parameter/mix_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../sprite:material:shader_parameter/opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_cutscene"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hlv0q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%HitboxComponent/hitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../sprite:material:shader_parameter/mix_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../sprite:material:shader_parameter/opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hlv0q"]
+_data = {
+&"RESET": SubResource("Animation_hlv0q"),
+&"death": SubResource("Animation_yl5t8")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7728"]
+shader = ExtResource("6_4evkx")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/mix_value = 0.0
+shader_parameter/opacity = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7728"]
+size = Vector2(240, 372)
+
+[sub_resource type="Animation" id="Animation_l7728"]
+resource_name = "start"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossHealthBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(17, 774), Vector2(17, 673)]
+}
+
+[sub_resource type="Animation" id="Animation_hwmh2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossHealthBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, 673)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hwmh2"]
+_data = {
+&"RESET": SubResource("Animation_hwmh2"),
+&"start": SubResource("Animation_l7728")
+}
+
+[node name="boss1" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_sap0a")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("debug_txt")]
+unique_name_in_owner = true
+script = ExtResource("2_ga3re")
+debug_txt = NodePath("../Label")
+
+[node name="walk" type="Node" parent="StateMachine"]
+script = ExtResource("3_awlfk")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -22.0
+offset_top = -57.0
+offset_right = 26.0
+offset_bottom = -39.0
+text = "walk"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ga3re")
+
+[node name="animation" type="AnimationPlayer" parent="."]
+
+[node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component", "ouchnim", "deathnim") instance=ExtResource("5_gr070")]
+collision_layer = 2
+collision_mask = 2
+health_component = NodePath("../health_component")
+hitspark_scale = Vector2(4, 4)
+ouchnim = NodePath("ouch")
+deathnim = NodePath("death")
+spawn_hitspark = true
+hitspark_speed_scale = 0.8
+
+[node name="hurtbox" type="CollisionShape2D" parent="hurtbox_component"]
+shape = SubResource("RectangleShape2D_gr070")
+
+[node name="ouch" type="AnimationPlayer" parent="hurtbox_component"]
+libraries = {
+&"": SubResource("AnimationLibrary_4evkx")
+}
+
+[node name="death" type="AnimationPlayer" parent="hurtbox_component"]
+libraries = {
+&"": SubResource("AnimationLibrary_hlv0q")
+}
+
+[node name="health_component" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("6_h8ljm")]
+max_hp = 100.0
+hp_bar = NodePath("../UIStuff/BossHealthBar")
+
+[node name="sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_l7728")
+scale = Vector2(1.95313, 3)
+texture = ExtResource("4_rgr7k")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("6_l7728")]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_l7728")
+debug_color = Color(0.994449, 0, 0.221892, 0.42)
+
+[node name="UIStuff" type="CanvasLayer" parent="."]
+
+[node name="BossHealthBar" type="ProgressBar" parent="UIStuff"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -623.0
+offset_top = -47.0
+offset_right = 624.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false
+
+[node name="start" type="AnimationPlayer" parent="UIStuff"]
+libraries = {
+&"": SubResource("AnimationLibrary_hwmh2")
+}
+autoplay = "start"

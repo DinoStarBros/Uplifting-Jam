@@ -7,11 +7,13 @@ class_name Ability_Handler
 @export var sharpness_bar : ProgressBar
 @export var sharpness_txt : Label
 
-var max_sharpness : float = 20
+var max_sharpness : float = 10
 var sharpness : float = 0
 
 var abilities : Array
 var equipped_abilities : Array ## [0] is Neutral, [1] is Up, [2] is Down / Side
+
+var ability_index : int = 0
 
 func _ready() -> void:
 	sharpness = max_sharpness
@@ -29,15 +31,23 @@ func ability_handling(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("abiltyNeutral"):
 		%slash_sfx2.play()
-		neutral_ability()
+		draw_ability(0)
 	
 	if Input.is_action_just_pressed("abilityUp"):
 		%slash_sfx2.play()
-		up_ability()
+		draw_ability(1)
 	
 	if Input.is_action_just_pressed("abilityDown"):
 		%slash_sfx2.play()
-		down_ability()
+		draw_ability(2)
+	
+	if Input.is_action_just_pressed("ability_c"):
+		%slash_sfx2.play()
+		draw_ability(ability_index)
+		
+		ability_index += 1
+		if ability_index >= equipped_abilities.size():
+			ability_index = 0
 
 var ability_sharpness_cost : int
 func directional_ability(delta: float) -> void:
@@ -45,15 +55,15 @@ func directional_ability(delta: float) -> void:
 	%slash_sfx2.play()
 	if Input.is_action_pressed("Up"): 
 		# UP ABILITY
-		up_ability()
+		draw_ability(1)
 	
 	elif Input.is_action_pressed("Down"): 
 		# DOWN ABILITY
-		down_ability()
+		draw_ability(2)
 	
 	else: 
 		# NEUTRAL/SIDE ABILITY
-		neutral_ability()
+		draw_ability(0)
 
 func update_sharpness_visual() -> void:
 	if sharpness > max_sharpness:
@@ -72,37 +82,13 @@ func update_sharpness_visual() -> void:
 		roundi(max_sharpness)
 	)
 
-func up_ability() -> void:
+func draw_ability(index : int) -> void:
 	ability_sharpness_cost = sm.find_ability_state(
-		equipped_abilities[1]).sharpness_cost
+		equipped_abilities[index]).sharpness_cost
 	
 	if sharpness >= ability_sharpness_cost:
 		sm.change_state(
-			equipped_abilities[1]
-		)
-		sharpness -= p.sm.current_state.sharpness_cost
-	
-	update_sharpness_visual()
-
-func down_ability() -> void:
-	ability_sharpness_cost = sm.find_ability_state(
-		equipped_abilities[2]).sharpness_cost
-	
-	if sharpness >= ability_sharpness_cost:
-		sm.change_state(
-			equipped_abilities[2]
-		)
-		sharpness -= p.sm.current_state.sharpness_cost
-	
-	update_sharpness_visual()
-
-func neutral_ability() -> void:
-	ability_sharpness_cost = sm.find_ability_state(
-		equipped_abilities[0]).sharpness_cost
-	
-	if sharpness >= ability_sharpness_cost:
-		sm.change_state(
-			equipped_abilities[0]
+			equipped_abilities[index]
 		)
 		sharpness -= p.sm.current_state.sharpness_cost
 	

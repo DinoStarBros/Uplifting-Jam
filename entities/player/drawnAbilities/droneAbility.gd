@@ -24,6 +24,7 @@ func on_exit()-> void:
 var drone_scn : PackedScene = References.projectiles["drone"]
 func _spawn_drone() -> void:
 	var drone : Drone = drone_scn.instantiate()
+	drone.stats = References.statRes["drone"]
 	drone.parent = p
 	drone.global_position = p.global_position
 	Global.game.add_child(drone)

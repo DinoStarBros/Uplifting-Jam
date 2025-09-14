@@ -1,4 +1,4 @@
-extends Node2D
+extends Projectile
 class_name Drone
 
 var parent : CharacterBody2D

@@ -10,7 +10,7 @@ func on_enter()-> void:
 
 func process(delta: float)-> void:
 	state_duration = max(state_duration - delta, 0)
-	p.velocity = Vector2.ZERO
+	p.velocity *= 0.9
 	p.override_flip_sprite = true
 	p.enable_gravity = false
 	

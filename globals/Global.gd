@@ -17,7 +17,7 @@ const GRAVITY : float = 980
 const GRAVITY_LIMIT : float = 2000
 
 enum GAME_STATES {
-	TITLE, MAIN, INVENTORY
+	TITLE, MAIN, INVENTORY, CUTSCENE
 }
 var game_state : GAME_STATES
 
@@ -61,3 +61,23 @@ func change_scene(scene: String) -> void:
 	SceneManager.change_scene(
 		scene,
 	)
+
+var tween : Tween
+var property_tween : Object
+var tween_ease : Object
+func create_property_vec2_tween(
+	node:Node,
+	vec2:Vector2, 
+	property: String = "position",
+	time: float = 1.0,
+	set_ease: Tween.EaseType = Tween.EASE_IN_OUT, 
+	set_trans: Tween.TransitionType = Tween.TRANS_SPRING
+	) -> void:
+	
+	if tween:
+		tween.kill()
+	
+	tween = create_tween()
+	property_tween = tween.tween_property(node, property, vec2, time)
+	tween_ease = property_tween.set_ease(set_ease)
+	tween_ease.set_trans(set_trans)

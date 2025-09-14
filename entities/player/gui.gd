@@ -18,6 +18,9 @@ func _ready() -> void:
 	%sure.pressed.connect(_sure_pressed)
 	%quit.pressed.connect(_quit_pressed)
 	%inv_resume.pressed.connect(_inv_resume_pressed)
+	
+	GlobalSignals.cutscene_start.connect(_cutscene_start)
+	GlobalSignals.cutscene_end.connect(_cutscene_end)
 
 func _process(_delta: float) -> void:
 	pause.visible = (
@@ -38,6 +41,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Esc"):
 		_pause()
 	
+	if Input.is_action_just_pressed("unlock_skill"):
+		GlobalSignals.cutscene_end.emit()
 
 func _inventory() -> void:
 	if not Global.game_state == Global.GAME_STATES.MAIN:
@@ -87,3 +92,11 @@ func _quit_pressed() -> void:
 
 func _inv_resume_pressed() -> void:
 	_inventory()
+
+func _cutscene_start() -> void:
+	Global.create_property_vec2_tween(%black_bars, Vector2.ONE, "scale", 1,)
+	Global.game_state = Global.GAME_STATES.CUTSCENE
+
+func _cutscene_end() -> void:
+	Global.create_property_vec2_tween(%black_bars, Vector2(1.5, 1.5), "scale",)
+	Global.game_state = Global.GAME_STATES.MAIN

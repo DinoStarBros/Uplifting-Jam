@@ -1,4 +1,4 @@
-extends Node2D
+extends Projectile
 class_name Pistol
 
 @onready var sprite: Sprite2D = %sprite
@@ -25,7 +25,7 @@ var bullet_scn : PackedScene = preload("res://projectiles/bullet/bullet.tscn")
 func _spawn_bullet() -> void:
 	var bullet : Bullet = bullet_scn.instantiate()
 	
-	bullet.damage = randi_range(7,8)
+	bullet.stats = stats
 	bullet.global_position = %flash.global_position
 	bullet.velocity = dir * BULLET_SPD
 	Global.game.add_child(bullet)

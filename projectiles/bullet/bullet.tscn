@@ -115,3 +115,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_hurb3")
 }
 autoplay = "start"
+
+[node name="lifeTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+autostart = true

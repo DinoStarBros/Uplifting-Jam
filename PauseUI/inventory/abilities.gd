@@ -27,18 +27,21 @@ func on_resume() -> void:
 func _a1_press() -> void:
 	if which_equipping == 0:
 		which_equipping = 1
+		%minigun.grab_focus()
 	elif which_equipping == 1:
 		which_equipping = 0
 
 func _a2_press() -> void:
 	if which_equipping == 0:
 		which_equipping = 2
+		%minigun.grab_focus()
 	elif which_equipping == 2:
 		which_equipping = 0
 
 func _a3_press() -> void:
 	if which_equipping == 0:
 		which_equipping = 3
+		%minigun.grab_focus()
 	elif which_equipping == 3:
 		which_equipping = 0
 

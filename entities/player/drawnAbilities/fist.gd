@@ -11,8 +11,9 @@ func on_enter() -> void:
 	p.anim.play("draw_side")
 	p.velocity.x = 800 * p.last_x_input
 	
-	fist_spawned = false
-	fist_delay_time = FIST_DELAY
+	#fist_spawned = false
+	#fist_delay_time = FIST_DELAY
+	spawn_fist()
 	p.velocity.y = 150
 	%fist_wind.play()
 
@@ -20,11 +21,11 @@ func process(delta: float)-> void:
 	p.velocity *= 0.9
 	p.enable_gravity = false
 	
-	fist_delay_time = max(fist_delay_time - delta, 0)
-	if fist_delay_time <= 0:
-		if not fist_spawned:
-			spawn_fist()
-			fist_spawned = true
+	#fist_delay_time = max(fist_delay_time - delta, 0)
+	#if fist_delay_time <= 0:
+	#	if not fist_spawned:
+	#		spawn_fist()
+	#		fist_spawned = true
 	
 	state_duration = max(state_duration - delta, 0)
 	if state_duration <= 0:
@@ -44,9 +45,9 @@ func spawn_fist() -> void:
 	%fist_go.play()
 	var fist : Fist = fist_scn.instantiate()
 	fist.global_position = p.global_position
-	fist.damage = 50
+	fist.stats = References.statRes["fist"]
 	fist.p = p
-	fist.starting_velocity.x = p.last_x_input * 2500
+	fist.starting_velocity.x = p.last_x_input * 3000
 	fist.knockback_dir = Vector2(p.last_x_input, 0)
 	fist.starting_velocity.y = 200
 	fist.global_position.y += -50

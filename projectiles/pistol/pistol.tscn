@@ -395,7 +395,7 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_8ofbl")
 }
-speed_scale = 1.5
+speed_scale = 1.2
 
 [node name="gunshot" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true

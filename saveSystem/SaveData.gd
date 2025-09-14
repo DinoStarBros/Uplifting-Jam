@@ -16,5 +16,12 @@ class_name SaveDataResource
 @export var equipped_abilities : Array = [
 	"minigun",
 	"pistol",
-	"drone"
+	"fist"
+]
+
+@export var skills_unlockeds : Array = [
+	
+]
+@export var skills_unlockables : Array = [
+	
 ]

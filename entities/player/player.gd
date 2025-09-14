@@ -26,6 +26,8 @@ var override_flip_sprite : bool = false
 var can_slash : bool = true
 var can_dash : bool = true
 var sharpness_gain : int = 1
+var damage: float = 5
+var knockback: float = 400
 
 const MAX_DASHES : int = 1
 const SPEED : float = 400.0
@@ -34,16 +36,20 @@ const COYOTE_TIME_THRESHOLD : float = 0.15
 const DASH_SPEED : float = 1000.0
 const DASH_DURATION : float = 0.25
 const SLASH_COOLDOWN : float = 0.37
-const SLASH_KNOCKBACK : float = 300.0
+const SLASH_KNOCKBACK : float = 400.0
 
 func _ready() -> void:
 	%slashTimer.timeout.connect(_slashCD_timeout)
 	hitbox_component.Hit.connect(_hitbox_hit)
-	hitbox_component.attack.damage = 10
-	hitbox_component.attack.knockback = 350
+	hitbox_component.attack.damage = References.statRes["pencil"].damage
+	hitbox_component.attack.knockback = References.statRes["pencil"].knockback
 	Global.player = self
+	
+	GlobalSignals.cutscene_start.connect(_cutscene_start)
+	GlobalSignals.cutscene_end.connect(_cutscene_end)
 
 func _physics_process(delta: float) -> void:
+	
 	if not is_on_floor():
 		if enable_gravity:
 			if velocity.y < 0:
@@ -85,6 +91,12 @@ func _y_input_handling() -> void:
 	else:
 		y_input = 0
 
+func move_handling() -> void:
+	if not Global.game_state == Global.GAME_STATES.MAIN:
+		return
+	
+	velocity.x = x_input * SPEED
+
 func _slash_dir_handling() -> void:
 	if y_input == 0:
 		if last_x_input == 1: # Right
@@ -112,10 +124,12 @@ func _slash_dir_handling() -> void:
 		elif y_input == -1: # Up
 			slash_pivot.rotation_degrees = -90
 			hitbox_component.attack.knockback_direction = Vector2.UP
-			
 
 var buffer_slash : bool = false
 func slash_handling() -> void:
+	if not Global.game_state == Global.GAME_STATES.MAIN:
+		return
+	
 	if (Input.is_action_just_pressed("slash") or buffer_slash) and can_slash:
 		%slash.scale.y *= -1
 		_slash_dir_handling()
@@ -135,6 +149,9 @@ func _slashCD_timeout() -> void:
 	can_slash = true
 
 func dash_handling() -> void:
+	if not Global.game_state == Global.GAME_STATES.MAIN:
+		return
+	
 	if Input.is_action_just_pressed("dash") and air_dashes >= 1:
 		sm.change_state("dash")
 
@@ -176,8 +193,25 @@ func damaged(attack:Attack) -> void:
 func dead(attack:Attack) -> void:
 	Global.frame_freeze(0.2, 0.5)
 	Global.cam.screen_shake(20, 1)
-	velocity = attack.knockback_direction * attack.knockback * 3
+	velocity = attack.knockback_direction * attack.knockback * 4
 	
 	sm.change_state("dead")
 	AudioManager.create_2d_audio(global_position,
 	AudioSettings.types.ENEMY_DEATH)
+
+
+var hitspark_scn : PackedScene = preload("res://juices/hitspark/hitspark.tscn")
+func _spawn_hitspark_death() -> void:
+	var hitspark : Hitspark = hitspark_scn.instantiate()
+	
+	hitspark.global_position = global_position
+	hitspark.scale = Vector2(3,3)
+	hitspark.look_at(global_position + velocity)
+	hitspark.rotation_degrees += 180
+	Global.game.add_child(hitspark)
+
+func _cutscene_start() -> void:
+	sm.change_state("cutscene")
+
+func _cutscene_end() -> void:
+	sm.change_state("walk")

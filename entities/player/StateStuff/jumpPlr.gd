@@ -8,7 +8,7 @@ func on_enter()-> void:
 	%jump_sfx.play()
 
 func process(delta: float)-> void:
-	p.velocity.x = p.x_input * p.SPEED
+	p.move_handling()
 	p.slash_handling()
 	p.ability_handling(delta)
 

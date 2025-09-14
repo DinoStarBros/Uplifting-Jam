@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://fwrtjdvkg0rm" path="res://screens/main/main.gd" id="1_j5age"]
 [ext_resource type="PackedScene" uid="uid://jm4ghv0uftnu" path="res://entities/player/player.tscn" id="2_h47hb"]
 [ext_resource type="TileSet" uid="uid://bdopjmolb8531" path="res://placeholder_tiles.tres" id="3_4eq7x"]
-[ext_resource type="PackedScene" uid="uid://c550uj2jof6xt" path="res://entities/dummy/dummy.tscn" id="4_tubg1"]
+[ext_resource type="PackedScene" uid="uid://57xmldyv2308" path="res://entities/boss2/boss_2.tscn" id="4_tubg1"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_j5age")
@@ -17,5 +17,5 @@ tile_set = ExtResource("3_4eq7x")
 [node name="player" parent="entities" instance=ExtResource("2_h47hb")]
 z_index = 2
 
-[node name="dummy" parent="entities" instance=ExtResource("4_tubg1")]
-position = Vector2(597, 33)
+[node name="boss2" parent="entities" instance=ExtResource("4_tubg1")]
+position = Vector2(-400, -156)
