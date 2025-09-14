@@ -27,28 +27,12 @@ func pressed_b() -> void:
 	skill_up()
 
 func skill_up() -> void:
-	print("BRAAA")
-	update()
 	
-	
-	# FO LATER
-	return
 	prereq_skl_unlockeds.clear()
-	if prerequisite_skills.size() != 0:
-		
-		for skill in prerequisite_skills:
-			prereq_skl_unlockeds.append(skill.unlocked)
-		
-		if prereq_skl_unlockeds.count(true) == prerequisite_skills.size():
-			
-			line_2d.default_color = Color.GREEN
-		
-		skill_tree.ability_pressed()
-	else:
-
-		panel.show_behind_parent = true
-		
-		skill_tree.ability_pressed()
+	
+	line_2d.default_color = Color.GREEN
+	
+	skill_tree.ability_pressed()
 
 func _process(delta: float) -> void:
 	

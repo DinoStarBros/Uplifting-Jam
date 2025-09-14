@@ -15,6 +15,8 @@ func process(delta: float)-> void:
 		p.sm.change_state("fall")
 	
 	p.dash_handling()
+	
+
 
 func on_exit()-> void:
 	pass

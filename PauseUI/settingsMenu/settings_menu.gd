@@ -12,6 +12,9 @@ func _ready() -> void:
 	%music_volume.value_changed.connect(_on_music_volume_value_changed)
 	%sfx_vol.value_changed.connect(_on_sfx_vol_value_changed)
 
+	%reset_button.pressed.connect(_reset_sure_press)
+	%reset_button_sure.pressed.connect(_on_reset_pressed)
+
 func _on_save_pressed()->void:
 	SaveLoad.SaveFileData.master_volume = Global.master_volume
 	SaveLoad.SaveFileData.music_volume = Global.music_volume
@@ -33,6 +36,7 @@ func _on_reset_pressed()->void:
 	SaveLoad._load()
 	_update_res()
 	_update_vol_val()
+	SceneManager.change_scene(References.screen_scenes["title"])
 
 func _update_vol_val()->void:
 	Global.master_volume = SaveLoad.SaveFileData.master_volume
@@ -74,9 +78,9 @@ func _on_sfx_vol_value_changed(value: float)->void:
 
 
 func _on_res_options_item_selected(index: int) -> void:
-	#pass
-	Global.resolution_index = index
-	DisplayServer.window_set_size(resolutions[index])
+	pass
+	#Global.resolution_index = index
+	#DisplayServer.window_set_size(resolutions[index])
 
 var resolutions : Array[Vector2i] = [
 	Vector2i(1920, 1080),
@@ -109,3 +113,6 @@ func _on_screen_shake_pressed() -> void:
 		%screen_shake.text = str("On")
 	else:
 		%screen_shake.text = str("Off")
+
+func _reset_sure_press() -> void:
+	%reset_button_sure.visible = !%reset_button_sure.visible

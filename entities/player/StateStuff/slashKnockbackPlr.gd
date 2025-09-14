@@ -17,6 +17,9 @@ func process(delta: float)-> void:
 			p.sm.change_state("walk")
 	
 	p.dash_handling()
+	
+	if (Input.is_action_just_pressed("jump") or p.next_buffered_state == "jump") and p.is_on_floor():
+		p.sm.change_state("jump")
 
 func on_exit()-> void:
 	pass

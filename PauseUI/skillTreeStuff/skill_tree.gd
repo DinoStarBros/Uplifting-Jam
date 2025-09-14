@@ -14,20 +14,27 @@ var skills_unlockeds : Array
 const UNLOCK_HOLD_PROG_MAX : float = 1
 
 func _ready() -> void:
+	skills_in_tree.clear()
+	for n in get_children():
+		if n is SkillButton:
+			skills_in_tree.append(n)
 	_load()
-	
-	skills_unlockeds = SaveLoad.SaveFileData.skills_unlockeds
-	
-	set_skills_values()
+
+func on_pause() -> void:
+	#_load()
+	pass
+
+func on_resume() -> void:
+	_save()
 
 func update_skill_arrays() -> void:
 	skills_in_tree.clear()
 	skills_unlockeds.clear()
 	for child in get_children():
 		if child is SkillButton:
-			child.update()
 			skills_in_tree.append(child)
 			skills_unlockeds.append(child.unlocked)
+			child.update()
 
 func set_skills_values() -> void:
 	var n : int = -1
@@ -39,7 +46,6 @@ func set_skills_values() -> void:
 
 func ability_pressed() -> void:
 	update_skill_arrays()
-	set_skills_values()
 
 func _process(delta: float) -> void:
 	if Global.focused_node is SkillButton:
@@ -94,15 +100,25 @@ func _visuals_stuff() -> void:
 func _save() -> void:
 	SaveLoad.SaveFileData.skills_unlockeds = skills_unlockeds
 	
-	#print(SaveLoad.SaveFileData.skills_unlockeds)
-	#print(SaveLoad.SaveFileData.skills_unlockables)
-	
 	SaveLoad._save()
 
+var n : int = -1
 func _load() -> void:
+	skills_unlockeds = SaveLoad.SaveFileData.skills_unlockeds
+	
 	SaveLoad._load()
 	
-	skills_unlockeds = SaveLoad.SaveFileData.skills_unlockeds
+	skills_in_tree.clear()
+	for n in get_children():
+		if n is SkillButton:
+			skills_in_tree.append(n)
+	
+	n = -1
+	
+	for skill : SkillButton in skills_in_tree:
+		n += 1
+		if SaveLoad.SaveFileData.skills_unlockeds[n]:
+			skill.pressed_b()
 
 func _on_reset_pressed()->void:
 	SaveLoad._reset_save_file()

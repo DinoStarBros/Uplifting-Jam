@@ -44,6 +44,7 @@ var bullet_scn : PackedScene = References.projectiles["bullet"]
 func _spawn_bullet() -> void:
 	var bullet : Bullet = bullet_scn.instantiate()
 	
+	bullet.stats = stats
 	bullet.global_position = global_position
 	bullet.velocity = dir_to_target * BULLET_SPD
 	

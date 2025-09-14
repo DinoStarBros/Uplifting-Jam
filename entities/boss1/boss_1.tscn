@@ -15,6 +15,21 @@ size = Vector2(206, 382)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gr070"]
 size = Vector2(252, 388)
 
+[sub_resource type="Animation" id="Animation_4evkx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../sprite:material:shader_parameter/mix_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_h8ljm"]
 resource_name = "ouch"
 length = 0.1
@@ -31,25 +46,49 @@ tracks/0/keys = {
 "values": [1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_4evkx"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4evkx"]
+_data = {
+&"RESET": SubResource("Animation_4evkx"),
+&"ouch": SubResource("Animation_h8ljm")
+}
+
+[sub_resource type="Animation" id="Animation_hlv0q"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../sprite:material:shader_parameter/mix_value")
+tracks/0/path = NodePath("%HitboxComponent/hitbox:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../sprite:material:shader_parameter/mix_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4evkx"]
-_data = {
-&"RESET": SubResource("Animation_4evkx"),
-&"ouch": SubResource("Animation_h8ljm")
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../sprite:material:shader_parameter/opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_yl5t8"]
@@ -107,45 +146,6 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_hlv0q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%HitboxComponent/hitbox:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../sprite:material:shader_parameter/mix_value")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../sprite:material:shader_parameter/opacity")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hlv0q"]
 _data = {
 &"RESET": SubResource("Animation_hlv0q"),
@@ -160,6 +160,21 @@ shader_parameter/opacity = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7728"]
 size = Vector2(240, 372)
+
+[sub_resource type="Animation" id="Animation_hwmh2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossHealthBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, 673)]
+}
 
 [sub_resource type="Animation" id="Animation_l7728"]
 resource_name = "start"
@@ -178,21 +193,6 @@ tracks/0/keys = {
 "values": [Vector2(17, 774), Vector2(17, 673)]
 }
 
-[sub_resource type="Animation" id="Animation_hwmh2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BossHealthBar:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(17, 673)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hwmh2"]
 _data = {
 &"RESET": SubResource("Animation_hwmh2"),
@@ -200,7 +200,8 @@ _data = {
 }
 
 [node name="boss1" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 8
+collision_mask = 9
 script = ExtResource("1_sap0a")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("debug_txt")]
@@ -247,7 +248,7 @@ libraries = {
 }
 
 [node name="health_component" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("6_h8ljm")]
-max_hp = 100.0
+max_hp = 500.0
 hp_bar = NodePath("../UIStuff/BossHealthBar")
 
 [node name="sprite" type="Sprite2D" parent="."]

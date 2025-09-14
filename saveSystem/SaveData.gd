@@ -20,8 +20,8 @@ class_name SaveDataResource
 ]
 
 @export var skills_unlockeds : Array = [
-	
-]
-@export var skills_unlockables : Array = [
+	true,
+	false,
+	false
 	
 ]
