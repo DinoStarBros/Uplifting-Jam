@@ -94,6 +94,7 @@ func _inv_resume_pressed() -> void:
 	_inventory()
 
 func _cutscene_start() -> void:
+	%black_bars.show()
 	Global.create_property_vec2_tween(%black_bars, Vector2.ONE, "scale", 1,)
 	Global.game_state = Global.GAME_STATES.CUTSCENE
 

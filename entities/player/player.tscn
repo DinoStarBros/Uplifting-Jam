@@ -904,6 +904,7 @@ text = "Resume"
 
 [node name="black_bars" type="Node2D" parent="GUI"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(640, 360)
 scale = Vector2(1.5, 1.5)
 
