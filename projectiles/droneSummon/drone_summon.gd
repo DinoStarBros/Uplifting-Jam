@@ -42,6 +42,9 @@ func _move(delta: float) -> void:
 
 var bullet_scn : PackedScene = References.projectiles["bullet"]
 func _spawn_bullet() -> void:
+	%shoot.pitch_scale = randf_range(1.2,1.5)
+	%shoot.play(1.06)
+	
 	var bullet : Bullet = bullet_scn.instantiate()
 	
 	bullet.stats = stats

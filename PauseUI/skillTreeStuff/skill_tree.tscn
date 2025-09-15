@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://kf837f0oenvj"]
+[gd_scene load_steps=7 format=3 uid="uid://kf837f0oenvj"]
 
 [ext_resource type="Script" uid="uid://ct08wt1gyevqs" path="res://PauseUI/skillTreeStuff/skill_tree.gd" id="1_o8exy"]
 [ext_resource type="PackedScene" uid="uid://cx4carxg6oo2t" path="res://PauseUI/skillTreeStuff/skill_button/skill_button.tscn" id="2_lxfyo"]
 [ext_resource type="Texture2D" uid="uid://bqubavsk5td7m" path="res://Art/newsprites.png" id="3_s2kg6"]
+[ext_resource type="AudioStream" uid="uid://oj1u6sw561go" path="res://Audio/UJsfx/unlockHold1.mp3" id="4_wycev"]
+[ext_resource type="AudioStream" uid="uid://blcdsi62f20ft" path="res://Audio/tresure/slashGem.wav" id="5_4i0gp"]
+[ext_resource type="AudioStream" uid="uid://e7fgtf2ti3ki" path="res://Audio/41randsfx/15.wav" id="6_rfxsc"]
 
 [node name="SkillTree" type="Control"]
 layout_mode = 3
@@ -107,3 +110,25 @@ offset_bottom = -4.0
 size_flags_horizontal = 0
 size_flags_vertical = 10
 text = "Hold Z to unlock"
+
+[node name="sfx" type="Node" parent="."]
+
+[node name="hold" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("4_wycev")
+pitch_scale = 1.2
+bus = &"SFX"
+
+[node name="unlock" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("5_4i0gp")
+volume_db = -10.0
+pitch_scale = 1.2
+bus = &"SFX"
+
+[node name="unlock2" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("6_rfxsc")
+volume_db = -15.0
+pitch_scale = 0.8
+bus = &"SFX"

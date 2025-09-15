@@ -17,7 +17,7 @@ func _ready() -> void:
 	skills_in_tree.clear()
 	for child in get_children():
 		if child is SkillButton:
-			skills_in_tree.append(n)
+			skills_in_tree.append(child)
 	_load()
 
 func on_pause() -> void:
@@ -60,14 +60,21 @@ func _process(delta: float) -> void:
 	if Global.focused_node is SkillButton: 
 	# A skill tree skill has been selected
 		
-		if Global.focused_node.unlockable:
+		if Global.focused_node.unlockable and not Global.focused_node.unlocked:
 			if Input.is_action_pressed("unlock_skill"):
 				unlock_hold_prog += delta
 			else:
 				unlock_hold_prog = 0
+				%hold.stop()
+			
+			if Input.is_action_just_pressed("unlock_skill"):
+				%hold.play()
 			
 			if unlock_hold_prog >= UNLOCK_HOLD_PROG_MAX:
 				Global.focused_node.pressed_b()
+				%unlock.play()
+				%unlock2.play()
+				%hold.stop()
 				
 				unlock_hold_prog = 0
 				for skill : SkillButton in skills_in_tree:
@@ -102,19 +109,18 @@ func _save() -> void:
 	
 	SaveLoad._save()
 
-var n : int = -1
+
 func _load() -> void:
 	skills_unlockeds = SaveLoad.SaveFileData.skills_unlockeds
 	
 	SaveLoad._load()
 	
 	skills_in_tree.clear()
-	for n in get_children():
-		if n is SkillButton:
-			skills_in_tree.append(n)
+	for skill in get_children():
+		if skill is SkillButton:
+			skills_in_tree.append(skill)
 	
-	n = -1
-	
+	var n : int = -1
 	for skill : SkillButton in skills_in_tree:
 		n += 1
 		if SaveLoad.SaveFileData.skills_unlockeds[n]:

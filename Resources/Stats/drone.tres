@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_rkkkq")
-damage = 5.0
+damage = 2.0
 knockback = 400.0
 metadata/_custom_type_script = "uid://dj0vvw27ixrh8"

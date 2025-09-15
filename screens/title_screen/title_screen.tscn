@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://wxr3bfk3vrrk"]
+[gd_scene load_steps=9 format=3 uid="uid://wxr3bfk3vrrk"]
 
 [ext_resource type="Script" uid="uid://bahqri01wuqxe" path="res://screens/title_screen/title_screen.gd" id="1_4rvf0"]
+[ext_resource type="AudioStream" uid="uid://qn6skfb4q5dt" path="res://Audio/UJsfx/OSstartup.mp3" id="2_alfmu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4rvf0"]
 font_size = 100
@@ -10,54 +11,67 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("buttons:position")
+tracks/0/path = NodePath("black_overlay:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(78, 787)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("title_txt:position")
+tracks/1/path = NodePath("black_overlay/dinoOs/loading:value")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(206, -322)]
+"values": [0.2]
 }
 
 [sub_resource type="Animation" id="Animation_4rvf0"]
 resource_name = "start"
+length = 10.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("buttons:position")
+tracks/0/path = NodePath("sfx/Startup:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.6),
-"transitions": PackedFloat32Array(0.307786, 0.307786, 1),
-"update": 0,
-"values": [Vector2(78, 787), Vector2(78, 787), Vector2(78, 297)]
+"times": PackedFloat32Array(2.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("title_txt:position")
+tracks/1/path = NodePath("black_overlay:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.396494),
-"transitions": PackedFloat32Array(0.164939, 1),
+"times": PackedFloat32Array(0, 2.1, 3.1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(206, -322), Vector2(205.5, 42)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("black_overlay/dinoOs/loading:value")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.1, 1.5, 1.9, 2.1),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [0.0, 0.2, 0.5, 0.55, 0.7, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_alfmu"]
@@ -66,6 +80,12 @@ _data = {
 &"start": SubResource("Animation_4rvf0")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alfmu"]
+bg_color = Color(0.68, 0.68, 0.68, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v18if"]
+bg_color = Color(0, 0.85119, 0.85346, 1)
+
 [node name="title_screen" type="Node"]
 script = ExtResource("1_4rvf0")
 
@@ -73,12 +93,12 @@ script = ExtResource("1_4rvf0")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -434.5
-offset_top = 41.9999
-offset_right = 434.5
-offset_bottom = 155.0
+offset_left = -122.0
+offset_top = 23.0
+offset_right = 747.0
+offset_bottom = 136.0
 grow_horizontal = 2
-text = "UPLIFTING GAME"
+text = "Mightier Dan"
 label_settings = SubResource("LabelSettings_4rvf0")
 
 [node name="buttons" type="VBoxContainer" parent="."]
@@ -86,10 +106,10 @@ unique_name_in_owner = true
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 78.0
-offset_top = -63.0
-offset_right = 264.0
-offset_bottom = 196.0
+offset_left = 68.0
+offset_top = -5.0
+offset_right = 254.0
+offset_bottom = 254.0
 grow_vertical = 2
 theme_override_constants/separation = 50
 
@@ -117,3 +137,43 @@ libraries = {
 &"": SubResource("AnimationLibrary_alfmu")
 }
 autoplay = "start"
+
+[node name="sfx" type="Node" parent="."]
+
+[node name="Startup" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("2_alfmu")
+volume_db = -10.0
+
+[node name="black_overlay" type="Polygon2D" parent="."]
+position = Vector2(740, 247)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-915, -416, -915, 553, 881, 573, 854, -349)
+
+[node name="dinoOs" type="Label" parent="black_overlay"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -318.0
+offset_top = 28.0
+offset_right = 93.0
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Dino Os
+"
+label_settings = SubResource("LabelSettings_4rvf0")
+
+[node name="loading" type="ProgressBar" parent="black_overlay/dinoOs"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 174.0
+offset_right = 384.0
+offset_bottom = 196.0
+theme_override_styles/background = SubResource("StyleBoxFlat_alfmu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v18if")
+max_value = 1.0
+value = 0.2
+show_percentage = false

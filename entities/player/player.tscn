@@ -766,7 +766,7 @@ sharpness_cost = 3
 
 [node name="drone" type="Node" parent="SM/abilities"]
 script = ExtResource("16_ghoj8")
-sharpness_cost = 3
+sharpness_cost = 5
 
 [node name="fist" type="Node" parent="SM/abilities"]
 script = ExtResource("18_qpopc")

@@ -166,7 +166,7 @@ shader_parameter/mix_value = 0.0
 shader_parameter/opacity = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7728"]
-size = Vector2(240, 372)
+size = Vector2(158, 332)
 
 [sub_resource type="Animation" id="Animation_hwmh2"]
 length = 0.001
@@ -281,6 +281,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_l7728")
 debug_color = Color(0.994449, 0, 0.221892, 0.42)
 
@@ -324,4 +325,5 @@ bus = &"SFX"
 [node name="falling" type="AudioStreamPlayer2D" parent="sfx"]
 unique_name_in_owner = true
 stream = ExtResource("13_llvsp")
+volume_db = 5.0
 pitch_scale = 2.0

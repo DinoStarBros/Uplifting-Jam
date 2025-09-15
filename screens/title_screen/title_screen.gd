@@ -14,6 +14,7 @@ func _ready() -> void:
 	%play.pressed.connect(_play_pressed)
 	%options.pressed.connect(_options_pressed)
 	%quit.pressed.connect(_quit_pressed)
+	
 
 func _process(delta: float) -> void:
 	pass
@@ -31,3 +32,6 @@ func _options_pressed() -> void:
 
 func _quit_pressed() -> void:
 	get_tree().quit()
+
+func _first_time_boot() -> void:
+	Global.first_time_boot = false
