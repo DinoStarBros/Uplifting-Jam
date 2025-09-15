@@ -15,8 +15,8 @@ const UNLOCK_HOLD_PROG_MAX : float = 1
 
 func _ready() -> void:
 	skills_in_tree.clear()
-	for n in get_children():
-		if n is SkillButton:
+	for child in get_children():
+		if child is SkillButton:
 			skills_in_tree.append(n)
 	_load()
 
@@ -36,13 +36,13 @@ func update_skill_arrays() -> void:
 			skills_unlockeds.append(child.unlocked)
 			child.update()
 
-func set_skills_values() -> void:
-	var n : int = -1
-	for skill : SkillButton in skills_in_tree:
-		n += 1
-		if skills_unlockeds[n]:
-			skill.pressed_b()
-		skill.update()
+#func set_skills_values() -> void:
+#	var n : int = -1
+#	for skill : SkillButton in skills_in_tree:
+#		n += 1
+#		if skills_unlockeds[n]:
+#			skill.pressed_b()
+#		skill.update()
 
 func ability_pressed() -> void:
 	update_skill_arrays()

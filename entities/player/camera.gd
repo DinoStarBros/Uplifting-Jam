@@ -5,7 +5,7 @@ class_name Cam
 
 func _ready() -> void:
 	Global.cam = self
-	#%camLimArea.area_entered.connect(_on_camlim_area_entered)
+	%camLimArea.area_entered.connect(_on_camlim_area_entered)
 
 var shake_intensity: float = 0.0
 var active_shake_time:float = 0.0

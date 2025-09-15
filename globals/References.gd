@@ -11,7 +11,8 @@ const projectiles : Dictionary = {
 	"drone": preload("res://projectiles/droneSummon/drone_summon.tscn"),
 	"bullet": preload("res://projectiles/bullet/bullet.tscn"),
 	"pistol": preload("res://projectiles/pistol/pistol.tscn"),
-	"minigun": preload("res://projectiles/minigun/minigun.tscn")
+	"minigun": preload("res://projectiles/minigun/minigun.tscn"),
+	"ground_shockwave": preload("res://projectiles/ground_shockwave/ground_shockwave.tscn")
 }
 
 const juices : Dictionary = {
@@ -24,5 +25,6 @@ const statRes : Dictionary = {
 	"fist": preload("res://Resources/Stats/fist.tres"),
 	"drone": preload("res://Resources/Stats/drone.tres"),
 	"pistol": preload("res://Resources/Stats/pistol.tres"),
-	"minigun": preload("res://Resources/Stats/minigun.tres")
+	"minigun": preload("res://Resources/Stats/minigun.tres"),
+	"ground_shockwave": preload("res://Resources/Stats/ground_shockwave.tres")
 }

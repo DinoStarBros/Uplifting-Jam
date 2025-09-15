@@ -42,7 +42,6 @@ func on_exit()-> void:
 	p.hurtbox.disabled = false
 
 func spawn_fist() -> void:
-	%fist_go.play()
 	var fist : Fist = fist_scn.instantiate()
 	fist.global_position = p.global_position
 	fist.stats = References.statRes["fist"]

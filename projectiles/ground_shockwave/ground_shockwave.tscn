@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2nlamqg473pg"]
+
+[ext_resource type="Texture2D" uid="uid://dgchatlft35go" path="res://Art/fxshit/Explosion.png" id="1_blgbi"]
+[ext_resource type="Script" uid="uid://d1gx5jgpqwg8m" path="res://projectiles/ground_shockwave/ground_shockwave.gd" id="1_sa4h2"]
+[ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="3_ssylx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssylx"]
+size = Vector2(41, 111)
+
+[node name="ground_shockwave" type="Node2D"]
+z_index = -2
+script = ExtResource("1_sa4h2")
+
+[node name="Explosion" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.2, 0.3)
+texture = ExtResource("1_blgbi")
+hframes = 2
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_ssylx")]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(33.5, 30.5)
+shape = SubResource("RectangleShape2D_ssylx")
+
+[node name="lifeTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+autostart = true

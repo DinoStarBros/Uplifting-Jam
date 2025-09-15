@@ -27,10 +27,13 @@ func _move(delta: float) -> void:
 	global_position += velocity * delta
 
 func _on_hit(attack: Attack) -> void:
-	Global.frame_freeze(0.1, 0.1)
+	Global.frame_freeze(0.1, 0.2)
 	Global.cam.screen_shake(15, 0.2)
 	p.velocity.x = -knockback_dir.x * 500
+	
+	%hit.play(0.4)
 
 func _delay_timeout() -> void:
 	velocity = starting_velocity
 	%hitbox.disabled = false
+	%fist_go.play()

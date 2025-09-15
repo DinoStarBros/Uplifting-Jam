@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=4 uid="uid://dtto6piffrexp"]
+[gd_scene load_steps=7 format=4 uid="uid://dtto6piffrexp"]
 
 [ext_resource type="Script" uid="uid://fwrtjdvkg0rm" path="res://screens/main/main.gd" id="1_j5age"]
 [ext_resource type="PackedScene" uid="uid://jm4ghv0uftnu" path="res://entities/player/player.tscn" id="2_h47hb"]
 [ext_resource type="TileSet" uid="uid://bdopjmolb8531" path="res://placeholder_tiles.tres" id="3_4eq7x"]
 [ext_resource type="PackedScene" uid="uid://dhpm21pr4nud2" path="res://entities/boss1/boss_1.tscn" id="4_tubg1"]
+[ext_resource type="AudioStream" uid="uid://pv1nr8fqn4iq" path="res://Audio/Mutronic Plague.mp3" id="5_q8oy7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tubg1"]
+size = Vector2(2098, 1164)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_j5age")
@@ -19,3 +23,18 @@ z_index = 2
 
 [node name="boss1" parent="entities" instance=ExtResource("4_tubg1")]
 position = Vector2(437, -89)
+
+[node name="camLim" type="Node2D" parent="."]
+
+[node name="camLim" type="Area2D" parent="camLim"]
+collision_layer = 128
+collision_mask = 128
+
+[node name="room" type="CollisionShape2D" parent="camLim/camLim"]
+position = Vector2(0, -305)
+shape = SubResource("RectangleShape2D_tubg1")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_q8oy7")
+bus = &"Music"

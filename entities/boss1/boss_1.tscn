@@ -1,13 +1,20 @@
-[gd_scene load_steps=22 format=3 uid="uid://dhpm21pr4nud2"]
+[gd_scene load_steps=29 format=3 uid="uid://dhpm21pr4nud2"]
 
 [ext_resource type="Script" uid="uid://dw0242fkbv4go" path="res://entities/boss1/boss_1.gd" id="1_sap0a"]
 [ext_resource type="Script" uid="uid://dlh2miu8tdb5s" path="res://entities/boss1/stateStuff/boss1StateMachine.gd" id="2_ga3re"]
 [ext_resource type="Script" uid="uid://dhrtsjewoqqqb" path="res://entities/boss1/stateStuff/walkB1.gd" id="3_awlfk"]
+[ext_resource type="Script" uid="uid://ewfnxifluk5s" path="res://entities/boss1/stateStuff/jumpB1.gd" id="4_hwmh2"]
 [ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="4_rgr7k"]
 [ext_resource type="PackedScene" uid="uid://c457ehqfb1g6c" path="res://Components/Hurtbox/hurtbox_component.tscn" id="5_gr070"]
+[ext_resource type="Script" uid="uid://bcxc2wni6tswx" path="res://entities/boss1/stateStuff/bashB1.gd" id="5_yl5t8"]
 [ext_resource type="Shader" uid="uid://cne6u584nd6e4" path="res://shaders/hitFlash.gdshader" id="6_4evkx"]
 [ext_resource type="PackedScene" uid="uid://bghmfsudxxrio" path="res://Components/Health/health_component.tscn" id="6_h8ljm"]
+[ext_resource type="Script" uid="uid://bhcwjqynoqf0d" path="res://entities/boss1/stateStuff/deathB1.gd" id="6_hooxr"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="6_l7728"]
+[ext_resource type="Script" uid="uid://bbr5bs6cssplw" path="res://entities/boss1/stateStuff/ramB1.gd" id="7_iqljd"]
+[ext_resource type="AudioStream" uid="uid://cw0s6bkxlwn2b" path="res://Audio/splashtownSFX/Jump.wav" id="12_5a0cs"]
+[ext_resource type="AudioStream" uid="uid://d0dlcg57pwrs6" path="res://Audio/planesfx/explosion-fx-343683.mp3" id="12_hooxr"]
+[ext_resource type="AudioStream" uid="uid://c7ap66p2gfont" path="res://Audio/jetslash sfx/SFX/JetFly.wav" id="13_llvsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga3re"]
 size = Vector2(206, 382)
@@ -212,11 +219,23 @@ debug_txt = NodePath("../Label")
 [node name="walk" type="Node" parent="StateMachine"]
 script = ExtResource("3_awlfk")
 
+[node name="jump" type="Node" parent="StateMachine"]
+script = ExtResource("4_hwmh2")
+
+[node name="bash" type="Node" parent="StateMachine"]
+script = ExtResource("5_yl5t8")
+
+[node name="ram" type="Node" parent="StateMachine"]
+script = ExtResource("7_iqljd")
+
+[node name="death" type="Node" parent="StateMachine"]
+script = ExtResource("6_hooxr")
+
 [node name="Label" type="Label" parent="."]
-offset_left = -22.0
-offset_top = -57.0
-offset_right = 26.0
-offset_bottom = -39.0
+offset_left = -114.0
+offset_top = -213.0
+offset_right = -66.0
+offset_bottom = -195.0
 text = "walk"
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -248,7 +267,7 @@ libraries = {
 }
 
 [node name="health_component" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("6_h8ljm")]
-max_hp = 500.0
+max_hp = 700.0
 hp_bar = NodePath("../UIStuff/BossHealthBar")
 
 [node name="sprite" type="Sprite2D" parent="."]
@@ -286,3 +305,23 @@ libraries = {
 &"": SubResource("AnimationLibrary_hwmh2")
 }
 autoplay = "start"
+
+[node name="sfx" type="Node2D" parent="."]
+
+[node name="gswave" type="AudioStreamPlayer2D" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("12_hooxr")
+pitch_scale = 0.8
+bus = &"SFX"
+
+[node name="jump" type="AudioStreamPlayer2D" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("12_5a0cs")
+volume_db = 5.0
+pitch_scale = 0.8
+bus = &"SFX"
+
+[node name="falling" type="AudioStreamPlayer2D" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("13_llvsp")
+pitch_scale = 2.0

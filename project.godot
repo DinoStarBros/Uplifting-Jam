@@ -184,6 +184,7 @@ ability_c={
 2d_physics/layer_2="Player Hitbox - Enemy Hurtbox"
 2d_physics/layer_3="Enemy Hitbox - Player Hurtbox"
 2d_physics/layer_4="Enemy Detection"
+2d_physics/layer_8="Camera Limit"
 
 [rendering]
 
