@@ -1,8 +1,8 @@
 extends Node
 
-var master_volume : float
-var music_volume : float
-var sfx_volume : float
+var master_volume : float = 0.75
+var music_volume : float = 0.75
+var sfx_volume : float = 0.75
 var screen_shake_value : bool 
 var frame_freeze_value : bool
 var resolution_index : int

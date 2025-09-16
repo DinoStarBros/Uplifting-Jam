@@ -2,6 +2,25 @@ extends Node
 class_name TitleScreen
 
 @onready var animation: AnimationPlayer = %animation
+@onready var loading_bar: ProgressBar = %loading
+@onready var app_icons: AppIcons = %AppIcons
+@onready var app_windows: AppWindows = %AppWindows
+@onready var taskbar: Control = %Taskbar
+
+var loading_done : bool = false
+var loading_txt_dots : Array = [
+	"Loading.",
+	"Loading..",
+	"Loading...",
+	"Loading....",
+	"Loading.....",
+	"Loading......",
+]
+var loading_bar_tick_values : Array
+enum APPS {
+	NULL, JOY_ART, 
+}
+var app_opened : APPS = APPS.NULL
 
 func _ready() -> void:
 	SceneManager.fade_in()
@@ -15,23 +34,49 @@ func _ready() -> void:
 	%options.pressed.connect(_options_pressed)
 	%quit.pressed.connect(_quit_pressed)
 	
+	if Global.first_time_boot:
+		%animation.play("start")
+		Global.first_time_boot = false
+		loading_done = false
+	else:
+		loading_done = true
 
+var lDotsIdx : int = 0
 func _process(delta: float) -> void:
-	pass
+	loading_bar.value = wrapf(loading_bar.value + delta, 0, 1)
+	
+	app_icons.visible = loading_done
+	app_windows.visible = loading_done
+	taskbar.visible = loading_done
+	
+	%joy_art_taskbar.visible = app_opened == APPS.JOY_ART
 
 func _input(event: InputEvent) -> void:
-	pass
+	if Input.is_action_just_pressed("M1") and loading_done:
+		if app_opened == APPS.NULL:
+			%mClick.play(.16)
 
 func _play_pressed() -> void:
 	Global.change_scene(References.screen_scenes["main"])
+	%mClick2.play(0.16)
 	for button in %buttons.get_children():
 		button.hide()
 
 func _options_pressed() -> void:
-	pass
+	%mClick2.play(0.16)
 
 func _quit_pressed() -> void:
+	%mClick2.play(0.16)
 	get_tree().quit()
+
+
 
 func _first_time_boot() -> void:
 	Global.first_time_boot = false
+
+func _loading_done() -> void:
+	loading_done = true
+
+func _on_l_dots_timer_timeout() -> void:
+	lDotsIdx = wrapi(lDotsIdx + 1, 0, 5)
+	%lDots.text = str(loading_txt_dots[lDotsIdx])

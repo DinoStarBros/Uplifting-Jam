@@ -1,7 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://wxr3bfk3vrrk"]
+[gd_scene load_steps=15 format=3 uid="uid://wxr3bfk3vrrk"]
 
 [ext_resource type="Script" uid="uid://bahqri01wuqxe" path="res://screens/title_screen/title_screen.gd" id="1_4rvf0"]
 [ext_resource type="AudioStream" uid="uid://qn6skfb4q5dt" path="res://Audio/UJsfx/OSstartup.mp3" id="2_alfmu"]
+[ext_resource type="AudioStream" uid="uid://c0u3nqjae8305" path="res://Audio/UJsfx/computer-mouse-click-352734.mp3" id="3_v18if"]
+[ext_resource type="Script" uid="uid://dh3o366my68u1" path="res://screens/title_screen/apps.gd" id="4_fjwv1"]
+[ext_resource type="Script" uid="uid://cdpxyl6og3a4" path="res://screens/title_screen/app_windows.gd" id="5_jtisy"]
+[ext_resource type="PackedScene" uid="uid://dm6d4sh0hbask" path="res://screens/joy_art/joy_art.tscn" id="6_jrv5w"]
+[ext_resource type="Script" uid="uid://cgtq6vljh0i4w" path="res://screens/title_screen/taskbar.gd" id="7_8cbff"]
+[ext_resource type="Texture2D" uid="uid://bs62nf76mwogr" path="res://Art/UJ/desktopBG.png" id="8_8eykq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4rvf0"]
 font_size = 100
@@ -18,7 +24,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -30,7 +36,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.2]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_4rvf0"]
@@ -44,7 +50,7 @@ tracks/0/path = NodePath("sfx/Startup:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2.1),
+"times": PackedFloat32Array(2.9),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -56,22 +62,36 @@ tracks/1/path = NodePath("black_overlay:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.1, 3.1),
+"times": PackedFloat32Array(0, 3.1, 3.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("black_overlay/dinoOs/loading:value")
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6, 1.1, 1.5, 1.9, 2.1),
-"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_loading_done"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("black_overlay/dinoOs/loading:value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 1, 1.4, 1.6, 2, 2.2, 2.5, 3),
+"transitions": PackedFloat32Array(0.5, 2, 0, 0, 1, 1, 1, 0, 0),
 "update": 0,
-"values": [0.0, 0.2, 0.5, 0.55, 0.7, 1.0]
+"values": [0.0, 0.1, 0.25, 0.4, 0.44, 0.51, 0.7, 0.8, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_alfmu"]
@@ -89,6 +109,11 @@ bg_color = Color(0, 0.85119, 0.85346, 1)
 [node name="title_screen" type="Node"]
 script = ExtResource("1_4rvf0")
 
+[node name="DesktopBg" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("8_8eykq")
+
 [node name="title_txt" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
@@ -103,6 +128,7 @@ label_settings = SubResource("LabelSettings_4rvf0")
 
 [node name="buttons" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -115,18 +141,21 @@ theme_override_constants/separation = 50
 
 [node name="play" type="Button" parent="buttons"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "PLAY"
 
 [node name="options" type="Button" parent="buttons"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "OPTIONS"
 
 [node name="quit" type="Button" parent="buttons"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "QUIT"
@@ -136,15 +165,112 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_alfmu")
 }
-autoplay = "start"
+
+[node name="lDotsTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+autostart = true
 
 [node name="sfx" type="Node" parent="."]
 
 [node name="Startup" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource("2_alfmu")
-volume_db = -10.0
+volume_db = -20.0
+bus = &"Music"
+
+[node name="mClick" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("3_v18if")
+pitch_scale = 1.1
+bus = &"SFX"
+
+[node name="mClick2" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("3_v18if")
+pitch_scale = 2.0
+bus = &"SFX"
+
+[node name="AppIcons" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_fjwv1")
+
+[node name="h" type="HBoxContainer" parent="AppIcons"]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 189.0
+offset_right = 345.0
+offset_bottom = 229.0
+
+[node name="joyArt" type="Button" parent="AppIcons/h"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Joy Art"
+
+[node name="AppWindows" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_jtisy")
+
+[node name="joy_art_window" parent="AppWindows" instance=ExtResource("6_jrv5w")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -503.0
+offset_top = -255.0
+offset_right = -503.0
+offset_bottom = -255.0
+
+[node name="Taskbar" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_8cbff")
+
+[node name="bg" type="ColorRect" parent="Taskbar"]
+layout_mode = 0
+offset_top = 667.0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.601223, 0.601223, 0.601223, 1)
+
+[node name="buttons" type="HBoxContainer" parent="Taskbar/bg"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 4.0
+offset_right = 119.0
+offset_bottom = 44.0
+
+[node name="logo" type="Button" parent="Taskbar/bg/buttons"]
+layout_mode = 2
+text = "Logo"
+
+[node name="joy_art_taskbar" type="Button" parent="Taskbar/bg/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Joy Art 2025"
 
 [node name="black_overlay" type="Polygon2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(740, 247)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-915, -416, -915, 553, 881, 573, 854, -349)
@@ -175,5 +301,16 @@ offset_bottom = 196.0
 theme_override_styles/background = SubResource("StyleBoxFlat_alfmu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_v18if")
 max_value = 1.0
-value = 0.2
 show_percentage = false
+
+[node name="lDots" type="Label" parent="black_overlay/dinoOs"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 157.0
+offset_top = 202.0
+offset_right = 247.0
+offset_bottom = 220.0
+text = "Loading..."
+
+[connection signal="timeout" from="lDotsTimer" to="." method="_on_l_dots_timer_timeout"]
+[connection signal="pressed" from="AppIcons/h/joyArt" to="AppIcons" method="_on_joy_art_pressed"]

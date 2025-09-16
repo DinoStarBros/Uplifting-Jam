@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm6d4sh0hbask"]
+
+[ext_resource type="Script" uid="uid://dii34tfmqn3gl" path="res://screens/joy_art/joy_art.gd" id="1_6bkb2"]
+[ext_resource type="AudioStream" uid="uid://cmqcdkm5qxrw8" path="res://Audio/UJsfx/error.mp3" id="2_pn4jp"]
+
+[sub_resource type="FontFile" id="FontFile_pn4jp"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/2/0/ascent = 0.0
+cache/0/2/0/descent = 0.0
+cache/0/2/0/underline_position = 0.0
+cache/0/2/0/underline_thickness = 0.0
+cache/0/2/0/scale = 1.0
+cache/0/3/0/ascent = 0.0
+cache/0/3/0/descent = 0.0
+cache/0/3/0/underline_position = 0.0
+cache/0/3/0/underline_thickness = 0.0
+cache/0/3/0/scale = 1.0
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_pn4jp"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="joy_art_window" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6bkb2")
+
+[node name="sfx" type="Node" parent="."]
+
+[node name="error" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("2_pn4jp")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="stuffs" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = -1
+
+[node name="heading" type="ColorRect" parent="stuffs"]
+custom_minimum_size = Vector2(1000, 25)
+layout_mode = 2
+
+[node name="stuff" type="HBoxContainer" parent="stuffs/heading"]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 1.0
+offset_right = 994.0
+offset_bottom = 23.0
+
+[node name="minimize" type="Button" parent="stuffs/heading/stuff"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = SubResource("FontFile_pn4jp")
+theme_override_font_sizes/font_size = 10
+text = "_"
+
+[node name="maximize" type="Button" parent="stuffs/heading/stuff"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = SubResource("FontFile_pn4jp")
+theme_override_font_sizes/font_size = 10
+text = "="
+
+[node name="X" type="Button" parent="stuffs/heading/stuff"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = SubResource("FontFile_pn4jp")
+theme_override_font_sizes/font_size = 10
+text = "X"
+
+[node name="Label" type="Label" parent="stuffs/heading"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 18.0
+text = "Joy Art 2025 - Untitled 1 *"
+label_settings = SubResource("LabelSettings_pn4jp")
+
+[node name="window" type="ColorRect" parent="stuffs"]
+custom_minimum_size = Vector2(1000, 500)
+layout_mode = 2
+color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[connection signal="pressed" from="stuffs/heading/stuff/X" to="." method="_on_x_pressed"]

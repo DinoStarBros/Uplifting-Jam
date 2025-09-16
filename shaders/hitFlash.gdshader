@@ -10,7 +10,7 @@ void fragment() {
 	vec4 input_color = texture(TEXTURE,UV);
 	// Grabs the texture's texture & uv coordinates
 	// Basically a vec4 copy of the texture
-	
+
 	vec4 output_color = vec4(
 		flash_color.r,
 		flash_color.g,
