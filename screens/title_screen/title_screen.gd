@@ -52,9 +52,9 @@ func _process(delta: float) -> void:
 	%joy_art_taskbar.visible = app_opened == APPS.JOY_ART
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("M1") and loading_done:
+	if Input.is_action_just_pressed("M1"):
 		if app_opened == APPS.NULL:
-			%mClick.play(.16)
+			%mClick2.play(0.16)
 
 func _play_pressed() -> void:
 	Global.change_scene(References.screen_scenes["main"])
@@ -68,8 +68,6 @@ func _options_pressed() -> void:
 func _quit_pressed() -> void:
 	%mClick2.play(0.16)
 	get_tree().quit()
-
-
 
 func _first_time_boot() -> void:
 	Global.first_time_boot = false

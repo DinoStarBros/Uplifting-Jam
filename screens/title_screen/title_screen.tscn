@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://wxr3bfk3vrrk"]
+[gd_scene load_steps=16 format=3 uid="uid://wxr3bfk3vrrk"]
 
 [ext_resource type="Script" uid="uid://bahqri01wuqxe" path="res://screens/title_screen/title_screen.gd" id="1_4rvf0"]
 [ext_resource type="AudioStream" uid="uid://qn6skfb4q5dt" path="res://Audio/UJsfx/OSstartup.mp3" id="2_alfmu"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dm6d4sh0hbask" path="res://screens/joy_art/joy_art.tscn" id="6_jrv5w"]
 [ext_resource type="Script" uid="uid://cgtq6vljh0i4w" path="res://screens/title_screen/taskbar.gd" id="7_8cbff"]
 [ext_resource type="Texture2D" uid="uid://bs62nf76mwogr" path="res://Art/UJ/desktopBG.png" id="8_8eykq"]
+[ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://PauseUI/settingsMenu/settings_menu.tscn" id="9_bgok2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4rvf0"]
 font_size = 100
@@ -178,12 +179,6 @@ stream = ExtResource("2_alfmu")
 volume_db = -20.0
 bus = &"Music"
 
-[node name="mClick" type="AudioStreamPlayer" parent="sfx"]
-unique_name_in_owner = true
-stream = ExtResource("3_v18if")
-pitch_scale = 1.1
-bus = &"SFX"
-
 [node name="mClick2" type="AudioStreamPlayer" parent="sfx"]
 unique_name_in_owner = true
 stream = ExtResource("3_v18if")
@@ -226,6 +221,12 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("5_jtisy")
 
+[node name="mClick" type="AudioStreamPlayer" parent="AppWindows"]
+unique_name_in_owner = true
+stream = ExtResource("3_v18if")
+pitch_scale = 1.1
+bus = &"SFX"
+
 [node name="joy_art_window" parent="AppWindows" instance=ExtResource("6_jrv5w")]
 unique_name_in_owner = true
 layout_mode = 1
@@ -261,13 +262,45 @@ offset_right = 119.0
 offset_bottom = 44.0
 
 [node name="logo" type="Button" parent="Taskbar/bg/buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Logo"
+
+[node name="lMenu" type="Panel" parent="Taskbar/bg/buttons/logo"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -586.0
+offset_right = 532.0
+offset_bottom = -4.0
+
+[node name="shutDown" type="Button" parent="Taskbar/bg/buttons/logo/lMenu"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 426.0
+offset_top = 553.0
+offset_right = 529.0
+offset_bottom = 579.0
+text = "Shut Down"
+
+[node name="settingsMenu" parent="Taskbar/bg/buttons/logo/lMenu" instance=ExtResource("9_bgok2")]
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 10.0
+offset_bottom = 3.0
+scale = Vector2(0.797162, 0.873554)
 
 [node name="joy_art_taskbar" type="Button" parent="Taskbar/bg/buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Joy Art 2025"
+
+[node name="x_ja" type="Button" parent="Taskbar/bg/buttons/joy_art_taskbar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 126.0
+offset_right = 165.0
+offset_bottom = 40.0
+text = "X"
 
 [node name="black_overlay" type="Polygon2D" parent="."]
 modulate = Color(1, 1, 1, 0)

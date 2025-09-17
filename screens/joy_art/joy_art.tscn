@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm6d4sh0hbask"]
+[gd_scene load_steps=7 format=3 uid="uid://dm6d4sh0hbask"]
 
 [ext_resource type="Script" uid="uid://dii34tfmqn3gl" path="res://screens/joy_art/joy_art.gd" id="1_6bkb2"]
 [ext_resource type="AudioStream" uid="uid://cmqcdkm5qxrw8" path="res://Audio/UJsfx/error.mp3" id="2_pn4jp"]
+[ext_resource type="AudioStream" uid="uid://b2sfpd27mg226" path="res://Audio/UJsfx/drawing-a-line-69277.mp3" id="3_s0lnf"]
+[ext_resource type="PackedScene" uid="uid://dbwb0fetquan6" path="res://juices/error_popup/error_popup.tscn" id="4_nilrh"]
 
 [sub_resource type="FontFile" id="FontFile_pn4jp"]
 subpixel_positioning = 0
@@ -35,6 +37,7 @@ font_color = Color(0, 0, 0, 1)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_6bkb2")
+draw_offset = Vector2(-135, -105)
 
 [node name="sfx" type="Node" parent="."]
 
@@ -42,6 +45,11 @@ script = ExtResource("1_6bkb2")
 unique_name_in_owner = true
 stream = ExtResource("2_pn4jp")
 volume_db = -10.0
+bus = &"SFX"
+
+[node name="draw" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("3_s0lnf")
 bus = &"SFX"
 
 [node name="stuffs" type="VBoxContainer" parent="."]
@@ -53,6 +61,7 @@ theme_override_constants/separation = -1
 [node name="heading" type="ColorRect" parent="stuffs"]
 custom_minimum_size = Vector2(1000, 25)
 layout_mode = 2
+color = Color(0.597176, 0.597176, 0.597176, 1)
 
 [node name="stuff" type="HBoxContainer" parent="stuffs/heading"]
 layout_mode = 0
@@ -66,6 +75,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = SubResource("FontFile_pn4jp")
 theme_override_font_sizes/font_size = 10
+disabled = true
 text = "_"
 
 [node name="maximize" type="Button" parent="stuffs/heading/stuff"]
@@ -73,6 +83,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = SubResource("FontFile_pn4jp")
 theme_override_font_sizes/font_size = 10
+disabled = true
 text = "="
 
 [node name="X" type="Button" parent="stuffs/heading/stuff"]
@@ -92,6 +103,23 @@ label_settings = SubResource("LabelSettings_pn4jp")
 [node name="window" type="ColorRect" parent="stuffs"]
 custom_minimum_size = Vector2(1000, 500)
 layout_mode = 2
-color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+default_color = Color(0, 0, 0, 1)
+
+[node name="error_popups" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ErrorPopup" parent="error_popups" instance=ExtResource("4_nilrh")]
+offset_left = 40.0
+offset_top = 60.0
+offset_right = 40.0
+offset_bottom = 60.0
 
 [connection signal="pressed" from="stuffs/heading/stuff/X" to="." method="_on_x_pressed"]
+[connection signal="mouse_entered" from="stuffs/window" to="." method="_on_window_mouse_entered"]
+[connection signal="mouse_exited" from="stuffs/window" to="." method="_on_window_mouse_exited"]
