@@ -12,10 +12,17 @@ var possible_txt : Array[String] = [
 	"Everyhting you create is garbage",
 	"You're falling behind.",
 	"You're not a real artist.",
-	"It's not perfect, it's worthless"
+	"It's not perfect, it's worthless",
 ]
 var txt_idx : int
+var p : TitleScreen
 
 func _ready() -> void:
 	txt_idx = randi_range(0, possible_txt.size()-1)
 	%error_msg.text = str(possible_txt[txt_idx])
+
+func _on_ignore_pressed() -> void:
+	queue_free()
+
+func _on_quit_pressed() -> void:
+	p.app_opened = p.APPS.NULL

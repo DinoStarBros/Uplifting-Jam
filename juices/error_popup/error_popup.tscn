@@ -7,6 +7,14 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_emnij")
 
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 2
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 505.0
+offset_bottom = 230.0
+color = Color(0, 0, 0, 1)
+
 [node name="stuff" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
@@ -56,6 +64,5 @@ text = "Ignore
 layout_mode = 2
 text = "Quit"
 
-[node name="bg" type="ColorRect" parent="stuff"]
-layout_mode = 2
-color = Color(0, 0, 0, 1)
+[connection signal="pressed" from="stuff/window/buttons/ignore" to="." method="_on_ignore_pressed"]
+[connection signal="pressed" from="stuff/window/buttons/quit" to="." method="_on_quit_pressed"]

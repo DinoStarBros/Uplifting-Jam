@@ -1,14 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://wxr3bfk3vrrk"]
+[gd_scene load_steps=23 format=3 uid="uid://wxr3bfk3vrrk"]
 
 [ext_resource type="Script" uid="uid://bahqri01wuqxe" path="res://screens/title_screen/title_screen.gd" id="1_4rvf0"]
 [ext_resource type="AudioStream" uid="uid://qn6skfb4q5dt" path="res://Audio/UJsfx/OSstartup.mp3" id="2_alfmu"]
 [ext_resource type="AudioStream" uid="uid://c0u3nqjae8305" path="res://Audio/UJsfx/computer-mouse-click-352734.mp3" id="3_v18if"]
 [ext_resource type="Script" uid="uid://dh3o366my68u1" path="res://screens/title_screen/apps.gd" id="4_fjwv1"]
+[ext_resource type="AudioStream" uid="uid://d3g4caupesoml" path="res://Audio/UJsfx/glitching-370124.mp3" id="5_hjto8"]
 [ext_resource type="Script" uid="uid://cdpxyl6og3a4" path="res://screens/title_screen/app_windows.gd" id="5_jtisy"]
+[ext_resource type="AudioStream" uid="uid://cisvmynaehxjp" path="res://Audio/UJsfx/glitch-effect-1-397982.mp3" id="5_rgfbv"]
+[ext_resource type="AudioStream" uid="uid://dq77anykjgcbl" path="res://Audio/UJsfx/glitch-effect-2-397980.mp3" id="6_ijpes"]
 [ext_resource type="PackedScene" uid="uid://dm6d4sh0hbask" path="res://screens/joy_art/joy_art.tscn" id="6_jrv5w"]
 [ext_resource type="Script" uid="uid://cgtq6vljh0i4w" path="res://screens/title_screen/taskbar.gd" id="7_8cbff"]
 [ext_resource type="Texture2D" uid="uid://bs62nf76mwogr" path="res://Art/UJ/desktopBG.png" id="8_8eykq"]
 [ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://PauseUI/settingsMenu/settings_menu.tscn" id="9_bgok2"]
+[ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="10_v01p7"]
+[ext_resource type="Shader" uid="uid://dwolw7v58mmf8" path="res://shaders/glitch.gdshader" id="12_rgfbv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4rvf0"]
 font_size = 100
@@ -34,10 +39,46 @@ tracks/1/path = NodePath("black_overlay/dinoOs/loading:value")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("glitch:material:shader_parameter/shake_rate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("glitch:material:shader_parameter/shake_power")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sfx/glitching:pitch_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
 }
 
 [sub_resource type="Animation" id="Animation_4rvf0"]
@@ -95,9 +136,101 @@ tracks/3/keys = {
 "values": [0.0, 0.1, 0.25, 0.4, 0.44, 0.51, 0.7, 0.8, 1.0]
 }
 
+[sub_resource type="Animation" id="Animation_hogcd"]
+resource_name = "glitch_anim"
+length = 15.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glitch:material:shader_parameter/shake_rate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(2.63902, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glitch:material:shader_parameter/shake_power")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.04]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sfx/glitch1:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sfx/glitching:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sfx/glitching:pitch_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.5, 2.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sfx/glitch2:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_switch_scene"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_alfmu"]
 _data = {
 &"RESET": SubResource("Animation_alfmu"),
+&"glitch_anim": SubResource("Animation_hogcd"),
 &"start": SubResource("Animation_4rvf0")
 }
 
@@ -106,6 +239,14 @@ bg_color = Color(0.68, 0.68, 0.68, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v18if"]
 bg_color = Color(0, 0.85119, 0.85346, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ijpes"]
+shader = ExtResource("12_rgfbv")
+shader_parameter/shake_power = 0.0
+shader_parameter/shake_rate = 0.0
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
 
 [node name="title_screen" type="Node"]
 script = ExtResource("1_4rvf0")
@@ -183,6 +324,23 @@ bus = &"Music"
 unique_name_in_owner = true
 stream = ExtResource("3_v18if")
 pitch_scale = 2.0
+bus = &"SFX"
+
+[node name="glitching" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("5_hjto8")
+volume_db = -15.0
+pitch_scale = 3.0
+bus = &"SFX"
+
+[node name="glitch1" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("5_rgfbv")
+volume_db = -10.0
+pitch_scale = 0.5
+bus = &"SFX"
+
+[node name="glitch2" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("6_ijpes")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="AppIcons" type="Control" parent="."]
@@ -268,6 +426,7 @@ text = "Logo"
 
 [node name="lMenu" type="Panel" parent="Taskbar/bg/buttons/logo"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_top = -586.0
 offset_right = 532.0
@@ -344,6 +503,13 @@ offset_top = 202.0
 offset_right = 247.0
 offset_bottom = 220.0
 text = "Loading..."
+
+[node name="glitch" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ijpes")
+position = Vector2(661.5, 378)
+scale = Vector2(11.3359, 6.90625)
+texture = ExtResource("10_v01p7")
 
 [connection signal="timeout" from="lDotsTimer" to="." method="_on_l_dots_timer_timeout"]
 [connection signal="pressed" from="AppIcons/h/joyArt" to="AppIcons" method="_on_joy_art_pressed"]

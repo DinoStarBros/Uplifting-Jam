@@ -8,9 +8,11 @@ class_name JoyArt
 @onready var error_popups: Control = %error_popups
 
 var drawing_started : bool = false
+
 var _pressed : bool = false
 var _current_line : Line2D = null
 var mouse_in_window : bool = false
+var start_errors : bool = false
 
 func _ready() -> void:
 	pass
@@ -18,24 +20,30 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	if not p.app_opened == p.APPS.JOY_ART:
-		drawing_started = false
+		start_errors = false
+		just_reached_02 = false
+		if drawing_started:
+			drawing_started = false
 		%draw.stop()
 		return
 	
 	if Input.is_action_just_pressed("M1") and mouse_in_window:
 		%draw.play(5)
-		drawing_started = true
+		if not drawing_started:
+			drawing_started = true
+			%errorStartTimer.start(5)
 	
 	if Input.is_action_just_released("M1"):
 		%draw.stop()
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("unlock_skill"):
-		_spawn_error_popup()
 	
 	if not p.app_opened == p.APPS.JOY_ART:
-		for n in %Line2D.get_children():
+		for n in line.get_children():
 			n.queue_free()
+		
+		for m in %error_popups.get_children():
+			m.queue_free()
 		
 		return
 	
@@ -68,8 +76,30 @@ func _on_window_mouse_exited() -> void:
 
 var error_popup_scn : PackedScene = preload("res://juices/error_popup/error_popup.tscn")
 func _spawn_error_popup() -> void:
+	%error.play()
 	var error_popup : ErrorPopup = error_popup_scn.instantiate()
 	
-	error_popup.global_position.x = randf_range(50, 700)
+	error_popup.global_position.x = randf_range(-200, 600)
 	error_popup.global_position.y = randf_range(25, 300)
+	error_popup.p = p
 	error_popups.add_child(error_popup)
+
+var error_spawn_interval : float = 5.0
+func _on_error_start_timer_timeout() -> void:
+	start_errors = true
+	%errorSpawnTimer.start(error_spawn_interval)
+
+var just_reached_02 : bool = false
+func _on_error_spawn_timer_timeout() -> void:
+	if start_errors:
+		error_spawn_interval -= 0.2
+		if error_spawn_interval <= 3:
+			error_spawn_interval -= 0.5
+		if error_spawn_interval <= 0.2:
+			error_spawn_interval = 0.2
+			if not just_reached_02:
+				just_reached_02 = true
+				p.animation.play("glitch_anim")
+				
+		%errorSpawnTimer.start(error_spawn_interval)
+		_spawn_error_popup()

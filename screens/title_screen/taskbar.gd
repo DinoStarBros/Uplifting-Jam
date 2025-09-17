@@ -13,7 +13,6 @@ func _ready() -> void:
 	logo_opened = false
 	l_menu.visible = logo_opened
 
-
 func _x_ja_press() -> void:
 	p.app_opened = p.APPS.NULL
 

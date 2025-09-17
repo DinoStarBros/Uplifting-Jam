@@ -12,7 +12,7 @@ var cam : Cam
 var player : Player
 var abilities_inv : AbilitiesInventory
 var focused_node : Node
-var first_time_boot : bool = false
+var first_time_boot : bool = true
 
 const GRAVITY : float = 980
 const GRAVITY_LIMIT : float = 2000

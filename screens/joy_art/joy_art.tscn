@@ -113,6 +113,15 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="errorStartTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="errorSpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="pressed" from="stuffs/heading/stuff/X" to="." method="_on_x_pressed"]
 [connection signal="mouse_entered" from="stuffs/window" to="." method="_on_window_mouse_entered"]
 [connection signal="mouse_exited" from="stuffs/window" to="." method="_on_window_mouse_exited"]
+[connection signal="timeout" from="errorStartTimer" to="." method="_on_error_start_timer_timeout"]
+[connection signal="timeout" from="errorSpawnTimer" to="." method="_on_error_spawn_timer_timeout"]

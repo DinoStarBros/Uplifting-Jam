@@ -78,3 +78,6 @@ func _loading_done() -> void:
 func _on_l_dots_timer_timeout() -> void:
 	lDotsIdx = wrapi(lDotsIdx + 1, 0, 5)
 	%lDots.text = str(loading_txt_dots[lDotsIdx])
+
+func _switch_scene() -> void:
+	get_tree().change_scene_to_file("res://screens/black/black.tscn")
