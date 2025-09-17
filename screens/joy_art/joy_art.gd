@@ -30,6 +30,9 @@ func _process(delta: float) -> void:
 		%draw.stop()
 
 func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("unlock_skill"):
+		_spawn_error_popup()
+	
 	if not p.app_opened == p.APPS.JOY_ART:
 		for n in %Line2D.get_children():
 			n.queue_free()

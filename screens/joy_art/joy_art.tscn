@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dm6d4sh0hbask"]
+[gd_scene load_steps=6 format=3 uid="uid://dm6d4sh0hbask"]
 
 [ext_resource type="Script" uid="uid://dii34tfmqn3gl" path="res://screens/joy_art/joy_art.gd" id="1_6bkb2"]
 [ext_resource type="AudioStream" uid="uid://cmqcdkm5qxrw8" path="res://Audio/UJsfx/error.mp3" id="2_pn4jp"]
 [ext_resource type="AudioStream" uid="uid://b2sfpd27mg226" path="res://Audio/UJsfx/drawing-a-line-69277.mp3" id="3_s0lnf"]
-[ext_resource type="PackedScene" uid="uid://dbwb0fetquan6" path="res://juices/error_popup/error_popup.tscn" id="4_nilrh"]
 
 [sub_resource type="FontFile" id="FontFile_pn4jp"]
 subpixel_positioning = 0
@@ -113,12 +112,6 @@ unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="ErrorPopup" parent="error_popups" instance=ExtResource("4_nilrh")]
-offset_left = 40.0
-offset_top = 60.0
-offset_right = 40.0
-offset_bottom = 60.0
 
 [connection signal="pressed" from="stuffs/heading/stuff/X" to="." method="_on_x_pressed"]
 [connection signal="mouse_entered" from="stuffs/window" to="." method="_on_window_mouse_entered"]
