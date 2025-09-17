@@ -14,6 +14,8 @@ var abilities_inv : AbilitiesInventory
 var focused_node : Node
 var first_time_boot : bool = true
 
+var glitch_intro_happened : bool = false
+
 const GRAVITY : float = 980
 const GRAVITY_LIMIT : float = 2000
 

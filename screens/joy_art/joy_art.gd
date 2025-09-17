@@ -31,7 +31,11 @@ func _process(delta: float) -> void:
 		%draw.play(5)
 		if not drawing_started:
 			drawing_started = true
-			%errorStartTimer.start(5)
+			if not Global.glitch_intro_happened:
+				if p.speed_up_glitch:
+					%errorStartTimer.start(0.1)
+				else:
+					%errorStartTimer.start(5)
 	
 	if Input.is_action_just_released("M1"):
 		%draw.stop()
@@ -87,6 +91,9 @@ func _spawn_error_popup() -> void:
 var error_spawn_interval : float = 5.0
 func _on_error_start_timer_timeout() -> void:
 	start_errors = true
+	if p.speed_up_glitch:
+		error_spawn_interval = 1
+	
 	%errorSpawnTimer.start(error_spawn_interval)
 
 var just_reached_02 : bool = false

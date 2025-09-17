@@ -1,4 +1,4 @@
 extends Polygon2D
 
 func _on_timer_timeout() -> void:
-	pass # Replace with function body.
+	Global.change_scene("res://screens/main/main.tscn")

@@ -138,7 +138,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_hogcd"]
 resource_name = "glitch_anim"
-length = 15.0
+length = 12.0
 step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -219,7 +219,7 @@ tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(15),
+"times": PackedFloat32Array(12),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -250,6 +250,7 @@ shader_parameter/shake_color_rate = 0.01
 
 [node name="title_screen" type="Node"]
 script = ExtResource("1_4rvf0")
+speed_up_glitch = true
 
 [node name="DesktopBg" type="Sprite2D" parent="."]
 position = Vector2(640, 360)

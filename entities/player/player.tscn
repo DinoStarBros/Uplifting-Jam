@@ -660,7 +660,7 @@ libraries = {
 [node name="health_component" parent="." node_paths=PackedStringArray("hp_bar", "hp_txt") instance=ExtResource("21_221hk")]
 unique_name_in_owner = true
 position = Vector2(-58, -79)
-max_hp = 50.0
+max_hp = 30.0
 hp_bar = NodePath("../GUI/hpbar")
 hp_txt = NodePath("../GUI/hpbar/hptxt")
 

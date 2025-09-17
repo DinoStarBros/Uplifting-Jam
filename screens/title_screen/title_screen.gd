@@ -1,6 +1,8 @@
 extends Node
 class_name TitleScreen
 
+@export var speed_up_glitch : bool = false ## For testing purposes
+
 @onready var animation: AnimationPlayer = %animation
 @onready var loading_bar: ProgressBar = %loading
 @onready var app_icons: AppIcons = %AppIcons
@@ -23,6 +25,7 @@ enum APPS {
 var app_opened : APPS = APPS.NULL
 
 func _ready() -> void:
+	_load()
 	SceneManager.fade_in()
 	
 	get_tree().paused = false
@@ -40,6 +43,9 @@ func _ready() -> void:
 		loading_done = false
 	else:
 		loading_done = true
+	
+	if speed_up_glitch:
+		animation.speed_scale = 10
 
 var lDotsIdx : int = 0
 func _process(delta: float) -> void:
@@ -81,3 +87,13 @@ func _on_l_dots_timer_timeout() -> void:
 
 func _switch_scene() -> void:
 	get_tree().change_scene_to_file("res://screens/black/black.tscn")
+	Global.glitch_intro_happened = true
+	_save()
+
+func _load() -> void:
+	SaveLoad._load()
+	Global.glitch_intro_happened = SaveLoad.SaveFileData.glitch_intro_happened
+
+func _save() -> void:
+	SaveLoad.SaveFileData.glitch_intro_happened = Global.glitch_intro_happened
+	SaveLoad._save()

@@ -25,3 +25,5 @@ class_name SaveDataResource
 	false
 	
 ]
+
+@export var glitch_intro_happened: bool = false
