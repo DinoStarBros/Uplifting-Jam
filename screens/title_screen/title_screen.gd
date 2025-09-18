@@ -20,7 +20,7 @@ var loading_txt_dots : Array = [
 ]
 var loading_bar_tick_values : Array
 enum APPS {
-	NULL, JOY_ART, 
+	NULL, JOY_ART, INVENTORY
 }
 var app_opened : APPS = APPS.NULL
 

@@ -26,6 +26,8 @@ func _ready() -> void:
 	equipped_abilities = SaveLoad.SaveFileData.equipped_abilities
 
 func ability_handling(delta: float) -> void:
+	equipped_abilities = Global.equipped_abilities
+	
 	if Input.is_action_just_pressed("ability"):
 		directional_ability(delta)
 	

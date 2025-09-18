@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://wxr3bfk3vrrk"]
+[gd_scene load_steps=25 format=3 uid="uid://wxr3bfk3vrrk"]
 
 [ext_resource type="Script" uid="uid://bahqri01wuqxe" path="res://screens/title_screen/title_screen.gd" id="1_4rvf0"]
 [ext_resource type="AudioStream" uid="uid://qn6skfb4q5dt" path="res://Audio/UJsfx/OSstartup.mp3" id="2_alfmu"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bs62nf76mwogr" path="res://Art/UJ/desktopBG.png" id="8_8eykq"]
 [ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://PauseUI/settingsMenu/settings_menu.tscn" id="9_bgok2"]
 [ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="10_v01p7"]
+[ext_resource type="PackedScene" uid="uid://cirmuwc630gtr" path="res://PauseUI/inventory/inventory.tscn" id="11_yvje3"]
 [ext_resource type="Shader" uid="uid://dwolw7v58mmf8" path="res://shaders/glitch.gdshader" id="12_rgfbv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4rvf0"]
@@ -234,6 +235,13 @@ _data = {
 &"start": SubResource("Animation_4rvf0")
 }
 
+[sub_resource type="FontFile" id="FontFile_yvje3"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alfmu"]
 bg_color = Color(0.68, 0.68, 0.68, 1)
 
@@ -400,6 +408,19 @@ offset_top = -255.0
 offset_right = -503.0
 offset_bottom = -255.0
 
+[node name="inventoryStuff" parent="AppWindows" instance=ExtResource("11_yvje3")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="x_inv" type="Button" parent="AppWindows/inventoryStuff"]
+layout_mode = 0
+offset_left = 583.0
+offset_top = -337.0
+offset_right = 601.0
+offset_bottom = -306.0
+theme_override_fonts/font = SubResource("FontFile_yvje3")
+text = "X"
+
 [node name="Taskbar" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
@@ -449,6 +470,7 @@ offset_bottom = 579.0
 text = "Shut Down"
 
 [node name="settingsMenu" parent="Taskbar/bg/buttons/logo/lMenu" instance=ExtResource("9_bgok2")]
+unique_name_in_owner = true
 offset_left = 10.0
 offset_top = 3.0
 offset_right = 10.0
@@ -521,3 +543,4 @@ texture = ExtResource("10_v01p7")
 [connection signal="timeout" from="lDotsTimer" to="." method="_on_l_dots_timer_timeout"]
 [connection signal="pressed" from="AppIcons/h/joyArt" to="AppIcons" method="_on_joy_art_pressed"]
 [connection signal="pressed" from="AppIcons/h/drawings" to="AppIcons" method="_on_drawings_pressed"]
+[connection signal="pressed" from="AppWindows/inventoryStuff/x_inv" to="AppWindows" method="_on_x_inv_pressed"]

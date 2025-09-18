@@ -16,10 +16,9 @@ offset_bottom = 624.0
 
 [node name="Tabs" type="TabContainer" parent="PanelContainer"]
 layout_mode = 2
-current_tab = 3
+current_tab = 0
 
 [node name="Audio" type="VBoxContainer" parent="PanelContainer/Tabs"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -107,6 +106,8 @@ layout_mode = 2
 text = "GRAPHICS"
 
 [node name="Reset" type="VBoxContainer" parent="PanelContainer/Tabs"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 

@@ -1,6 +1,8 @@
 extends Control
 class_name Settings
 
+@export var show_reset : bool = false
+
 func _ready() -> void:
 	
 	_on_load_pressed()

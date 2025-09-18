@@ -39,7 +39,6 @@ func _process(delta: float) -> void:
 	unlockable = prereq_skl_unlockeds.count(true) == prerequisite_skills.size()
 	
 	%Label.text = str(unlocked)
-	#%Label.text = str(unlockable)
 
 func update() -> void:
 	prereq_skl_unlockeds.clear()
