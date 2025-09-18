@@ -11,3 +11,6 @@ func _on_joy_art_pressed() -> void:
 
 func _process(delta: float) -> void:
 	joy_art.visible = p.app_opened == p.APPS.JOY_ART
+
+func _on_drawings_pressed() -> void:
+	pass

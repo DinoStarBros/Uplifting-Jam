@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=59 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -23,7 +23,6 @@
 [ext_resource type="Script" uid="uid://ffjeymbod5lq" path="res://entities/player/StateStuff/damagedPlayer.gd" id="16_qpopc"]
 [ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://PauseUI/settingsMenu/settings_menu.tscn" id="16_yqrof"]
 [ext_resource type="Script" uid="uid://kfbylg3w2mpf" path="res://entities/player/drawnAbilities/fist.gd" id="18_qpopc"]
-[ext_resource type="PackedScene" uid="uid://cirmuwc630gtr" path="res://PauseUI/inventory/inventory.tscn" id="19_221hk"]
 [ext_resource type="Script" uid="uid://4o1uq1ih5l5u" path="res://entities/player/ability_handler.gd" id="19_we0b7"]
 [ext_resource type="Script" uid="uid://cik4g17aq323b" path="res://entities/player/drawnAbilities/pistolAbility.gd" id="19_wq0jh"]
 [ext_resource type="Script" uid="uid://c2rw8fbp52gya" path="res://entities/player/StateStuff/deadPlr.gd" id="20_bwdx1"]
@@ -872,38 +871,6 @@ text = "Quit"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Sure"
-
-[node name="inventory" type="Control" parent="GUI"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="inventoryStuff" parent="GUI/inventory" instance=ExtResource("19_221hk")]
-unique_name_in_owner = true
-layout_mode = 1
-
-[node name="buttonBox" type="HBoxContainer" parent="GUI/inventory/inventoryStuff"]
-layout_mode = 0
-offset_left = -555.0
-offset_top = 269.0
-offset_right = -369.0
-offset_bottom = 309.0
-
-[node name="inv_resume" type="Button" parent="GUI/inventory/inventoryStuff/buttonBox"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Resume"
 
 [node name="black_bars" type="Node2D" parent="GUI"]
 unique_name_in_owner = true
