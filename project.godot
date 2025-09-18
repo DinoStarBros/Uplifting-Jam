@@ -194,6 +194,7 @@ DoubleM1={
 2d_physics/layer_3="Enemy Hitbox - Player Hurtbox"
 2d_physics/layer_4="Enemy Detection"
 2d_physics/layer_8="Camera Limit"
+2d_physics/layer_9="Exit_Area"
 
 [rendering]
 

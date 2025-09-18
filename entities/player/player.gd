@@ -216,3 +216,8 @@ func _cutscene_start() -> void:
 
 func _cutscene_end() -> void:
 	sm.change_state("walk")
+
+
+func _on_exit_area_area_entered(area: Area2D) -> void:
+	if area.name == "exit_area":
+		sm.change_state("exit")

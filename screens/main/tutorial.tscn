@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dtto6piffrexp"]
+[gd_scene load_steps=17 format=4 uid="uid://dtto6piffrexp"]
 
 [ext_resource type="Script" uid="uid://fwrtjdvkg0rm" path="res://screens/main/tutorial.gd" id="1_j3ku5"]
 [ext_resource type="TileSet" uid="uid://bdopjmolb8531" path="res://placeholder_tiles.tres" id="2_1vv4q"]
@@ -17,6 +17,12 @@
 font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_hbl1s"]
+font_size = 40
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1gsk"]
+radius = 115.525
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1gsk"]
 font_size = 40
 
 [node name="tutorial" type="Node2D"]
@@ -106,3 +112,19 @@ offset_right = 38.0
 offset_bottom = -114.0
 text = "Draw"
 label_settings = SubResource("LabelSettings_hbl1s")
+
+[node name="exit_area" type="Area2D" parent="."]
+position = Vector2(5128, -273)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_area"]
+shape = SubResource("CircleShape2D_c1gsk")
+
+[node name="exit" type="Label" parent="exit_area"]
+offset_left = -45.0
+offset_top = -90.0
+offset_right = 48.0
+offset_bottom = -45.0
+text = "Exit"
+label_settings = SubResource("LabelSettings_c1gsk")
