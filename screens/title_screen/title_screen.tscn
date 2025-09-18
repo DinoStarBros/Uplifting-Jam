@@ -82,6 +82,61 @@ tracks/4/keys = {
 "values": [3.0]
 }
 
+[sub_resource type="Animation" id="Animation_4rvf0"]
+resource_name = "start"
+length = 10.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sfx/Startup:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("black_overlay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.1, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_loading_done"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("black_overlay/dinoOs/loading:value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 1, 1.4, 1.6, 2, 2.2, 2.5, 3),
+"transitions": PackedFloat32Array(0.5, 2, 0, 0, 1, 1, 1, 0, 0),
+"update": 0,
+"values": [0.0, 0.1, 0.25, 0.4, 0.44, 0.51, 0.7, 0.8, 1.0]
+}
+
 [sub_resource type="Animation" id="Animation_hogcd"]
 resource_name = "glitch_anim"
 length = 12.0
@@ -173,61 +228,6 @@ tracks/6/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_4rvf0"]
-resource_name = "start"
-length = 10.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sfx/Startup:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(2.9),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("black_overlay:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3.1, 3.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_loading_done"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("black_overlay/dinoOs/loading:value")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4, 1, 1.4, 1.6, 2, 2.2, 2.5, 3),
-"transitions": PackedFloat32Array(0.5, 2, 0, 0, 1, 1, 1, 0, 0),
-"update": 0,
-"values": [0.0, 0.1, 0.25, 0.4, 0.44, 0.51, 0.7, 0.8, 1.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_alfmu"]
 _data = {
 &"RESET": SubResource("Animation_alfmu"),
@@ -251,6 +251,7 @@ shader_parameter/shake_color_rate = 0.01
 
 [node name="title_screen" type="Node"]
 script = ExtResource("1_4rvf0")
+speed_up_glitch = true
 
 [node name="DesktopBg" type="Sprite2D" parent="."]
 position = Vector2(640, 360)

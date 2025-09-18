@@ -83,7 +83,7 @@ func _spawn_error_popup() -> void:
 	%error.play()
 	var error_popup : ErrorPopup = error_popup_scn.instantiate()
 	
-	error_popup.global_position.x = randf_range(-100, 600)
+	error_popup.global_position.x = randf_range(-200, 600)
 	error_popup.global_position.y = randf_range(25, 300)
 	error_popup.p = p
 	error_popups.add_child(error_popup)
