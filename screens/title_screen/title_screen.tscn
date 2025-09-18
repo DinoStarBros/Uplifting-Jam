@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://wxr3bfk3vrrk"]
+[gd_scene load_steps=23 format=3 uid="uid://wxr3bfk3vrrk"]
 
 [ext_resource type="Script" uid="uid://bahqri01wuqxe" path="res://screens/title_screen/title_screen.gd" id="1_4rvf0"]
 [ext_resource type="AudioStream" uid="uid://qn6skfb4q5dt" path="res://Audio/UJsfx/OSstartup.mp3" id="2_alfmu"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://bs62nf76mwogr" path="res://Art/UJ/desktopBG.png" id="8_8eykq"]
 [ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://PauseUI/settingsMenu/settings_menu.tscn" id="9_bgok2"]
 [ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="10_v01p7"]
-[ext_resource type="PackedScene" uid="uid://cirmuwc630gtr" path="res://PauseUI/inventory/inventory.tscn" id="11_yvje3"]
 [ext_resource type="Shader" uid="uid://dwolw7v58mmf8" path="res://shaders/glitch.gdshader" id="12_rgfbv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4rvf0"]
@@ -80,61 +79,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [3.0]
-}
-
-[sub_resource type="Animation" id="Animation_4rvf0"]
-resource_name = "start"
-length = 10.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sfx/Startup:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(2.9),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("black_overlay:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3.1, 3.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_loading_done"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("black_overlay/dinoOs/loading:value")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4, 1, 1.4, 1.6, 2, 2.2, 2.5, 3),
-"transitions": PackedFloat32Array(0.5, 2, 0, 0, 1, 1, 1, 0, 0),
-"update": 0,
-"values": [0.0, 0.1, 0.25, 0.4, 0.44, 0.51, 0.7, 0.8, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_hogcd"]
@@ -226,6 +170,61 @@ tracks/6/keys = {
 "args": [],
 "method": &"_switch_scene"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_4rvf0"]
+resource_name = "start"
+length = 10.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sfx/Startup:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("black_overlay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.1, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_loading_done"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("black_overlay/dinoOs/loading:value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 1, 1.4, 1.6, 2, 2.2, 2.5, 3),
+"transitions": PackedFloat32Array(0.5, 2, 0, 0, 1, 1, 1, 0, 0),
+"update": 0,
+"values": [0.0, 0.1, 0.25, 0.4, 0.44, 0.51, 0.7, 0.8, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_alfmu"]
@@ -400,9 +399,6 @@ offset_left = -503.0
 offset_top = -255.0
 offset_right = -503.0
 offset_bottom = -255.0
-
-[node name="inventoryStuff" parent="AppWindows" instance=ExtResource("11_yvje3")]
-layout_mode = 1
 
 [node name="Taskbar" type="Control" parent="."]
 unique_name_in_owner = true
