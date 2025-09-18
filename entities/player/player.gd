@@ -28,6 +28,7 @@ var can_dash : bool = true
 var sharpness_gain : int = 1
 var damage: float = 5
 var knockback: float = 400
+var scene_just_started : bool = true
 
 const MAX_DASHES : int = 1
 const SPEED : float = 400.0

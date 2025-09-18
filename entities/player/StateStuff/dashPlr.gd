@@ -1,7 +1,5 @@
 extends StatePlr
 
-func _ready() -> void:
-	pass
 
 func on_enter()-> void:
 	p.anim.play("dash")
@@ -14,6 +12,7 @@ func on_enter()-> void:
 	
 	p.air_dashes -= 1
 	
+
 	state_duration = p.DASH_DURATION
 
 func process(delta: float)-> void:

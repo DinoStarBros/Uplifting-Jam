@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=64 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://c2ab15810bexd" path="res://Audio/whip_windup.wav" id="9_wq0jh"]
 [ext_resource type="Script" uid="uid://cdschvmpwj5fr" path="res://entities/player/StateStuff/slashKnockbackPlr.gd" id="10_j3ovn"]
 [ext_resource type="Script" uid="uid://d2a5ol1v657d8" path="res://entities/player/camera.gd" id="11_afbqv"]
+[ext_resource type="Script" uid="uid://42hrtov4cge7" path="res://entities/player/StateStuff/wakeUpPlr.gd" id="12_2soq1"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="13_j3ovn"]
 [ext_resource type="Script" uid="uid://cd0rt1c62nhq1" path="res://entities/player/gui.gd" id="15_gx6sm"]
 [ext_resource type="Script" uid="uid://cxmtn3dvonly2" path="res://entities/player/drawnAbilities/droneAbility.gd" id="16_ghoj8"]
@@ -501,6 +502,43 @@ radius = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bls4j"]
 size = Vector2(36, 64)
 
+[sub_resource type="Animation" id="Animation_ttr27"]
+resource_name = "start"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("black:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_13wue"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("black:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_13wue"]
+_data = {
+&"RESET": SubResource("Animation_13wue"),
+&"start": SubResource("Animation_ttr27")
+}
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2soq1"]
 shader = ExtResource("29_vewsg")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -723,14 +761,17 @@ debug_txt = NodePath("../Label")
 [node name="walk" type="Node" parent="SM"]
 script = ExtResource("3_bls4j")
 
+[node name="dash" type="Node" parent="SM"]
+script = ExtResource("6_qiwj3")
+
 [node name="fall" type="Node" parent="SM"]
 script = ExtResource("4_fkugw")
 
+[node name="wakeUp" type="Node" parent="SM"]
+script = ExtResource("12_2soq1")
+
 [node name="jump" type="Node" parent="SM"]
 script = ExtResource("5_8fjmc")
-
-[node name="dash" type="Node" parent="SM"]
-script = ExtResource("6_qiwj3")
 
 [node name="pogoJump" type="Node" parent="SM"]
 script = ExtResource("9_a1qjk")
@@ -914,6 +955,17 @@ polygon = PackedVector2Array(-800, -100, 800, -100, 800, 100, -800, 100)
 position = Vector2(0, 360)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-800, -100, 800, -100, 800, 100, -800, 100)
+
+[node name="black" type="Polygon2D" parent="GUI"]
+modulate = Color(1, 1, 1, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-58, -140, -59, 798, 1363, 813, 1376, -119)
+
+[node name="blackNim" type="AnimationPlayer" parent="GUI"]
+libraries = {
+&"": SubResource("AnimationLibrary_13wue")
+}
+autoplay = "start"
 
 [node name="Mow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
