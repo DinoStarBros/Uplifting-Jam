@@ -380,6 +380,25 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Drawings"
 
+[node name="bosses" type="HBoxContainer" parent="AppIcons"]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 251.0
+offset_right = 400.0
+offset_bottom = 291.0
+
+[node name="doubt" type="Button" parent="AppIcons/bosses"]
+layout_mode = 2
+text = "doubt"
+
+[node name="perfectionism" type="Button" parent="AppIcons/bosses"]
+layout_mode = 2
+text = "perfectionism"
+
+[node name="artblock" type="Button" parent="AppIcons/bosses"]
+layout_mode = 2
+text = "art block"
+
 [node name="AppWindows" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
@@ -410,6 +429,7 @@ offset_bottom = -255.0
 
 [node name="inventoryStuff" parent="AppWindows" instance=ExtResource("11_yvje3")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="x_inv" type="Button" parent="AppWindows/inventoryStuff"]
@@ -557,4 +577,7 @@ texture = ExtResource("10_v01p7")
 [connection signal="timeout" from="lDotsTimer" to="." method="_on_l_dots_timer_timeout"]
 [connection signal="pressed" from="AppIcons/h/joyArt" to="AppIcons" method="_on_joy_art_pressed"]
 [connection signal="pressed" from="AppIcons/h/drawings" to="AppIcons" method="_on_drawings_pressed"]
+[connection signal="pressed" from="AppIcons/bosses/doubt" to="AppIcons" method="_on_doubt_pressed"]
+[connection signal="pressed" from="AppIcons/bosses/perfectionism" to="AppIcons" method="_on_perfectionism_pressed"]
+[connection signal="pressed" from="AppIcons/bosses/artblock" to="AppIcons" method="_on_art_block_pressed"]
 [connection signal="pressed" from="AppWindows/inventoryStuff/x_inv" to="AppWindows" method="_on_x_inv_pressed"]

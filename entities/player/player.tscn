@@ -783,6 +783,7 @@ unique_name_in_owner = true
 zoom = Vector2(0.8, 0.8)
 position_smoothing_speed = 25.0
 script = ExtResource("11_afbqv")
+limit_camera = false
 
 [node name="camLimArea" type="Area2D" parent="Camera"]
 unique_name_in_owner = true
@@ -875,6 +876,7 @@ text = "Sure"
 
 [node name="inventory" type="Control" parent="GUI"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

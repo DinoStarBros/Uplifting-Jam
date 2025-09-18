@@ -14,3 +14,14 @@ func _on_joy_art_pressed() -> void:
 func _on_drawings_pressed() -> void:
 	p.app_opened = p.APPS.INVENTORY
 	inventory_stuff.on_pause()
+
+
+
+func _on_doubt_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_perfectionism_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_art_block_pressed() -> void:
+	pass # Replace with function body.
