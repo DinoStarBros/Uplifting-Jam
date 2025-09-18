@@ -14,3 +14,4 @@ func _quit() -> void:
 
 func _on_x_inv_pressed() -> void:
 	_quit()
+	inventory_stuff.on_resume()

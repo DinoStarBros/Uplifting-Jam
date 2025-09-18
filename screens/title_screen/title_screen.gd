@@ -54,8 +54,6 @@ func _process(delta: float) -> void:
 	app_icons.visible = loading_done
 	app_windows.visible = loading_done
 	taskbar.visible = loading_done
-	
-	%joy_art_taskbar.visible = app_opened == APPS.JOY_ART
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("M1"):

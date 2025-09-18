@@ -444,8 +444,9 @@ color = Color(0.601223, 0.601223, 0.601223, 1)
 layout_mode = 0
 offset_left = 7.0
 offset_top = 4.0
-offset_right = 119.0
+offset_right = 322.0
 offset_bottom = 44.0
+theme_override_constants/separation = 20
 
 [node name="logo" type="Button" parent="Taskbar/bg/buttons"]
 unique_name_in_owner = true
@@ -487,6 +488,19 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_left = 126.0
 offset_right = 165.0
+offset_bottom = 40.0
+text = "X"
+
+[node name="inventory_taskbar" type="Button" parent="Taskbar/bg/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Drawings"
+
+[node name="x_i" type="Button" parent="Taskbar/bg/buttons/inventory_taskbar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 95.0
+offset_right = 134.0
 offset_bottom = 40.0
 text = "X"
 
