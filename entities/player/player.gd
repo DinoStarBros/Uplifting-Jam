@@ -172,7 +172,8 @@ func _hitbox_hit(attack:Attack) -> void:
 		sm.change_state("pogoJump")
 	
 	else: # X stuff
-		sm.change_state("slashKnockback")
+		if slash_pivot.rotation_degrees != -90:
+			sm.change_state("slashKnockback")
 	
 	velocity.x = attack.knockback_direction.x * -SLASH_KNOCKBACK
 

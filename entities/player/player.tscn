@@ -847,7 +847,7 @@ sharpness_cost = 5
 
 [node name="fist" type="Node" parent="SM/abilities"]
 script = ExtResource("18_qpopc")
-sharpness_cost = 3
+sharpness_cost = 4
 
 [node name="anim" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -860,7 +860,7 @@ unique_name_in_owner = true
 zoom = Vector2(0.8, 0.8)
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 25.0
+position_smoothing_speed = 10.0
 script = ExtResource("11_afbqv")
 
 [node name="camLimArea" type="Area2D" parent="Camera"]

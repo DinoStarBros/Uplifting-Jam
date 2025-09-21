@@ -30,13 +30,11 @@ func _on_save_pressed()->void:
 
 func _on_load_pressed()->void:
 	SaveLoad._load()
-	_update_res()
 	_update_vol_val()
 
 func _on_reset_pressed()->void:
 	SaveLoad._reset_save_file()
 	SaveLoad._load()
-	_update_res()
 	_update_vol_val()
 	SceneManager.change_scene(References.screen_scenes["title"])
 
@@ -62,9 +60,6 @@ func _update_vol_val()->void:
 	else:
 		%frame_freeze.text = str("Off")
 
-func _update_res()->void:
-	%resOptions.select(SaveLoad.SaveFileData.resolutuion_index)
-	_on_res_options_item_selected(SaveLoad.SaveFileData.resolutuion_index)
 
 func _on_master_volume_value_changed(value: float)->void:
 	Global.master_volume = value
@@ -77,12 +72,6 @@ func _on_music_volume_value_changed(value: float)->void:
 func _on_sfx_vol_value_changed(value: float)->void:
 	Global.sfx_volume = value
 	
-
-
-func _on_res_options_item_selected(index: int) -> void:
-	pass
-	#Global.resolution_index = index
-	#DisplayServer.window_set_size(resolutions[index])
 
 var resolutions : Array[Vector2i] = [
 	Vector2i(1920, 1080),

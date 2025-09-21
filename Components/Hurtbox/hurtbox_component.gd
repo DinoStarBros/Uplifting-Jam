@@ -28,7 +28,7 @@ func on_hit(attack: Attack) -> void:
 		
 		if owner.has_method("damaged"):
 			owner.damaged(attack)
-		
+	
 	
 	else:# Dead
 		call_deferred("disable_csp")
