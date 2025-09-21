@@ -61,26 +61,27 @@ func _process(delta: float) -> void:
 	# A skill tree skill has been selected
 		
 		if Global.focused_node.unlockable and not Global.focused_node.unlocked:
-			if Input.is_action_pressed("unlock_skill"):
-				unlock_hold_prog += delta
-			else:
-				unlock_hold_prog = 0
-				%hold.stop()
-			
-			if Input.is_action_just_pressed("unlock_skill"):
-				%hold.play()
-			
-			if unlock_hold_prog >= UNLOCK_HOLD_PROG_MAX:
-				Global.focused_node.pressed_b()
-				%unlock.play()
-				%unlock2.play()
-				%hold.stop()
+			if Global.inspiration > Global.focused_node.inspiration_cost:
+				if Input.is_action_pressed("unlock_skill"):
+					unlock_hold_prog += delta
+				else:
+					unlock_hold_prog = 0
+					%hold.stop()
 				
-				unlock_hold_prog = 0
-				for skill : SkillButton in skills_in_tree:
-					skill.update()
+				if Input.is_action_just_pressed("unlock_skill"):
+					%hold.play()
 				
-				_save()
+				if unlock_hold_prog >= UNLOCK_HOLD_PROG_MAX:
+					Global.focused_node.pressed_b()
+					%unlock.play()
+					%unlock2.play()
+					%hold.stop()
+					
+					unlock_hold_prog = 0
+					for skill : SkillButton in skills_in_tree:
+						skill.update()
+					
+					_save()
 		
 		unlock_hold_bar.visible = Global.focused_node.unlockable and not Global.focused_node.unlocked
 		%locked.visible = !Global.focused_node.unlockable
@@ -90,9 +91,7 @@ func _process(delta: float) -> void:
 	else:
 		unlock_hold_prog = 0
 	
-	
 	descBox.visible = Global.focused_node is SkillButton
-	
 
 func _visuals_stuff() -> void:
 	unlock_hold_bar.max_value = UNLOCK_HOLD_PROG_MAX
@@ -107,8 +106,9 @@ func _visuals_stuff() -> void:
 func _save() -> void:
 	SaveLoad.SaveFileData.skills_unlockeds = skills_unlockeds
 	
+	
+	
 	SaveLoad._save()
-
 
 func _load() -> void:
 	skills_unlockeds = SaveLoad.SaveFileData.skills_unlockeds

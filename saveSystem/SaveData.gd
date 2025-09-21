@@ -14,16 +14,31 @@ class_name SaveDataResource
 @export var language_idx : int = 0 ## English = 0
 
 @export var equipped_abilities : Array = [
+	"fist",
 	"minigun",
 	"pistol",
-	"fist"
+	"drone",
+	"sword",
+	"scythe",
+	"hailOfBlades",
+	"treeOfHealing",
+	"shieldBash"
 ]
 
 @export var skills_unlockeds : Array = [
 	true,
-	false,
-	false
 	
+	true,
+	true,
+	true,
+	
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+
 ]
 
 @export var glitch_intro_happened: bool = false

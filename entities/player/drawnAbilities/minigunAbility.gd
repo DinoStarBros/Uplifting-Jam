@@ -7,7 +7,6 @@ func on_enter()-> void:
 	p.velocity.x = -p.last_x_input * 500
 
 func process(delta: float) -> void:
-	
 	p.velocity.x *= 0.8
 	p.velocity.y = 0
 	

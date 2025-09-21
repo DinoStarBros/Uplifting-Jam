@@ -7,6 +7,12 @@ class_name Inventory
 func _ready() -> void:
 	await get_tree().process_frame
 
+func _process(delta: float) -> void:
+	%insp.text = str("Inspiration: ", Global.inspiration)
+	
+	for n in %all_abilities.get_children().size():
+		%all_abilities.get_children()[n].visible = skill_tree.skills_unlockeds[n + 1]
+
 func on_pause() -> void:
 	abilities_inv.on_pause()
 	skill_tree.on_pause()

@@ -22,23 +22,104 @@ offset_left = 578.0
 offset_top = 49.0
 offset_right = 610.0
 offset_bottom = 81.0
-description = "Draw stuff with it idk."
+description = "Mightier than a sword"
+inspiration_cost = 0
 
-[node name="SkillButton2" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
-layout_mode = 0
-offset_left = 507.0
-offset_top = 121.0
-offset_right = 539.0
-offset_bottom = 153.0
-prerequisite_skills = [NodePath("../Pencil")]
-
-[node name="SkillButton3" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+[node name="Fist" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
 layout_mode = 0
 offset_left = 653.0
-offset_top = 121.0
+offset_top = 49.0
 offset_right = 685.0
-offset_bottom = 153.0
+offset_bottom = 81.0
 prerequisite_skills = [NodePath("../Pencil")]
+description = "Sharpness Cost: 4"
+inspiration_cost = 0
+
+[node name="Minigun" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+layout_mode = 0
+offset_left = 579.0
+offset_top = 113.0
+offset_right = 611.0
+offset_bottom = 145.0
+prerequisite_skills = [NodePath("../Pencil")]
+description = "Sharpness Cost: 4"
+inspiration_cost = 0
+
+[node name="Pistol" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 51.0
+offset_right = 539.0
+offset_bottom = 83.0
+prerequisite_skills = [NodePath("../Pencil")]
+description = "Sharpness Cost: 3"
+inspiration_cost = 0
+
+[node name="Drone" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 120.0
+offset_right = 474.0
+offset_bottom = 152.0
+prerequisite_skills = [NodePath("../Pistol")]
+description = "Sharpness Cost: 5
+Inspiration Cost: 2"
+inspiration_cost = 2
+
+[node name="Sword" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+layout_mode = 0
+offset_left = 585.0
+offset_top = 176.0
+offset_right = 617.0
+offset_bottom = 208.0
+prerequisite_skills = [NodePath("../Minigun")]
+description = "Sharpness Cost: 5
+Inspiration Cost: 2"
+inspiration_cost = 2
+
+[node name="Scythe" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+layout_mode = 0
+offset_left = 735.0
+offset_top = 118.0
+offset_right = 767.0
+offset_bottom = 150.0
+prerequisite_skills = [NodePath("../Fist")]
+description = "Sharpness Cost: 5
+Inspiration Cost: 2"
+inspiration_cost = 2
+
+[node name="Hail of Blades" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 276.0
+offset_right = 511.0
+offset_bottom = 308.0
+prerequisite_skills = [NodePath("../Drone")]
+description = "Sharpness Cost: 5
+Inspiration Cost: 4"
+inspiration_cost = 4
+
+[node name="Tree of Healing" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+layout_mode = 0
+offset_left = 589.0
+offset_top = 290.0
+offset_right = 621.0
+offset_bottom = 322.0
+prerequisite_skills = [NodePath("../Sword")]
+description = "Sharpness Cost: 5
+Inspiration Cost: 4"
+inspiration_cost = 4
+
+[node name="Shield Bash" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+layout_mode = 0
+offset_left = 693.0
+offset_top = 276.0
+offset_right = 725.0
+offset_bottom = 308.0
+prerequisite_skills = [NodePath("../Scythe")]
+description = "Sharpness Cost: 5
+Inspiration Cost: 4"
+inspiration_cost = 4
 
 [node name="pointer" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -95,7 +176,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
-text = "Unlock previous skills first"
+text = "Unlock previous skills first.
+Or get enough inspiration."
 
 [node name="unlock_hold" type="ProgressBar" parent="descBox/vbox"]
 unique_name_in_owner = true

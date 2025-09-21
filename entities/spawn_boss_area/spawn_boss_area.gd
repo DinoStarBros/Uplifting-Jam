@@ -1,6 +1,8 @@
 extends Area2D
 class_name SpawnBossArea
 
+signal BossStart
+
 @export var boss_scn : PackedScene
 
 var spawn_pos : Node2D
@@ -13,6 +15,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		_spawn_boss()
+		BossStart.emit()
 		queue_free()
 
 func _spawn_boss() -> void:

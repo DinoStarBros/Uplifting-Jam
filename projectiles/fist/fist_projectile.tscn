@@ -97,12 +97,12 @@ autostart = true
 [node name="hit" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_16f2r")
-volume_db = -5.0
+volume_db = -10.0
 pitch_scale = 0.7
 bus = &"SFX"
 
 [node name="fist_go" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_vfgfx")
-volume_db = -5.0
+volume_db = -10.0
 bus = &"SFX"

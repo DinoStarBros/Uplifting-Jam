@@ -15,6 +15,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_62wf1")
+metadata/_edit_vertical_guides_ = [-600.0]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -32,24 +33,13 @@ grow_vertical = 2
 
 [node name="Tabs" type="TabContainer" parent="PanelContainer"]
 layout_mode = 2
-current_tab = 2
-
-[node name="Inventory" type="VBoxContainer" parent="PanelContainer/Tabs"]
-visible = false
-layout_mode = 2
-alignment = 1
-metadata/_tab_index = 0
-
-[node name="Label" type="Label" parent="PanelContainer/Tabs/Inventory"]
-layout_mode = 2
-text = "YOU HAVE STUFF IDK"
+current_tab = 0
 
 [node name="Abilities" type="Control" parent="PanelContainer/Tabs"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 script = ExtResource("2_xm4pm")
-metadata/_tab_index = 1
+metadata/_tab_index = 0
 
 [node name="buttons" type="VBoxContainer" parent="PanelContainer/Tabs/Abilities"]
 layout_mode = 0
@@ -78,12 +68,22 @@ Fist"
 
 [node name="all_abilities" type="GridContainer" parent="PanelContainer/Tabs/Abilities"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 740.0
-offset_top = 41.0
-offset_right = 890.0
-offset_bottom = 600.0
-columns = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -279.5
+offset_right = 120.0
+offset_bottom = 279.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fist" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
+layout_mode = 2
+text = "Fist"
 
 [node name="minigun" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 unique_name_in_owner = true
@@ -99,14 +99,43 @@ layout_mode = 2
 text = "drone
 "
 
-[node name="fist" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
+[node name="sword" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 layout_mode = 2
-text = "Fist"
+text = "sword
+"
+
+[node name="scythe" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
+layout_mode = 2
+text = "scythe
+"
+
+[node name="hailOfBlades" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
+layout_mode = 2
+text = "Hail of 
+Blades"
+
+[node name="treeOfHealing" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
+layout_mode = 2
+text = "Tree of 
+Healing"
+
+[node name="shieldBash" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
+layout_mode = 2
+text = "Shield
+Bash"
 
 [node name="Skill Tree" type="VBoxContainer" parent="PanelContainer/Tabs"]
+visible = false
 layout_mode = 2
-metadata/_tab_index = 2
+metadata/_tab_index = 1
 
 [node name="SkillTree" parent="PanelContainer/Tabs/Skill Tree" instance=ExtResource("2_mv8p3")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="insp" type="Label" parent="PanelContainer/Tabs/Skill Tree"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Inspiration: 0"

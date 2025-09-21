@@ -5,7 +5,8 @@ class_name SkillButton
 @onready var line_2d: Line2D = %Line2D
 
 @export var prerequisite_skills : Array[SkillButton]
-@export var description : String
+@export_multiline var description : String
+@export var inspiration_cost : int = 1
 
 var skill_tree : SkillTree
 var ndex : int = 0
@@ -25,6 +26,10 @@ var prereq_skl_unlockeds : Array
 func pressed_b() -> void:
 	unlocked = true
 	skill_up()
+	Global.inspiration -= inspiration_cost
+	
+	SaveLoad.SaveFileData.inspiration = Global.inspiration
+	SaveLoad._save()
 
 func skill_up() -> void:
 	
@@ -48,3 +53,13 @@ func update() -> void:
 	
 	panel.show_behind_parent = unlocked
 	unlockable = prereq_skl_unlockeds.count(true) == prerequisite_skills.size()
+
+func _save() -> void:
+	SaveLoad.SaveFileData.inspiration = Global.inspiration
+	
+	SaveLoad._save()
+
+func _load() -> void:
+	Global.inspiration = SaveLoad.SaveFileData.inspiration
+	
+	SaveLoad._load()

@@ -27,7 +27,6 @@ func _ready() -> void:
 
 func ability_handling(delta: float) -> void:
 	equipped_abilities = Global.equipped_abilities
-	
 	if Input.is_action_just_pressed("ability"):
 		directional_ability(delta)
 	
@@ -50,6 +49,10 @@ func ability_handling(delta: float) -> void:
 		ability_index += 1
 		if ability_index >= equipped_abilities.size():
 			ability_index = 0
+	
+	if Input.is_action_just_pressed("heal"):
+		if p.health_component.hp < p.health_component.max_hp:
+			heal()
 
 var ability_sharpness_cost : int
 func directional_ability(delta: float) -> void:
@@ -91,6 +94,18 @@ func draw_ability(index : int) -> void:
 	if sharpness >= ability_sharpness_cost:
 		sm.change_state(
 			equipped_abilities[index]
+		)
+		sharpness -= p.sm.current_state.sharpness_cost
+	
+	update_sharpness_visual()
+
+func heal() -> void:
+	ability_sharpness_cost = sm.find_ability_state(
+		"coffee").sharpness_cost
+	
+	if sharpness >= ability_sharpness_cost:
+		sm.change_state(
+			"coffee"
 		)
 		sharpness -= p.sm.current_state.sharpness_cost
 	

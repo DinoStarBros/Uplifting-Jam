@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Boss1
 
 signal EmergeSpikes
+signal DeadBoss
 
 @onready var hitbox_component: HitboxComponent = %HitboxComponent
 @onready var sm: StateMachineBoss1 = %StateMachine
@@ -15,6 +16,7 @@ const JUMP_VELOCITY : float = 800.0
 var dir_to_plr : Vector2
 var last_attack_id : int
 var enable_gravity : bool = true
+var just_ : bool = false
 
 var attack_pattern : Array[int] = [ # 0 = JUMP, 1 = WORDS, 2 = SPIKES
 	0, 1, 2, 1, 1, 0, 0, 2, 2
@@ -25,6 +27,7 @@ func _ready() -> void:
 	attack_pattern.shuffle()
 	
 	get_parent().connect_spike_sig(self)
+	get_parent()._dead_boss(self)
 	hitbox_component.attack.damage = 5
 	hitbox_component.attack.knockback = 600
 	start_cutscene()
@@ -53,6 +56,7 @@ func dead(attack:Attack) -> void:
 	GlobalSignals.cutscene_start.emit()
 	Global.boss_alive = false
 	
+	DeadBoss.emit()
 	AudioManager.create_2d_audio(global_position,
 	AudioSettings.types.ENEMY_DEATH)
 	sm.change_state("death")

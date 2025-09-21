@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=69 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -25,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://PauseUI/settingsMenu/settings_menu.tscn" id="16_yqrof"]
 [ext_resource type="Script" uid="uid://kfbylg3w2mpf" path="res://entities/player/drawnAbilities/fist.gd" id="18_qpopc"]
 [ext_resource type="Script" uid="uid://qux7f7b3r3tu" path="res://entities/player/StateStuff/exitPlr.gd" id="19_8q4fm"]
-[ext_resource type="PackedScene" uid="uid://cirmuwc630gtr" path="res://PauseUI/inventory/inventory.tscn" id="19_221hk"]
 [ext_resource type="Script" uid="uid://4o1uq1ih5l5u" path="res://entities/player/ability_handler.gd" id="19_we0b7"]
 [ext_resource type="Script" uid="uid://cik4g17aq323b" path="res://entities/player/drawnAbilities/pistolAbility.gd" id="19_wq0jh"]
 [ext_resource type="Script" uid="uid://c2rw8fbp52gya" path="res://entities/player/StateStuff/deadPlr.gd" id="20_bwdx1"]
@@ -33,7 +32,13 @@
 [ext_resource type="Script" uid="uid://dfbir8t1pa0di" path="res://entities/player/StateStuff/cutscenePlr.gd" id="21_2soq1"]
 [ext_resource type="PackedScene" uid="uid://bghmfsudxxrio" path="res://Components/Health/health_component.tscn" id="21_221hk"]
 [ext_resource type="Script" uid="uid://cvpob6nsrljpj" path="res://entities/player/drawnAbilities/minigunAbility.gd" id="23_24ehl"]
+[ext_resource type="Script" uid="uid://d4ki2qtkjywta" path="res://entities/player/drawnAbilities/swordAbility.gd" id="27_8q4fm"]
+[ext_resource type="Script" uid="uid://c3yrh1tepgiwi" path="res://entities/player/drawnAbilities/scytheAbility.gd" id="28_np63p"]
+[ext_resource type="Script" uid="uid://ckgxtqmvxliu5" path="res://entities/player/drawnAbilities/rainOfBladesAbility.gd" id="29_0eo6o"]
 [ext_resource type="Shader" uid="uid://cne6u584nd6e4" path="res://shaders/hitFlash.gdshader" id="29_vewsg"]
+[ext_resource type="Script" uid="uid://bb8883ouy8gmt" path="res://entities/player/drawnAbilities/treeOfHealingAbility.gd" id="30_ttr27"]
+[ext_resource type="Script" uid="uid://d08dplo2lff2a" path="res://entities/player/drawnAbilities/shieldBashAbility.gd" id="31_13wue"]
+[ext_resource type="Script" uid="uid://blqh3c8gjhwxo" path="res://entities/player/drawnAbilities/coffeeAbility.gd" id="32_wy7bt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyb6c"]
 radius = 15.0
@@ -805,6 +810,10 @@ script = ExtResource("21_2soq1")
 [node name="abilities" type="Node" parent="SM"]
 unique_name_in_owner = true
 
+[node name="fist" type="Node" parent="SM/abilities"]
+script = ExtResource("18_qpopc")
+sharpness_cost = 4
+
 [node name="minigun" type="Node" parent="SM/abilities"]
 script = ExtResource("23_24ehl")
 sharpness_cost = 4
@@ -817,8 +826,23 @@ sharpness_cost = 3
 script = ExtResource("16_ghoj8")
 sharpness_cost = 5
 
-[node name="fist" type="Node" parent="SM/abilities"]
-script = ExtResource("18_qpopc")
+[node name="sword" type="Node" parent="SM/abilities"]
+script = ExtResource("27_8q4fm")
+
+[node name="scythe" type="Node" parent="SM/abilities"]
+script = ExtResource("28_np63p")
+
+[node name="hailOfBlades" type="Node" parent="SM/abilities"]
+script = ExtResource("29_0eo6o")
+
+[node name="treeOfHealing" type="Node" parent="SM/abilities"]
+script = ExtResource("30_ttr27")
+
+[node name="shieldBash" type="Node" parent="SM/abilities"]
+script = ExtResource("31_13wue")
+
+[node name="coffee" type="Node" parent="SM/abilities"]
+script = ExtResource("32_wy7bt")
 sharpness_cost = 4
 
 [node name="anim" type="AnimationPlayer" parent="."]
@@ -925,28 +949,78 @@ text = "Sure"
 
 [node name="inventory" type="Control" parent="GUI"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="inventoryStuff" parent="GUI/inventory" instance=ExtResource("19_221hk")]
-unique_name_in_owner = true
-layout_mode = 1
-offset_left = 620.0
-offset_top = 340.0
-offset_right = 620.0
-offset_bottom = 340.0
-
-[node name="inv_resume" type="Button" parent="GUI/inventory/inventoryStuff"]
+[node name="inventroyBox" type="PanelContainer" parent="GUI/inventory"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -574.0
-offset_top = 285.0
-offset_right = -496.0
-offset_bottom = 311.0
-text = "Resume"
+offset_left = 43.0
+offset_top = 40.0
+offset_right = 1224.0
+offset_bottom = 678.0
+
+[node name="inv_resume" type="Button" parent="GUI/inventory/inventroyBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "
+		-Resume-	
+
+"
+
+[node name="buttons" type="VBoxContainer" parent="GUI/inventory"]
+layout_mode = 2
+offset_left = 88.0
+offset_top = 91.0
+offset_right = 263.0
+offset_bottom = 253.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="GUI/inventory/buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Drawings Equipped"
+
+[node name="1" type="Button" parent="GUI/inventory/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Neutral / 1:
+
+"
+
+[node name="2" type="Button" parent="GUI/inventory/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Up / 2:
+
+"
+
+[node name="3" type="Button" parent="GUI/inventory/buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Down / 3:
+
+"
+
+[node name="Label2" type="Label" parent="GUI/inventory/buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Can't equip other drawings here,
+equip them in the drawings folder"
+
+[node name="inspiration" type="Label" parent="GUI/inventory"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1079.0
+offset_top = 60.0
+offset_right = 1205.0
+offset_bottom = 78.0
+text = "Inspiration: 0"
 
 [node name="black_bars" type="Node2D" parent="GUI"]
 unique_name_in_owner = true

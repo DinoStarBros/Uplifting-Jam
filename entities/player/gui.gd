@@ -4,7 +4,6 @@ class_name GUI
 @onready var pause: Control = %pause
 @onready var settings_menu: Settings = %settingsMenu
 @onready var inventory: Control = %inventory
-@onready var inventory_stuff: Inventory = %inventoryStuff
 
 var sure_quit : bool = false
 var gui_mode : GUI_MODES = GUI_MODES.UNPAUSED
@@ -56,10 +55,18 @@ func _inventory() -> void:
 	if get_tree().paused:
 		gui_mode = GUI_MODES.INVENTORY
 		%inv_resume.grab_focus()
-		inventory_stuff.on_pause()
+		%"1".text = str("Neutral / 1: \n",
+		Global.equipped_abilities[0]
+		)
+		%"2".text = str("Up / 2: \n",
+		Global.equipped_abilities[1]
+		)
+		%"3".text = str("Down / 3: \n",
+		Global.equipped_abilities[2]
+		)
+		%inspiration.text = str("Inspiration: ", Global.inspiration)
 	else:
 		gui_mode = GUI_MODES.UNPAUSED
-		inventory_stuff.on_resume()
 
 func _pause() -> void:
 	if not Global.game_state == Global.GAME_STATES.MAIN:

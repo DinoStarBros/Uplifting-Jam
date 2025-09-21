@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://muq66bpqq1ix"]
+[gd_scene load_steps=17 format=4 uid="uid://muq66bpqq1ix"]
 
 [ext_resource type="Script" uid="uid://3a1ap85f21s3" path="res://screens/boss1SCN/B1.gd" id="1_lo4yl"]
 [ext_resource type="TileSet" uid="uid://bdopjmolb8531" path="res://placeholder_tiles.tres" id="2_g258d"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dhpm21pr4nud2" path="res://entities/boss1/boss_1.tscn" id="6_0k5ud"]
 [ext_resource type="PackedScene" uid="uid://2lyqmb2lg46c" path="res://projectiles/b1_spike/b_1_spike.tscn" id="7_qpbw3"]
 [ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="8_nu3lm"]
+[ext_resource type="AudioStream" uid="uid://dgtbqthwtlrdx" path="res://Audio/UJmusic/doubt.mp3" id="9_35fn4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tubg1"]
 size = Vector2(1961, 1048)
@@ -143,6 +144,7 @@ offset_bottom = 18.0
 text = "exit"
 
 [node name="SpawnBossArea" parent="." instance=ExtResource("5_wlqgr")]
+unique_name_in_owner = true
 position = Vector2(1655, -125)
 boss_scn = ExtResource("6_0k5ud")
 
@@ -230,5 +232,12 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_nu3lm")
 }
+
+[node name="music2" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("9_35fn4")
+volume_db = -5.0
+bus = &"Music"
 
 [connection signal="area_entered" from="exit_area" to="." method="_on_exit_area_area_entered"]

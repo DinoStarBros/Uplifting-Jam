@@ -49,6 +49,7 @@ func _ready() -> void:
 
 var lDotsIdx : int = 0
 func _process(delta: float) -> void:
+	
 	loading_bar.value = wrapf(loading_bar.value + delta, 0, 1)
 	
 	app_icons.visible = loading_done
@@ -92,8 +93,10 @@ func _load() -> void:
 	SaveLoad._load()
 	Global.glitch_intro_happened = SaveLoad.SaveFileData.glitch_intro_happened
 	Global.bosses_beaten = SaveLoad.SaveFileData.bosses_beaten
+	Global.inspiration = SaveLoad.SaveFileData.inspiration
 
 func _save() -> void:
 	SaveLoad.SaveFileData.glitch_intro_happened = Global.glitch_intro_happened
 	SaveLoad.SaveFileData.bosses_beaten = Global.bosses_beaten
+	SaveLoad.SaveFileData.inspiration = Global.inspiration
 	SaveLoad._save()
