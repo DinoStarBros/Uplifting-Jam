@@ -11,7 +11,7 @@ func on_enter()-> void:
 	%dash_sfx.play()
 	
 	p.air_dashes -= 1
-	
+	p.iframe_duration += p.DASH_DURATION
 
 	state_duration = p.DASH_DURATION
 

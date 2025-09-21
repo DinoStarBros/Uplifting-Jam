@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dhpm21pr4nud2"]
+[gd_scene load_steps=40 format=3 uid="uid://dhpm21pr4nud2"]
 
 [ext_resource type="Script" uid="uid://dw0242fkbv4go" path="res://entities/boss1/boss_1.gd" id="1_sap0a"]
 [ext_resource type="Script" uid="uid://dlh2miu8tdb5s" path="res://entities/boss1/stateStuff/boss1StateMachine.gd" id="2_ga3re"]
@@ -16,9 +16,12 @@
 [ext_resource type="AudioStream" uid="uid://cw0s6bkxlwn2b" path="res://Audio/splashtownSFX/Jump.wav" id="12_5a0cs"]
 [ext_resource type="AudioStream" uid="uid://d0dlcg57pwrs6" path="res://Audio/planesfx/explosion-fx-343683.mp3" id="12_hooxr"]
 [ext_resource type="AudioStream" uid="uid://c7ap66p2gfont" path="res://Audio/jetslash sfx/SFX/JetFly.wav" id="13_llvsp"]
+[ext_resource type="PackedScene" uid="uid://dpfgqwsylvrr2" path="res://juices/boss_bar/boss_health_bar.tscn" id="14_c7kp2"]
+[ext_resource type="AudioStream" uid="uid://nche2hblg00q" path="res://Audio/UJsfx/correct-death-whistle-technique_dIzTYlux.mp3" id="17_fmbmj"]
+[ext_resource type="AudioStream" uid="uid://ch8jwhfq4s35g" path="res://Audio/UJsfx/ELECTRIC SCREAM -  Gaming Sound Effects HD FREE NO Copyright.mp3" id="18_nydkw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga3re"]
-size = Vector2(206, 382)
+size = Vector2(206, 254)
 
 [sub_resource type="Animation" id="Animation_txswc"]
 resource_name = "death"
@@ -38,10 +41,113 @@ step = 0.1
 
 [sub_resource type="Animation" id="Animation_c7kp2"]
 resource_name = "words"
+length = 2.0
 step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sfx/scream:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sfx/scream:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.1, 3.0, 0.2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sfx/scream2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sfx/scream2:pitch_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.5]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_spawn_word"
+}, {
+"args": [],
+"method": &"_spawn_word"
+}, {
+"args": [],
+"method": &"_spawn_word"
+}, {
+"args": [],
+"method": &"_spawn_word"
+}, {
+"args": [],
+"method": &"_spawn_word"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_4r6r8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sfx/scream:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sfx/scream2:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fmbmj"]
 _data = {
+&"RESET": SubResource("Animation_4r6r8"),
 &"death": SubResource("Animation_txswc"),
 &"idle": SubResource("Animation_niqh8"),
 &"jump": SubResource("Animation_fmbmj"),
@@ -50,7 +156,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gr070"]
-size = Vector2(252, 388)
+size = Vector2(264, 268)
 
 [sub_resource type="Animation" id="Animation_4evkx"]
 length = 0.001
@@ -196,7 +302,7 @@ shader_parameter/mix_value = 0.0
 shader_parameter/opacity = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7728"]
-size = Vector2(158, 332)
+size = Vector2(210, 217)
 
 [sub_resource type="Animation" id="Animation_hwmh2"]
 length = 0.001
@@ -304,12 +410,13 @@ libraries = {
 }
 
 [node name="health_component" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("6_h8ljm")]
-max_hp = 50.0
+unique_name_in_owner = true
+max_hp = 700.0
 hp_bar = NodePath("../UIStuff/BossHealthBar")
 
 [node name="sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_l7728")
-scale = Vector2(1.95313, 3)
+scale = Vector2(2, 2)
 texture = ExtResource("4_rgr7k")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("6_l7728")]
@@ -318,25 +425,14 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="hitbox" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, 20)
+position = Vector2(0, 18.5)
 shape = SubResource("RectangleShape2D_l7728")
 debug_color = Color(0.994449, 0, 0.221892, 0.42)
 
 [node name="UIStuff" type="CanvasLayer" parent="."]
 
-[node name="BossHealthBar" type="ProgressBar" parent="UIStuff"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -623.0
-offset_top = -47.0
-offset_right = 624.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 0
-show_percentage = false
+[node name="BossHealthBar" parent="UIStuff" instance=ExtResource("14_c7kp2")]
+unique_name_in_owner = true
 
 [node name="start" type="AnimationPlayer" parent="UIStuff"]
 libraries = {
@@ -362,5 +458,19 @@ bus = &"SFX"
 [node name="falling" type="AudioStreamPlayer2D" parent="sfx"]
 unique_name_in_owner = true
 stream = ExtResource("13_llvsp")
-volume_db = 5.0
+pitch_scale = 1.5
+bus = &"SFX"
+
+[node name="scream" type="AudioStreamPlayer2D" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("17_fmbmj")
+volume_db = -5.0
 pitch_scale = 2.0
+bus = &"SFX"
+
+[node name="scream2" type="AudioStreamPlayer2D" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("18_nydkw")
+volume_db = 10.0
+pitch_scale = 1.5
+bus = &"SFX"

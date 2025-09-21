@@ -18,6 +18,7 @@ var equipped_abilities : Array = [
 	
 ]
 var bosses_beaten : int = 0
+var inspiration : int = 0
 
 var first_time_boot : bool = true
 var glitch_intro_happened : bool = false

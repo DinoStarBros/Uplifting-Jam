@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=4 uid="uid://muq66bpqq1ix"]
+[gd_scene load_steps=16 format=4 uid="uid://muq66bpqq1ix"]
 
 [ext_resource type="Script" uid="uid://3a1ap85f21s3" path="res://screens/boss1SCN/B1.gd" id="1_lo4yl"]
 [ext_resource type="TileSet" uid="uid://bdopjmolb8531" path="res://placeholder_tiles.tres" id="2_g258d"]
 [ext_resource type="PackedScene" uid="uid://jm4ghv0uftnu" path="res://entities/player/player.tscn" id="3_1s8mx"]
-[ext_resource type="PackedScene" uid="uid://doe3hfyp3p2fi" path="res://entities/doubt_word/doubt_word.tscn" id="4_qpbw3"]
 [ext_resource type="AudioStream" uid="uid://pv1nr8fqn4iq" path="res://Audio/Mutronic Plague.mp3" id="4_t1mvg"]
 [ext_resource type="PackedScene" uid="uid://157dop7sgf7p" path="res://entities/spawn_boss_area/spawn_boss_area.tscn" id="5_wlqgr"]
 [ext_resource type="PackedScene" uid="uid://dhpm21pr4nud2" path="res://entities/boss1/boss_1.tscn" id="6_0k5ud"]
+[ext_resource type="PackedScene" uid="uid://2lyqmb2lg46c" path="res://projectiles/b1_spike/b_1_spike.tscn" id="7_qpbw3"]
+[ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="8_nu3lm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tubg1"]
 size = Vector2(1961, 1048)
@@ -19,6 +20,68 @@ radius = 114.158
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wlqgr"]
 size = Vector2(81, 146)
+
+[sub_resource type="Animation" id="Animation_qpbw3"]
+resource_name = "emerge_spike"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spikes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.3, 2),
+"transitions": PackedFloat32Array(1, 0.15932, 2, 0.15932),
+"update": 0,
+"values": [Vector2(2472, -6), Vector2(2472, -6), Vector2(2472, -469), Vector2(2472, -6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spikes/spike_telegraphs:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nu3lm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spikes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2472, -6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spikes/spike_telegraphs:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nu3lm"]
+_data = {
+&"RESET": SubResource("Animation_nu3lm"),
+&"emerge_spike": SubResource("Animation_qpbw3")
+}
 
 [node name="B1" type="Node2D"]
 script = ExtResource("1_lo4yl")
@@ -38,10 +101,8 @@ tile_set = ExtResource("2_g258d")
 z_index = 2
 position = Vector2(-1127, -15)
 
-[node name="doubt_word" parent="entities" instance=ExtResource("4_qpbw3")]
-position = Vector2(885, -455)
-
 [node name="camLim" type="Node2D" parent="."]
+visible = false
 
 [node name="camLim" type="Area2D" parent="camLim"]
 position = Vector2(2517, -177)
@@ -91,5 +152,83 @@ shape = SubResource("RectangleShape2D_wlqgr")
 
 [node name="spos" type="Node2D" parent="SpawnBossArea"]
 position = Vector2(991, -293)
+
+[node name="spikes" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2472, -6)
+
+[node name="b1_spike" parent="spikes" instance=ExtResource("7_qpbw3")]
+position = Vector2(-798, 276)
+
+[node name="b1_spike2" parent="spikes" instance=ExtResource("7_qpbw3")]
+position = Vector2(-578, 276)
+
+[node name="b1_spike3" parent="spikes" instance=ExtResource("7_qpbw3")]
+position = Vector2(-361, 276)
+
+[node name="b1_spike4" parent="spikes" instance=ExtResource("7_qpbw3")]
+position = Vector2(-133, 276)
+
+[node name="b1_spike5" parent="spikes" instance=ExtResource("7_qpbw3")]
+position = Vector2(95, 276)
+
+[node name="b1_spike6" parent="spikes" instance=ExtResource("7_qpbw3")]
+position = Vector2(320, 262)
+
+[node name="b1_spike7" parent="spikes" instance=ExtResource("7_qpbw3")]
+position = Vector2(577, 259)
+
+[node name="b1_spike8" parent="spikes" instance=ExtResource("7_qpbw3")]
+position = Vector2(820, 285)
+
+[node name="spike_telegraphs" type="Node2D" parent="spikes"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-2472, 6)
+
+[node name="Icon" type="Sprite2D" parent="spikes/spike_telegraphs"]
+position = Vector2(1671, -368)
+scale = Vector2(0.5, 4.9)
+texture = ExtResource("8_nu3lm")
+
+[node name="Icon2" type="Sprite2D" parent="spikes/spike_telegraphs"]
+position = Vector2(1893, -366)
+scale = Vector2(0.5, 4.9)
+texture = ExtResource("8_nu3lm")
+
+[node name="Icon3" type="Sprite2D" parent="spikes/spike_telegraphs"]
+position = Vector2(2115, -366)
+scale = Vector2(0.5, 4.9)
+texture = ExtResource("8_nu3lm")
+
+[node name="Icon4" type="Sprite2D" parent="spikes/spike_telegraphs"]
+position = Vector2(2337, -366)
+scale = Vector2(0.5, 4.9)
+texture = ExtResource("8_nu3lm")
+
+[node name="Icon5" type="Sprite2D" parent="spikes/spike_telegraphs"]
+position = Vector2(2573, -366)
+scale = Vector2(0.5, 4.9)
+texture = ExtResource("8_nu3lm")
+
+[node name="Icon6" type="Sprite2D" parent="spikes/spike_telegraphs"]
+position = Vector2(2795, -366)
+scale = Vector2(0.5, 4.9)
+texture = ExtResource("8_nu3lm")
+
+[node name="Icon7" type="Sprite2D" parent="spikes/spike_telegraphs"]
+position = Vector2(3050, -366)
+scale = Vector2(0.5, 4.9)
+texture = ExtResource("8_nu3lm")
+
+[node name="Icon8" type="Sprite2D" parent="spikes/spike_telegraphs"]
+position = Vector2(3289, -366)
+scale = Vector2(0.5, 4.9)
+texture = ExtResource("8_nu3lm")
+
+[node name="spikeNim" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_nu3lm")
+}
 
 [connection signal="area_entered" from="exit_area" to="." method="_on_exit_area_area_entered"]

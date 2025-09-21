@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ch8jwhfq4s35g"
+path="res://.godot/imported/ELECTRIC SCREAM -  Gaming Sound Effects HD FREE NO Copyright.mp3-eee9226ed21878093a7681dbb65444ce.mp3str"
+
+[deps]
+
+source_file="res://Audio/UJsfx/ELECTRIC SCREAM -  Gaming Sound Effects HD FREE NO Copyright.mp3"
+dest_files=["res://.godot/imported/ELECTRIC SCREAM -  Gaming Sound Effects HD FREE NO Copyright.mp3-eee9226ed21878093a7681dbb65444ce.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -270,7 +270,6 @@ shader_parameter/shake_color_rate = 0.01
 
 [node name="title_screen" type="Node"]
 script = ExtResource("1_4rvf0")
-speed_up_glitch = true
 
 [node name="DesktopBg" type="Sprite2D" parent="."]
 position = Vector2(640, 360)

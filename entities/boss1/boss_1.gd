@@ -1,23 +1,38 @@
 extends CharacterBody2D
 class_name Boss1
 
+signal EmergeSpikes
+
 @onready var hitbox_component: HitboxComponent = %HitboxComponent
 @onready var sm: StateMachineBoss1 = %StateMachine
 @onready var anim: AnimationPlayer = %animation
+@onready var health_component: HealthComponent = %health_component
+@onready var fake_bar: ProgressBar = %fake_bar
 
-const SPEED : float = 300.0
-const JUMP_VELOCITY : float = 700.0
+const SPEED : float = 500.0
+const JUMP_VELOCITY : float = 800.0
 
 var dir_to_plr : Vector2
+var last_attack_id : int
+var enable_gravity : bool = true
+
+var attack_pattern : Array[int] = [ # 0 = JUMP, 1 = WORDS, 2 = SPIKES
+	0, 1, 2, 1, 1, 0, 0, 2, 2
+]
+var current_attack_idx : int
 
 func _ready() -> void:
+	attack_pattern.shuffle()
+	
+	get_parent().connect_spike_sig(self)
 	hitbox_component.attack.damage = 5
 	hitbox_component.attack.knockback = 600
 	start_cutscene()
 
 func _physics_process(delta: float) -> void:
+	
 	Global.boss_alive = true
-	if not is_on_floor():
+	if not is_on_floor() and enable_gravity:
 		if velocity.y < 0:
 			velocity.y += Global.GRAVITY * delta
 		else:
@@ -63,3 +78,14 @@ func _boss_beat() -> void:
 	if Global.bosses_beaten == 0:
 		Global.bosses_beaten = 1
 		_save()
+
+var word_scn : PackedScene = preload("res://entities/doubt_word/doubt_word.tscn")
+
+func _spawn_word() -> void:
+	var word : DoubtWord = word_scn.instantiate()
+	
+	word.global_position = global_position
+	word.velocity.x = randf_range(-1, 1) * 1500
+	word.velocity.y = randf_range(-1, 0.1) * 1500
+	word.parent = self
+	Global.game.add_child(word)

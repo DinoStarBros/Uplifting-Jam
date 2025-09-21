@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpfgqwsylvrr2"]
+
+[ext_resource type="Script" uid="uid://gmy3c4hf7yci" path="res://juices/boss_bar/boss_health_bar.gd" id="1_ssqm8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nydkw"]
+bg_color = Color(0, 0, 0, 0)
+border_color = Color(0.462291, 0.462291, 0.46229, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7kp2"]
+bg_color = Color(1, 0.341176, 0.294118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txswc"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4r6r8"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="BossHealthBar" type="ProgressBar"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -623.0
+offset_top = -47.0
+offset_right = 624.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_nydkw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c7kp2")
+value = 100.0
+show_percentage = false
+script = ExtResource("1_ssqm8")
+
+[node name="fake_bar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+custom_minimum_size = Vector2(1247, 0)
+layout_mode = 0
+offset_right = 1247.0
+offset_bottom = 22.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_txswc")
+value = 100.0
+show_percentage = false
+
+[node name="bg_bar" type="ProgressBar" parent="fake_bar"]
+show_behind_parent = true
+custom_minimum_size = Vector2(1247, 0)
+layout_mode = 0
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 1253.0
+offset_bottom = 30.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_4r6r8")
+value = 100.0
+show_percentage = false

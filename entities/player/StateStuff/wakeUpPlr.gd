@@ -1,7 +1,10 @@
 extends StatePlr
 
 func on_enter() -> void:
-	state_duration = 3
+	if p.fast_wake_up:
+		state_duration = 0.1
+	else:
+		state_duration = 2
 	p.velocity.x = 0
 	p.override_flip_sprite = true
 

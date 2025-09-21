@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+@export var fast_wake_up : bool = false
+
 @onready var sm: StateMachinePlayer = %SM
 @onready var anim: AnimationPlayer = %anim
 @onready var sprite: Sprite2D = %Mow
@@ -29,6 +31,7 @@ var sharpness_gain : int = 1
 var damage: float = 5
 var knockback: float = 400
 var scene_just_started : bool = true
+var iframe_duration : float = 0
 
 const MAX_DASHES : int = 1
 const SPEED : float = 400.0
@@ -50,6 +53,8 @@ func _ready() -> void:
 	GlobalSignals.cutscene_end.connect(_cutscene_end)
 
 func _physics_process(delta: float) -> void:
+	iframe_duration = max(iframe_duration - delta, 0)
+	%hurtbox.disabled = iframe_duration > 0
 	
 	if not is_on_floor():
 		if enable_gravity:
@@ -220,3 +225,6 @@ func _cutscene_end() -> void:
 func _on_exit_area_area_entered(area: Area2D) -> void:
 	if area.name == "exit_area":
 		sm.change_state("exit")
+
+func _reload_scene() -> void:
+	SceneManager.reload_scene()
