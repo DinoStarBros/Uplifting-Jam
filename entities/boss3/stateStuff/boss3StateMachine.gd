@@ -1,9 +1,9 @@
 extends Node
-class_name StateMachineBoss2
+class_name StateMachineBoss3
 
 var initial_state : String
-var current_state : StateBoss2
-var previous_state : StateBoss2
+var current_state : StateBoss3
+var previous_state : StateBoss3
 
 @export var debug_txt : Label
 
@@ -19,7 +19,7 @@ func _process(_delta:float)-> void:
 
 func change_state(state: String)-> void:
 	
-	current_state = find_child(state) as StateBoss2
+	current_state = find_child(state) as StateBoss3
 	
 	if previous_state.name != current_state.name:
 		current_state.enter()
@@ -31,5 +31,5 @@ func change_state(state: String)-> void:
 	
 	previous_state = current_state
 
-func find_state(state_name : String) -> StateBoss2:
+func find_state(state_name : String) -> StateBoss3:
 	return find_child(state_name)

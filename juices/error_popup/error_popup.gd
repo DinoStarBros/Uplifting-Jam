@@ -23,6 +23,8 @@ func _ready() -> void:
 
 func _on_ignore_pressed() -> void:
 	queue_free()
+	%click.play(0.16)
 
 func _on_quit_pressed() -> void:
 	p.app_opened = p.APPS.NULL
+	%click.play(0.16)

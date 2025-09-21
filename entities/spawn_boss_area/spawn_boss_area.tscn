@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://157dop7sgf7p"]
+
+[ext_resource type="Script" uid="uid://52cqwwu4vesh" path="res://entities/spawn_boss_area/spawn_boss_area.gd" id="1_ynk8d"]
+
+[node name="SpawnBossArea" type="Area2D"]
+collision_layer = 512
+collision_mask = 512
+script = ExtResource("1_ynk8d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dtto6piffrexp"]
+[gd_scene load_steps=19 format=4 uid="uid://dtto6piffrexp"]
 
 [ext_resource type="Script" uid="uid://fwrtjdvkg0rm" path="res://screens/main/tutorial.gd" id="1_j3ku5"]
 [ext_resource type="TileSet" uid="uid://bdopjmolb8531" path="res://placeholder_tiles.tres" id="2_1vv4q"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://bcfo410fs3fhe" path="res://Art/light/key/alphanum/fill/j.svg" id="10_hbl1s"]
 [ext_resource type="Texture2D" uid="uid://dcj8o6ft3gh6v" path="res://Art/light/mouse/rb.svg" id="11_um87d"]
 [ext_resource type="Texture2D" uid="uid://cokbpsrrys1jd" path="res://Art/light/key/alphanum/fill/k.svg" id="12_c1gsk"]
+[ext_resource type="Texture2D" uid="uid://derqh8mgayavq" path="res://Art/light/layout/wasd/w.svg" id="13_5pt3k"]
+[ext_resource type="Texture2D" uid="uid://dh26q83rl25r6" path="res://Art/light/layout/wasd/s.svg" id="14_l0grj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tyvmd"]
 font_size = 32
@@ -90,7 +92,7 @@ text = "Attack"
 label_settings = SubResource("LabelSettings_hbl1s")
 
 [node name="Rb" type="Sprite2D" parent="tutorialStuff"]
-position = Vector2(4576, -393)
+position = Vector2(4544, -559)
 texture = ExtResource("11_um87d")
 
 [node name="Label" type="Label" parent="tutorialStuff/Rb"]
@@ -113,10 +115,33 @@ offset_bottom = -114.0
 text = "Draw"
 label_settings = SubResource("LabelSettings_hbl1s")
 
+[node name="Try" type="Label" parent="tutorialStuff/Rb"]
+offset_left = -102.0
+offset_top = 73.0
+offset_right = 675.0
+offset_bottom = 118.0
+text = "Try Combining The Draw Input With"
+label_settings = SubResource("LabelSettings_hbl1s")
+
+[node name="W" type="Sprite2D" parent="tutorialStuff/Rb"]
+position = Vector2(156, 176)
+texture = ExtResource("13_5pt3k")
+
+[node name="Label" type="Label" parent="tutorialStuff/Rb/W"]
+offset_left = 67.0
+offset_top = 10.0
+offset_right = 107.0
+offset_bottom = 28.0
+text = "Or"
+
+[node name="S" type="Sprite2D" parent="tutorialStuff/Rb"]
+position = Vector2(310, 175)
+texture = ExtResource("14_l0grj")
+
 [node name="exit_area" type="Area2D" parent="."]
 position = Vector2(5128, -273)
-collision_layer = 256
-collision_mask = 256
+collision_layer = 257
+collision_mask = 257
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="exit_area"]
 shape = SubResource("CircleShape2D_c1gsk")
@@ -128,3 +153,5 @@ offset_right = 48.0
 offset_bottom = -45.0
 text = "Exit"
 label_settings = SubResource("LabelSettings_c1gsk")
+
+[connection signal="body_entered" from="exit_area" to="." method="_on_exit_area_body_entered"]

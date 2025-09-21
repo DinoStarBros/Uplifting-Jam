@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbwb0fetquan6"]
+[gd_scene load_steps=3 format=3 uid="uid://dbwb0fetquan6"]
 
 [ext_resource type="Script" uid="uid://ci0r81u0bqjvy" path="res://juices/error_popup/error_popup.gd" id="1_emnij"]
+[ext_resource type="AudioStream" uid="uid://c0u3nqjae8305" path="res://Audio/UJsfx/computer-mouse-click-352734.mp3" id="2_ctv53"]
 
 [node name="ErrorPopup" type="Control"]
 layout_mode = 3
@@ -50,19 +51,25 @@ text = "You'll never make it as an artist. Give up now."
 
 [node name="buttons" type="HBoxContainer" parent="stuff/window"]
 layout_mode = 0
-offset_left = 375.0
+offset_left = 355.0
 offset_top = 168.0
-offset_right = 495.0
+offset_right = 496.0
 offset_bottom = 194.0
 
 [node name="ignore" type="Button" parent="stuff/window/buttons"]
 layout_mode = 2
-text = "Ignore
+text = "Continue
 "
 
 [node name="quit" type="Button" parent="stuff/window/buttons"]
 layout_mode = 2
 text = "Quit"
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_ctv53")
+pitch_scale = 2.0
+bus = &"SFX"
 
 [connection signal="pressed" from="stuff/window/buttons/ignore" to="." method="_on_ignore_pressed"]
 [connection signal="pressed" from="stuff/window/buttons/quit" to="." method="_on_quit_pressed"]

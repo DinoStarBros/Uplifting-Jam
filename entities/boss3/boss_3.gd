@@ -1,8 +1,8 @@
 extends CharacterBody2D
-class_name Boss2
+class_name Boss3
 
 @onready var hitbox_component: HitboxComponent = %HitboxComponent
-@onready var sm: StateMachineBoss2 = %StateMachine
+@onready var sm: StateMachineBoss3 = %StateMachine
 
 const SPEED : float = 300.0
 const JUMP_VELOCITY : float = 700.0

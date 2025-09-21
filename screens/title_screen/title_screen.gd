@@ -91,7 +91,9 @@ func _switch_scene() -> void:
 func _load() -> void:
 	SaveLoad._load()
 	Global.glitch_intro_happened = SaveLoad.SaveFileData.glitch_intro_happened
+	Global.bosses_beaten = SaveLoad.SaveFileData.bosses_beaten
 
 func _save() -> void:
 	SaveLoad.SaveFileData.glitch_intro_happened = Global.glitch_intro_happened
+	SaveLoad.SaveFileData.bosses_beaten = Global.bosses_beaten
 	SaveLoad._save()

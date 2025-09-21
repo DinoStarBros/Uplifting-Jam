@@ -8,7 +8,6 @@ func process(delta: float) -> void:
 	if state_duration <= 0:
 		p.sm.change_state("walk")
 	
-	
 
 func on_exit()-> void:
 	pass

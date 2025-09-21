@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=67 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://ffjeymbod5lq" path="res://entities/player/StateStuff/damagedPlayer.gd" id="16_qpopc"]
 [ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://PauseUI/settingsMenu/settings_menu.tscn" id="16_yqrof"]
 [ext_resource type="Script" uid="uid://kfbylg3w2mpf" path="res://entities/player/drawnAbilities/fist.gd" id="18_qpopc"]
+[ext_resource type="Script" uid="uid://qux7f7b3r3tu" path="res://entities/player/StateStuff/exitPlr.gd" id="19_8q4fm"]
 [ext_resource type="PackedScene" uid="uid://cirmuwc630gtr" path="res://PauseUI/inventory/inventory.tscn" id="19_221hk"]
 [ext_resource type="Script" uid="uid://4o1uq1ih5l5u" path="res://entities/player/ability_handler.gd" id="19_we0b7"]
 [ext_resource type="Script" uid="uid://cik4g17aq323b" path="res://entities/player/drawnAbilities/pistolAbility.gd" id="19_wq0jh"]
@@ -343,6 +344,33 @@ tracks/1/keys = {
 "values": [0.0, -1.5708, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_wy7bt"]
+resource_name = "exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mow:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
+}
+
 [sub_resource type="Animation" id="Animation_bectd"]
 resource_name = "fall"
 length = 0.3
@@ -483,33 +511,6 @@ tracks/2/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_wy7bt"]
-resource_name = "exit"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Mow:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Mow:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8fjmc"]
 _data = {
 &"RESET": SubResource("Animation_8fjmc"),
@@ -530,6 +531,21 @@ radius = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bls4j"]
 size = Vector2(36, 64)
 
+[sub_resource type="Animation" id="Animation_13wue"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("black:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_ttr27"]
 resource_name = "start"
 length = 3.0
@@ -544,21 +560,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_13wue"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("black:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_13wue"]
@@ -687,8 +688,12 @@ _data = {
 radius = 38.9999
 height = 130.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2soq1"]
+radius = 1.0
+
 [node name="player" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 512
+collision_mask = 513
 script = ExtResource("1_symyc")
 
 [node name="Label" type="Label" parent="."]
@@ -808,6 +813,7 @@ script = ExtResource("9_a1qjk")
 script = ExtResource("10_j3ovn")
 
 [node name="exit" type="Node" parent="SM"]
+script = ExtResource("19_8q4fm")
 
 [node name="damaged" type="Node" parent="SM"]
 script = ExtResource("16_qpopc")
@@ -852,9 +858,10 @@ libraries = {
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true
 zoom = Vector2(0.8, 0.8)
+limit_smoothed = true
+position_smoothing_enabled = true
 position_smoothing_speed = 25.0
 script = ExtResource("11_afbqv")
-limit_camera = false
 
 [node name="camLimArea" type="Area2D" parent="Camera"]
 unique_name_in_owner = true
@@ -1037,5 +1044,10 @@ shape = SubResource("CapsuleShape2D_7thud")
 disabled = true
 
 [node name="exit_area" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_area"]
+shape = SubResource("CircleShape2D_2soq1")
 
 [connection signal="area_entered" from="exit_area" to="." method="_on_exit_area_area_entered"]

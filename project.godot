@@ -44,7 +44,9 @@ gdscript/warnings/untyped_declaration=2
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
 window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
 
 [editor_plugins]
 
@@ -195,6 +197,7 @@ DoubleM1={
 2d_physics/layer_4="Enemy Detection"
 2d_physics/layer_8="Camera Limit"
 2d_physics/layer_9="Exit_Area"
+2d_physics/layer_10="SpawnBossArea"
 
 [rendering]
 

@@ -200,7 +200,6 @@ func dead(attack:Attack) -> void:
 	AudioManager.create_2d_audio(global_position,
 	AudioSettings.types.ENEMY_DEATH)
 
-
 var hitspark_scn : PackedScene = preload("res://juices/hitspark/hitspark.tscn")
 func _spawn_hitspark_death() -> void:
 	var hitspark : Hitspark = hitspark_scn.instantiate()
@@ -216,7 +215,6 @@ func _cutscene_start() -> void:
 
 func _cutscene_end() -> void:
 	sm.change_state("walk")
-
 
 func _on_exit_area_area_entered(area: Area2D) -> void:
 	if area.name == "exit_area":

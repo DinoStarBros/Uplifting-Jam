@@ -5,12 +5,12 @@ func _ready() -> void:
 	get_tree().paused = false
 	
 	Global.game = self
-	SceneManager.fade_in()
 
-func _on_exit_area_body_entered(body: Node2D) -> void:
-	if body is Player:
-		if Global.bosses_beaten == 0:
-			Global.bosses_beaten = 0
+
+func _on_exit_area_area_entered(area: Area2D) -> void:
+	if area.name == "exit_area":
+		if Global.bosses_beaten == 1:
+			Global.bosses_beaten = 2
 			_save()
 
 func _save() -> void:

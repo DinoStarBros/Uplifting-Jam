@@ -9,6 +9,7 @@ func on_enter() -> void:
 func process(delta: float) -> void:
 	p.velocity.x *= 0.8
 	
+	
 	state_duration = max(state_duration-delta, 0)
 	if state_duration <= 0:
 		next_atk(next_attack_idx)

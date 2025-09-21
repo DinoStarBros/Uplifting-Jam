@@ -13,7 +13,7 @@ func _ready() -> void:
 	%master_volume.value_changed.connect(_on_master_volume_value_changed)
 	%music_volume.value_changed.connect(_on_music_volume_value_changed)
 	%sfx_vol.value_changed.connect(_on_sfx_vol_value_changed)
-
+	
 	%reset_button.pressed.connect(_reset_sure_press)
 	%reset_button_sure.pressed.connect(_on_reset_pressed)
 
