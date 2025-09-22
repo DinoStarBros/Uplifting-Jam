@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://57xmldyv2308"]
+[gd_scene load_steps=28 format=3 uid="uid://57xmldyv2308"]
 
 [ext_resource type="Script" uid="uid://bprm5ftcnkuqs" path="res://entities/boss3/boss_3.gd" id="1_sc810"]
 [ext_resource type="Script" uid="uid://dyb6w8ebqnhan" path="res://entities/boss3/stateStuff/boss3StateMachine.gd" id="2_o378s"]
@@ -11,13 +11,14 @@
 [ext_resource type="Script" uid="uid://b3c4wfuwnr8xr" path="res://entities/boss3/stateStuff/fireB3.gd" id="6_xc0l6"]
 [ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="7_ghqed"]
 [ext_resource type="Script" uid="uid://dy2h5ln6fs5u1" path="res://entities/boss3/stateStuff/summonB3.gd" id="7_o6rb5"]
+[ext_resource type="Script" uid="uid://bjbpimxw0j61t" path="res://entities/boss3/stateStuff/deathB3.gd" id="8_gppdi"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="8_nlbla"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga3re"]
-size = Vector2(206, 382)
+size = Vector2(226, 650)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gr070"]
-size = Vector2(252, 388)
+size = Vector2(280, 658)
 
 [sub_resource type="Animation" id="Animation_4evkx"]
 length = 0.001
@@ -163,7 +164,7 @@ shader_parameter/mix_value = 0.0
 shader_parameter/opacity = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7728"]
-size = Vector2(240, 372)
+size = Vector2(267, 678)
 
 [sub_resource type="Animation" id="Animation_hwmh2"]
 length = 0.001
@@ -203,6 +204,9 @@ _data = {
 &"start": SubResource("Animation_l7728")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6rb5"]
+size = Vector2(10, 672)
+
 [node name="boss3" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_sc810")
@@ -226,6 +230,9 @@ script = ExtResource("6_xc0l6")
 
 [node name="summon" type="Node" parent="StateMachine"]
 script = ExtResource("7_o6rb5")
+
+[node name="death" type="Node" parent="StateMachine"]
+script = ExtResource("8_gppdi")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 142.0
@@ -263,12 +270,12 @@ libraries = {
 }
 
 [node name="health_component" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("5_4pkfw")]
-max_hp = 100.0
+max_hp = 1000.0
 hp_bar = NodePath("../UIStuff/BossHealthBar")
 
 [node name="sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_l7728")
-scale = Vector2(1.95313, 3)
+scale = Vector2(1.95313, 5.29688)
 texture = ExtResource("7_ghqed")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("8_nlbla")]
@@ -276,7 +283,8 @@ unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 4
 
-[node name="hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="hitbox" type="CollisionShape2D" parent="HitboxComponent" groups=["Boss"]]
+position = Vector2(-13.5, 0)
 shape = SubResource("RectangleShape2D_l7728")
 debug_color = Color(0.994449, 0, 0.221892, 0.42)
 
@@ -301,3 +309,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_hwmh2")
 }
 autoplay = "start"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-124, -2)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_o6rb5")

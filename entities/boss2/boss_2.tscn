@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c3ca3y756elru"]
+[gd_scene load_steps=28 format=3 uid="uid://c3ca3y756elru"]
 
 [ext_resource type="Script" uid="uid://1qajh1myuq0p" path="res://entities/boss2/boss_2.gd" id="1_xjvva"]
 [ext_resource type="Script" uid="uid://b065nnpdo37wl" path="res://entities/boss2/stateStuff/boss2StateMachine.gd" id="2_xjvva"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="7_tyv83"]
 [ext_resource type="Script" uid="uid://d2imdeynqwkk4" path="res://entities/boss2/stateStuff/slashLineB2.gd" id="8_u6bf7"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="8_whq5p"]
+[ext_resource type="Script" uid="uid://ywjx5o1h3e5r" path="res://entities/boss2/stateStuff/deathB2.gd" id="9_fh05x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga3re"]
 size = Vector2(120, 130)
@@ -230,6 +231,9 @@ script = ExtResource("7_a7amn")
 
 [node name="slash_line" type="Node" parent="StateMachine"]
 script = ExtResource("8_u6bf7")
+
+[node name="death" type="Node" parent="StateMachine" groups=["Boss"]]
+script = ExtResource("9_fh05x")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 78.0

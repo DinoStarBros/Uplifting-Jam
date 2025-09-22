@@ -51,6 +51,10 @@ window/stretch/aspect="ignore"
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/scene_manager/plugin.cfg")
 
+[global_group]
+
+Boss=""
+
 [gui]
 
 theme/custom_font="uid://bh24dhq3cs3hh"

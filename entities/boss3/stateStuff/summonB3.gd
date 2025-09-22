@@ -1,4 +1,4 @@
-extends StateBoss2
+extends StateBoss3
 
 var next_attack_idx : int = 0
 

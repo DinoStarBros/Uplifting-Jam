@@ -14,6 +14,9 @@ func _ready() -> void:
 func took_damage(attack : Attack) -> void:
 	if dmg_txt:
 		Global.spawn_txt(str(roundi(attack.damage)), global_position)
+	
+	if get_parent().is_in_group("Boss"):
+		pass
 
 func _process(delta: float) -> void:
 	hp_visuals()

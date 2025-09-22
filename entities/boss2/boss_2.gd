@@ -46,6 +46,7 @@ func dead(attack:Attack) -> void:
 	DeadBoss.emit()
 	AudioManager.create_2d_audio(global_position,
 	AudioSettings.types.ENEMY_DEATH)
+	sm.change_state("death")
 
 func end_cutscene() -> void:
 	GlobalSignals.cutscene_end.emit()

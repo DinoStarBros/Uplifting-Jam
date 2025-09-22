@@ -16,7 +16,6 @@ func _save() -> void:
 
 func _process(delta: float) -> void:
 	%boss_gate.enabled = Global.boss_alive
-	print(Global.boss_alive)
 
 func _on_exit_area_area_entered(area: Area2D) -> void:
 	if area.name == "exit_area":

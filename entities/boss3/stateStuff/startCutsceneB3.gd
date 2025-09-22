@@ -1,4 +1,4 @@
-extends StateBoss2
+extends StateBoss3
 
 func on_enter() -> void:
 	p.velocity = Vector2.ZERO

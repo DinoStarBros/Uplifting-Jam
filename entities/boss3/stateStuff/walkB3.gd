@@ -1,4 +1,4 @@
-extends StateBoss2
+extends StateBoss3
 
 var next_attack_idx : int = 0
 
@@ -10,6 +10,7 @@ func on_enter() -> void:
 		p.current_attack_idx = 0
 
 func process(delta: float) -> void:
+	p.move_to_plr()
 	
 	state_duration = max(state_duration-delta, 0)
 	if state_duration <= 0:

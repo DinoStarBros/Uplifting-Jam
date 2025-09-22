@@ -8,6 +8,7 @@ func _ready() -> void:
 	Global.game = self
 	
 	%SpawnBossArea.BossStart.connect(_start_boss)
+	%deathbox.attack.damage = 999
 
 func _save() -> void:
 	SaveLoad.SaveFileData.bosses_beaten = Global.bosses_beaten
@@ -26,8 +27,8 @@ func _on_exit_area_area_entered(area: Area2D) -> void:
 func _start_boss() -> void:
 	%music.play()
 
-func _dead_boss(b1: Boss1) -> void:
-	b1.DeadBoss.connect(_stop_music)
+func _dead_boss(b3: Boss3) -> void:
+	b3.DeadBoss.connect(_stop_music)
 
 func _stop_music() -> void:
 	%music.stop()
