@@ -844,18 +844,23 @@ sharpness_cost = 5
 
 [node name="sword" type="Node" parent="SM/abilities"]
 script = ExtResource("27_8q4fm")
+sharpness_cost = 4
 
 [node name="scythe" type="Node" parent="SM/abilities"]
 script = ExtResource("28_np63p")
+sharpness_cost = 4
 
 [node name="hailOfBlades" type="Node" parent="SM/abilities"]
 script = ExtResource("29_0eo6o")
+sharpness_cost = 5
 
 [node name="treeOfHealing" type="Node" parent="SM/abilities"]
 script = ExtResource("30_ttr27")
+sharpness_cost = 5
 
 [node name="shieldBash" type="Node" parent="SM/abilities"]
 script = ExtResource("31_13wue")
+sharpness_cost = 4
 
 [node name="coffee" type="Node" parent="SM/abilities"]
 script = ExtResource("32_wy7bt")

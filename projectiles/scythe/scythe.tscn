@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://da4ttray8k8mj"]
+
+[ext_resource type="Script" uid="uid://b0burykjd0eaj" path="res://projectiles/scythe/scythe.gd" id="1_k3oug"]
+[ext_resource type="Texture2D" uid="uid://cybwbqhax4fsc" path="res://Art/Stuff2/ctweapOutline.png" id="2_qxj8f"]
+[ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="3_1ipsq"]
+
+[sub_resource type="Animation" id="Animation_qxj8f"]
+resource_name = "spin"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CtweapOutline:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1ipsq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CtweapOutline:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ipsq"]
+_data = {
+&"RESET": SubResource("Animation_1ipsq"),
+&"spin": SubResource("Animation_qxj8f")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ipsq"]
+radius = 100.005
+
+[node name="scythe" type="Node2D"]
+script = ExtResource("1_k3oug")
+
+[node name="CtweapOutline" type="Sprite2D" parent="."]
+rotation = 6.28319
+scale = Vector2(2, 2)
+texture = ExtResource("2_qxj8f")
+hframes = 2
+vframes = 2
+frame = 3
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1ipsq")
+}
+autoplay = "spin"
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_1ipsq")]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_1ipsq")
+disabled = true
+
+[node name="lifeTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="turnTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="lifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="timeout" from="turnTimer" to="." method="_on_turn_timer_timeout"]

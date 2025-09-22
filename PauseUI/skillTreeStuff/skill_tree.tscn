@@ -140,9 +140,9 @@ offset_right = 612.0
 offset_bottom = 259.0
 texture_normal = SubResource("AtlasTexture_njmdv")
 prerequisite_skills = [NodePath("../Minigun")]
-description = "Sharpness Cost: 5
-Inspiration Cost: 2"
-inspiration_cost = 2
+description = "Sharpness Cost: 4
+Inspiration Cost: 3"
+inspiration_cost = 3
 
 [node name="Scythe" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
 layout_mode = 0
@@ -152,7 +152,7 @@ offset_right = 767.0
 offset_bottom = 150.0
 texture_normal = SubResource("AtlasTexture_if6qr")
 prerequisite_skills = [NodePath("../Fist")]
-description = "Sharpness Cost: 5
+description = "Sharpness Cost: 4
 Inspiration Cost: 2"
 inspiration_cost = 2
 
@@ -188,7 +188,7 @@ offset_right = 725.0
 offset_bottom = 308.0
 texture_normal = SubResource("AtlasTexture_2i21t")
 prerequisite_skills = [NodePath("../Scythe")]
-description = "Sharpness Cost: 5
+description = "Sharpness Cost: 4
 Inspiration Cost: 4"
 inspiration_cost = 4
 

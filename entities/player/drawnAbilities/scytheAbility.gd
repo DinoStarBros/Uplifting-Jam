@@ -21,13 +21,12 @@ func process(delta: float)-> void:
 func on_exit()-> void:
 	pass
 
-var pistol_scn : PackedScene = References.projectiles["pistol"]
+var pistol_scn : PackedScene = preload("res://projectiles/scythe/scythe.tscn")
 func _spawn_pistol() -> void:
 	
-	var pistol : Pistol = pistol_scn.instantiate()
+	var pistol : Scythe = pistol_scn.instantiate()
 	
 	pistol.global_position = p.global_position
-	pistol.stats = References.statRes["pistol"]
 	pistol.global_position.x += 35 * p.last_x_input
-	pistol.dir = Vector2(p.last_x_input, 0)
+	pistol.velocity.x = p.last_x_input * 1000
 	Global.game.add_child(pistol)

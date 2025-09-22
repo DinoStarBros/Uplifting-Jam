@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://3ky1c3fd57ta"]
+
+[ext_resource type="Script" uid="uid://tmba1kyn6iw2" path="res://projectiles/blade/blade.gd" id="1_boj53"]
+[ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="2_hv4hu"]
+[ext_resource type="Texture2D" uid="uid://dt5b15j6tbrr5" path="res://Art/Stuff2/ctweap2-Sheet.png" id="3_2s1ym"]
+[ext_resource type="Texture2D" uid="uid://cybwbqhax4fsc" path="res://Art/Stuff2/ctweapOutline.png" id="4_e6u75"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv4hu"]
+size = Vector2(92, 20)
+
+[node name="blade" type="Node2D"]
+script = ExtResource("1_boj53")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("2_hv4hu")]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(36, 0)
+shape = SubResource("RectangleShape2D_hv4hu")
+
+[node name="Ctweap2-sheet" type="Sprite2D" parent="HitboxComponent"]
+unique_name_in_owner = true
+position = Vector2(34, 0)
+rotation = 0.785398
+texture = ExtResource("3_2s1ym")
+hframes = 3
+vframes = 2
+
+[node name="CtweapOutline" type="Sprite2D" parent="HitboxComponent"]
+unique_name_in_owner = true
+position = Vector2(35, 0)
+rotation = 0.785398
+texture = ExtResource("4_e6u75")
+hframes = 2
+vframes = 2
+frame = 3
+
+[node name="lifeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="lifeTimer" to="." method="_on_life_timer_timeout"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnd242hsqhpjr"]
+
+[ext_resource type="Script" uid="uid://cbpvfbwal632v" path="res://projectiles/blade_rain/blade_rain.gd" id="1_tl1h2"]
+[ext_resource type="AudioStream" uid="uid://cspd72htqero" path="res://Audio/jetslash sfx/SFX/hit.mp3" id="2_ccy8v"]
+
+[node name="blade_rain" type="Node2D"]
+script = ExtResource("1_tl1h2")
+
+[node name="spawnTimer" type="Timer" parent="."]
+wait_time = 0.15
+autostart = true
+
+[node name="lifeTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="shing" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_ccy8v")
+volume_db = -10.0
+bus = &"SFX"
+
+[connection signal="timeout" from="spawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="lifeTimer" to="." method="_on_life_timer_timeout"]

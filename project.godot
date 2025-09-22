@@ -17,7 +17,7 @@ warnings/check_angle_interpolation_type_conflicting=false
 
 config/name="UpliftingJam"
 config/tags=PackedStringArray("gamejamlol")
-run/main_scene="uid://r1hql3166dph"
+run/main_scene="uid://wxr3bfk3vrrk"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
