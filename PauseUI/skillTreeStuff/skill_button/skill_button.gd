@@ -26,10 +26,6 @@ var prereq_skl_unlockeds : Array
 func pressed_b() -> void:
 	unlocked = true
 	skill_up()
-	Global.inspiration -= inspiration_cost
-	
-	SaveLoad.SaveFileData.inspiration = Global.inspiration
-	SaveLoad._save()
 
 func skill_up() -> void:
 	

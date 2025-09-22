@@ -25,6 +25,7 @@ enum APPS {
 var app_opened : APPS = APPS.NULL
 
 func _ready() -> void:
+	
 	_load()
 	SceneManager.fade_in()
 	
@@ -46,6 +47,7 @@ func _ready() -> void:
 	
 	if speed_up_glitch:
 		animation.speed_scale = 10
+
 
 var lDotsIdx : int = 0
 func _process(delta: float) -> void:
@@ -98,5 +100,4 @@ func _load() -> void:
 func _save() -> void:
 	SaveLoad.SaveFileData.glitch_intro_happened = Global.glitch_intro_happened
 	SaveLoad.SaveFileData.bosses_beaten = Global.bosses_beaten
-	SaveLoad.SaveFileData.inspiration = Global.inspiration
 	SaveLoad._save()

@@ -44,4 +44,4 @@ class_name SaveDataResource
 @export var glitch_intro_happened: bool = false
 
 @export var bosses_beaten : int = 0
-@export var inspiration : int = 10
+@export var inspiration : int = 0

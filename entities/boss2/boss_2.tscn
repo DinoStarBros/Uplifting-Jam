@@ -205,7 +205,7 @@ _data = {
 &"start": SubResource("Animation_l7728")
 }
 
-[node name="boss2" type="CharacterBody2D"]
+[node name="boss2" type="CharacterBody2D" groups=["Boss"]]
 collision_layer = 0
 script = ExtResource("1_xjvva")
 

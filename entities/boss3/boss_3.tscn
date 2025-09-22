@@ -207,7 +207,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6rb5"]
 size = Vector2(10, 672)
 
-[node name="boss3" type="CharacterBody2D"]
+[node name="boss3" type="CharacterBody2D" groups=["Boss"]]
 collision_layer = 0
 script = ExtResource("1_sc810")
 
@@ -283,7 +283,7 @@ unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 4
 
-[node name="hitbox" type="CollisionShape2D" parent="HitboxComponent" groups=["Boss"]]
+[node name="hitbox" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(-13.5, 0)
 shape = SubResource("RectangleShape2D_l7728")
 debug_color = Color(0.994449, 0, 0.221892, 0.42)

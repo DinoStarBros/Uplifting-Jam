@@ -62,8 +62,8 @@ func _process(delta: float) -> void:
 	# A skill tree skill has been selected
 		
 		if Global.focused_node.unlockable and not Global.focused_node.unlocked:
-			if Global.inspiration > Global.focused_node.inspiration_cost:
-				if Input.is_action_pressed("unlock_skill"):
+			if Global.inspiration >= Global.focused_node.inspiration_cost:
+				if Input.is_action_pressed("unlock_skill") and Global.inspiration >= Global.focused_node.inspiration_cost:
 					unlock_hold_prog += delta
 				else:
 					unlock_hold_prog = 0
@@ -77,6 +77,7 @@ func _process(delta: float) -> void:
 					%unlock.play()
 					%unlock2.play()
 					%hold.stop()
+					Global.inspiration -= Global.focused_node.inspiration_cost
 					
 					unlock_hold_prog = 0
 					for skill : SkillButton in skills_in_tree:
