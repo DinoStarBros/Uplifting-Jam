@@ -169,6 +169,7 @@ Inspiration Cost: 4"
 inspiration_cost = 4
 
 [node name="Tree of Healing" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+visible = false
 layout_mode = 0
 offset_left = 587.0
 offset_top = 332.0
@@ -181,6 +182,7 @@ Inspiration Cost: 4"
 inspiration_cost = 4
 
 [node name="Shield Bash" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
+visible = false
 layout_mode = 0
 offset_left = 693.0
 offset_top = 276.0

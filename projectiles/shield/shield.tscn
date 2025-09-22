@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy33a4jvhru0x"]
+
+[ext_resource type="Script" uid="uid://buqgtsu83j25f" path="res://projectiles/shield/shield.gd" id="1_j5kmk"]
+[ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="2_82udi"]
+
+[node name="shield" type="Node2D"]
+script = ExtResource("1_j5kmk")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_82udi")
