@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://57xmldyv2308"]
+[gd_scene load_steps=33 format=3 uid="uid://57xmldyv2308"]
 
 [ext_resource type="Script" uid="uid://bprm5ftcnkuqs" path="res://entities/boss3/boss_3.gd" id="1_sc810"]
 [ext_resource type="Script" uid="uid://dyb6w8ebqnhan" path="res://entities/boss3/stateStuff/boss3StateMachine.gd" id="2_o378s"]
@@ -13,9 +13,67 @@
 [ext_resource type="Script" uid="uid://dy2h5ln6fs5u1" path="res://entities/boss3/stateStuff/summonB3.gd" id="7_o6rb5"]
 [ext_resource type="Script" uid="uid://bjbpimxw0j61t" path="res://entities/boss3/stateStuff/deathB3.gd" id="8_gppdi"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="8_nlbla"]
+[ext_resource type="PackedScene" uid="uid://dpfgqwsylvrr2" path="res://juices/boss_bar/boss_health_bar.tscn" id="14_w15n3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga3re"]
 size = Vector2(226, 650)
+
+[sub_resource type="Animation" id="Animation_w15n3"]
+resource_name = "fire"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_gppdi"]
+resource_name = "laser"
+length = 2.0
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_spawn_laser"
+}, {
+"args": [],
+"method": &"_spawn_laser"
+}, {
+"args": [],
+"method": &"_spawn_laser"
+}, {
+"args": [],
+"method": &"_spawn_laser"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v6inc"]
+resource_name = "summon"
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_spawn_laser"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w15n3"]
+_data = {
+&"fire": SubResource("Animation_w15n3"),
+&"laser": SubResource("Animation_gppdi"),
+&"summon": SubResource("Animation_v6inc")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gr070"]
 size = Vector2(280, 658)
@@ -168,35 +226,11 @@ size = Vector2(267, 678)
 
 [sub_resource type="Animation" id="Animation_hwmh2"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BossHealthBar:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(17, 673)]
-}
 
 [sub_resource type="Animation" id="Animation_l7728"]
 resource_name = "start"
 length = 0.3
 step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BossHealthBar:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(17, 774), Vector2(17, 673)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hwmh2"]
 _data = {
@@ -208,7 +242,8 @@ _data = {
 size = Vector2(10, 672)
 
 [node name="boss3" type="CharacterBody2D" groups=["Boss"]]
-collision_layer = 0
+collision_layer = 8
+collision_mask = 9
 script = ExtResource("1_sc810")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("debug_txt")]
@@ -245,6 +280,10 @@ text = "walk"
 shape = SubResource("RectangleShape2D_ga3re")
 
 [node name="animation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_w15n3")
+}
 
 [node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component", "ouchnim", "deathnim") instance=ExtResource("4_1ig3r")]
 collision_layer = 2
@@ -270,7 +309,7 @@ libraries = {
 }
 
 [node name="health_component" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("5_4pkfw")]
-max_hp = 1000.0
+max_hp = 650.0
 hp_bar = NodePath("../UIStuff/BossHealthBar")
 
 [node name="sprite" type="Sprite2D" parent="."]
@@ -290,25 +329,13 @@ debug_color = Color(0.994449, 0, 0.221892, 0.42)
 
 [node name="UIStuff" type="CanvasLayer" parent="."]
 
-[node name="BossHealthBar" type="ProgressBar" parent="UIStuff"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -623.0
-offset_top = -47.0
-offset_right = 624.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 0
-show_percentage = false
-
 [node name="start" type="AnimationPlayer" parent="UIStuff"]
 libraries = {
 &"": SubResource("AnimationLibrary_hwmh2")
 }
 autoplay = "start"
+
+[node name="BossHealthBar" parent="UIStuff" instance=ExtResource("14_w15n3")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-124, -2)
@@ -316,3 +343,17 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_o6rb5")
+
+[node name="fires" type="Node2D" parent="."]
+
+[node name="f1" type="Node2D" parent="fires"]
+unique_name_in_owner = true
+position = Vector2(-107, -292)
+
+[node name="f2" type="Node2D" parent="fires"]
+unique_name_in_owner = true
+position = Vector2(-103, -6)
+
+[node name="f3" type="Node2D" parent="fires"]
+unique_name_in_owner = true
+position = Vector2(-111, 298)

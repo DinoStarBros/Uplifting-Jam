@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://du32at02wgqmg"]
+
+[ext_resource type="Script" uid="uid://y4fhio2jpehk" path="res://projectiles/b2_dagger/b_2_dagger.gd" id="1_116ia"]
+[ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="2_4o7jj"]
+[ext_resource type="Texture2D" uid="uid://dt5b15j6tbrr5" path="res://Art/Stuff2/ctweap2-Sheet.png" id="3_uue12"]
+[ext_resource type="PackedScene" uid="uid://cg1j2ioabubjc" path="res://juices/trail/trail_fx.tscn" id="4_o0eph"]
+[ext_resource type="AudioStream" uid="uid://cspd72htqero" path="res://Audio/jetslash sfx/SFX/hit.mp3" id="5_vkfc7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4o7jj"]
+radius = 13.0
+
+[node name="b2_dagger" type="Node2D"]
+script = ExtResource("1_116ia")
+
+[node name="trail_fx" parent="." instance=ExtResource("4_o0eph")]
+MAX_LENGTH = 10
+
+[node name="Ctweap2-sheet" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("3_uue12")
+region_enabled = true
+region_rect = Rect2(144, 16, 32, 16)
+
+[node name="HitboxComponent" parent="." instance=ExtResource("2_4o7jj")]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_4o7jj")
+
+[node name="whoos" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_vkfc7")
+autoplay = true
+bus = &"SFX"

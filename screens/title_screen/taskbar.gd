@@ -28,6 +28,7 @@ func _logo_pressed() -> void:
 
 func _shutdown_pressed() -> void:
 	get_tree().quit()
+	_save()
 
 func save_load_settings() -> void:
 	if logo_opened:
@@ -38,3 +39,8 @@ func save_load_settings() -> void:
 func _process(delta: float) -> void:
 	%joy_art_taskbar.visible = p.app_opened == p.APPS.JOY_ART
 	%inventory_taskbar.visible = p.app_opened == p.APPS.INVENTORY
+
+func _save() -> void:
+	SaveLoad.SaveFileData.inspiration = Global.inspiration
+	
+	SaveLoad._save()

@@ -9,3 +9,4 @@ script = ExtResource("1_uafr8")
 [node name="shving" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_s7ou4")
+bus = &"SFX"

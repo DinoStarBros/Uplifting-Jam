@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c3ca3y756elru"]
+[gd_scene load_steps=37 format=3 uid="uid://c3ca3y756elru"]
 
 [ext_resource type="Script" uid="uid://1qajh1myuq0p" path="res://entities/boss2/boss_2.gd" id="1_xjvva"]
 [ext_resource type="Script" uid="uid://b065nnpdo37wl" path="res://entities/boss2/stateStuff/boss2StateMachine.gd" id="2_xjvva"]
@@ -14,9 +14,129 @@
 [ext_resource type="Script" uid="uid://d2imdeynqwkk4" path="res://entities/boss2/stateStuff/slashLineB2.gd" id="8_u6bf7"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="8_whq5p"]
 [ext_resource type="Script" uid="uid://ywjx5o1h3e5r" path="res://entities/boss2/stateStuff/deathB2.gd" id="9_fh05x"]
+[ext_resource type="PackedScene" uid="uid://dpfgqwsylvrr2" path="res://juices/boss_bar/boss_health_bar.tscn" id="15_hbd6o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga3re"]
 size = Vector2(120, 130)
+
+[sub_resource type="Animation" id="Animation_fh05x"]
+resource_name = "dagger_throw"
+length = 2.0
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_spawn_dagger"
+}, {
+"args": [],
+"method": &"_spawn_dagger"
+}, {
+"args": [],
+"method": &"_spawn_dagger"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hbd6o"]
+resource_name = "jump_dagger"
+length = 2.0
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_spawn_dagger"
+}, {
+"args": [],
+"method": &"_spawn_dagger"
+}, {
+"args": [],
+"method": &"_spawn_dagger"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gwq6h"]
+resource_name = "sword_thrust"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordHitB/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_qvnp8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordHitB/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rlqtg"]
+resource_name = "slashies"
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_spawn_slash"
+}, {
+"args": [],
+"method": &"_spawn_slash"
+}, {
+"args": [],
+"method": &"_spawn_slash"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gcppr"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hbd6o"]
+_data = {
+&"RESET": SubResource("Animation_qvnp8"),
+&"dagger_throw": SubResource("Animation_fh05x"),
+&"jump_dagger": SubResource("Animation_hbd6o"),
+&"slashies": SubResource("Animation_rlqtg"),
+&"sword_thrust": SubResource("Animation_gwq6h"),
+&"walk": SubResource("Animation_gcppr")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gr070"]
 size = Vector2(128, 128)
@@ -169,35 +289,11 @@ shader_parameter/opacity = 1.0
 
 [sub_resource type="Animation" id="Animation_hwmh2"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BossHealthBar:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(17, 673)]
-}
 
 [sub_resource type="Animation" id="Animation_l7728"]
 resource_name = "start"
 length = 0.3
 step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BossHealthBar:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(17, 774), Vector2(17, 673)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hwmh2"]
 _data = {
@@ -205,8 +301,12 @@ _data = {
 &"start": SubResource("Animation_l7728")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fh05x"]
+size = Vector2(322, 20)
+
 [node name="boss2" type="CharacterBody2D" groups=["Boss"]]
-collision_layer = 0
+collision_layer = 8
+collision_mask = 9
 script = ExtResource("1_xjvva")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("debug_txt")]
@@ -246,6 +346,10 @@ text = "walk"
 shape = SubResource("RectangleShape2D_ga3re")
 
 [node name="animation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_hbd6o")
+}
 
 [node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component", "ouchnim", "deathnim") instance=ExtResource("4_xdast")]
 collision_layer = 2
@@ -280,8 +384,8 @@ shape = SubResource("RectangleShape2D_l7728")
 debug_color = Color(0.994449, 0, 0.221892, 0.42)
 
 [node name="health_component" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("5_okui4")]
-max_hp = 100.0
-hp_bar = NodePath("../UIStuff/BossHealthBar")
+max_hp = 500.0
+hp_bar = NodePath("../UIStuff/BossHealthBar2")
 
 [node name="sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_l7728")
@@ -289,22 +393,17 @@ texture = ExtResource("7_tyv83")
 
 [node name="UIStuff" type="CanvasLayer" parent="."]
 
-[node name="BossHealthBar" type="ProgressBar" parent="UIStuff"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -623.0
-offset_top = -47.0
-offset_right = 624.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 0
-show_percentage = false
-
 [node name="start" type="AnimationPlayer" parent="UIStuff"]
 libraries = {
 &"": SubResource("AnimationLibrary_hwmh2")
 }
 autoplay = "start"
+
+[node name="BossHealthBar2" parent="UIStuff" instance=ExtResource("15_hbd6o")]
+
+[node name="SwordHitB" parent="." instance=ExtResource("8_whq5p")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitB"]
+shape = SubResource("RectangleShape2D_fh05x")
+disabled = true

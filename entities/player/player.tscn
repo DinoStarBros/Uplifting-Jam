@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://jm4ghv0uftnu"]
+[gd_scene load_steps=71 format=3 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -17,7 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://c2ab15810bexd" path="res://Audio/whip_windup.wav" id="9_wq0jh"]
 [ext_resource type="Script" uid="uid://cdschvmpwj5fr" path="res://entities/player/StateStuff/slashKnockbackPlr.gd" id="10_j3ovn"]
 [ext_resource type="Script" uid="uid://d2a5ol1v657d8" path="res://entities/player/camera.gd" id="11_afbqv"]
+[ext_resource type="AudioStream" uid="uid://dfmwmaey2pvsn" path="res://Audio/41randsfx/19.wav" id="11_geky7"]
 [ext_resource type="Script" uid="uid://42hrtov4cge7" path="res://entities/player/StateStuff/wakeUpPlr.gd" id="12_2soq1"]
+[ext_resource type="AudioStream" uid="uid://b13al8bcklxtb" path="res://Audio/splashtownSFX/StartSweep.wav" id="12_qwspa"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="13_j3ovn"]
 [ext_resource type="Script" uid="uid://cd0rt1c62nhq1" path="res://entities/player/gui.gd" id="15_gx6sm"]
 [ext_resource type="Script" uid="uid://cxmtn3dvonly2" path="res://entities/player/drawnAbilities/droneAbility.gd" id="16_ghoj8"]
@@ -714,7 +716,7 @@ libraries = {
 [node name="health_component" parent="." node_paths=PackedStringArray("hp_bar", "hp_txt") instance=ExtResource("21_221hk")]
 unique_name_in_owner = true
 position = Vector2(-58, -79)
-max_hp = 30.0
+max_hp = 50.0
 hp_bar = NodePath("../GUI/hpbar")
 hp_txt = NodePath("../GUI/hpbar/hptxt")
 
@@ -761,6 +763,20 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("9_wq0jh")
 pitch_scale = 0.9
+bus = &"SFX"
+
+[node name="heal" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("11_geky7")
+volume_db = -5.0
+pitch_scale = 0.8
+bus = &"SFX"
+
+[node name="heal_start" type="AudioStreamPlayer" parent="sfx"]
+unique_name_in_owner = true
+stream = ExtResource("12_qwspa")
+volume_db = -5.0
+pitch_scale = 1.5
 bus = &"SFX"
 
 [node name="timers" type="Node" parent="."]

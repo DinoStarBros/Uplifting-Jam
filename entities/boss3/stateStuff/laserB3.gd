@@ -3,7 +3,8 @@ extends StateBoss3
 var next_attack_idx : int = 0
 
 func on_enter() -> void:
-	state_duration = 1
+	state_duration = 3
+	p.anim.play("laser")
 
 func process(delta: float) -> void:
 	

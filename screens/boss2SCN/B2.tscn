@@ -32,6 +32,7 @@ tile_set = ExtResource("2_d1btq")
 
 [node name="player" parent="entities" instance=ExtResource("3_2mxlh")]
 z_index = 2
+position = Vector2(2752, -189)
 
 [node name="boss_gate" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
