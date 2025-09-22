@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://doe3hfyp3p2fi"]
+[gd_scene load_steps=19 format=3 uid="uid://doe3hfyp3p2fi"]
 
 [ext_resource type="Script" uid="uid://dn01iset4atud" path="res://entities/doubt_word/doubt_word.gd" id="1_48twn"]
 [ext_resource type="PackedScene" uid="uid://bghmfsudxxrio" path="res://Components/Health/health_component.tscn" id="2_v1bcx"]
 [ext_resource type="PackedScene" uid="uid://c457ehqfb1g6c" path="res://Components/Hurtbox/hurtbox_component.tscn" id="3_y4r1f"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="4_y4r1f"]
+[ext_resource type="PackedScene" uid="uid://cg1j2ioabubjc" path="res://juices/trail/trail_fx.tscn" id="5_2ha7o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4r1f"]
-size = Vector2(166, 32)
+size = Vector2(252, 50)
 
 [sub_resource type="Animation" id="Animation_2ha7o"]
 length = 0.001
@@ -126,7 +127,7 @@ gradient = SubResource("Gradient_y4r1f")
 lifetime_randomness = 0.2
 particle_flag_disable_z = true
 emission_shape = 3
-emission_box_extents = Vector3(50, 5, 1)
+emission_box_extents = Vector3(100, 10, 1)
 angle_min = -205.7
 angle_max = 205.7
 initial_velocity_min = -200.0
@@ -136,6 +137,21 @@ scale_min = 2.0
 scale_max = 5.0
 color_ramp = SubResource("GradientTexture1D_2ha7o")
 turbulence_enabled = true
+
+[sub_resource type="Animation" id="Animation_1xkbm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("text:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_yc13p"]
 resource_name = "loop"
@@ -154,26 +170,14 @@ tracks/0/keys = {
 "values": [Color(0.396078, 0, 0, 1), Color(1, 0, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_1xkbm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("text:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1xkbm"]
 _data = {
 &"RESET": SubResource("Animation_1xkbm"),
 &"loop": SubResource("Animation_yc13p")
 }
+
+[sub_resource type="Gradient" id="Gradient_2ha7o"]
+colors = PackedColorArray(0, 0, 0, 1, 0.986533, 0.0856235, 0.0553317, 1)
 
 [node name="doubt_word" type="CharacterBody2D"]
 collision_layer = 8
@@ -224,7 +228,7 @@ offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-text = "dUmbahh"
+text = "Forgettable"
 label_settings = SubResource("LabelSettings_y4r1f")
 horizontal_alignment = 1
 
@@ -234,7 +238,7 @@ one_shot = true
 autostart = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 15
+amount = 30
 process_material = SubResource("ParticleProcessMaterial_y4r1f")
 
 [node name="anim" type="AnimationPlayer" parent="."]
@@ -242,5 +246,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_1xkbm")
 }
 autoplay = "loop"
+
+[node name="trail_fx" parent="." instance=ExtResource("5_2ha7o")]
+z_index = -1
+gradient = SubResource("Gradient_2ha7o")
 
 [connection signal="timeout" from="startMoveTimer" to="." method="_on_start_move_timer_timeout"]

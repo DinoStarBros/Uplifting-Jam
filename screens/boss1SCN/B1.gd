@@ -30,10 +30,10 @@ func _emerge_spikes() -> void:
 	%spikeNim.play("emerge_spike")
 
 func _start_boss() -> void:
-	%music2.play()
+	%music.play()
 
 func _dead_boss(b1: Boss1) -> void:
 	b1.DeadBoss.connect(_stop_music)
 
 func _stop_music() -> void:
-	%music2.stop()
+	%music.stop()

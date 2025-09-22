@@ -1,9 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://cirmuwc630gtr"]
+[gd_scene load_steps=16 format=3 uid="uid://cirmuwc630gtr"]
 
 [ext_resource type="Script" uid="uid://ipdl2ppslru3" path="res://PauseUI/inventory/inventory.gd" id="1_62wf1"]
 [ext_resource type="PackedScene" uid="uid://kf837f0oenvj" path="res://PauseUI/skillTreeStuff/skill_tree.tscn" id="2_mv8p3"]
 [ext_resource type="Script" uid="uid://c6k1q8w0bawu6" path="res://PauseUI/inventory/abilities.gd" id="2_xm4pm"]
 [ext_resource type="PackedScene" uid="uid://bcycb2gi833ot" path="res://PauseUI/inventory/ability_buttons/ability_button.tscn" id="3_llkei"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_llkei"]
+load_path = "res://.godot/imported/drawing_icons-Sheet.png-7b29da44d8cacc7f9a44181cf67a1e2d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n3jk"]
+atlas = SubResource("CompressedTexture2D_llkei")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jksh4"]
+load_path = "res://.godot/imported/drawing_icons-Sheet.png-7b29da44d8cacc7f9a44181cf67a1e2d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3stw"]
+atlas = SubResource("CompressedTexture2D_jksh4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llkei"]
+atlas = SubResource("CompressedTexture2D_llkei")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxvtd"]
+atlas = SubResource("CompressedTexture2D_llkei")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wndmg"]
+atlas = SubResource("CompressedTexture2D_llkei")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuw1e"]
+atlas = SubResource("CompressedTexture2D_llkei")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jksh4"]
+atlas = SubResource("CompressedTexture2D_llkei")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8mm1"]
+atlas = SubResource("CompressedTexture2D_llkei")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgn50"]
+atlas = SubResource("CompressedTexture2D_llkei")
+region = Rect2(512, 0, 64, 64)
 
 [node name="inventoryStuff" type="Control"]
 layout_mode = 3
@@ -80,49 +122,59 @@ offset_right = 120.0
 offset_bottom = 279.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="fist" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
-layout_mode = 2
-text = "Fist"
+columns = 2
 
 [node name="minigun" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Minigun"
+icon = SubResource("AtlasTexture_8n3jk")
+
+[node name="fist" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
+layout_mode = 2
+text = "Fist"
+icon = SubResource("AtlasTexture_v3stw")
 
 [node name="pistol" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 layout_mode = 2
 text = "Pistol"
+icon = SubResource("AtlasTexture_llkei")
 
 [node name="drone" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 layout_mode = 2
 text = "drone
 "
+icon = SubResource("AtlasTexture_xxvtd")
 
 [node name="sword" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 layout_mode = 2
 text = "sword
 "
+icon = SubResource("AtlasTexture_wndmg")
 
 [node name="scythe" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 layout_mode = 2
 text = "scythe
 "
+icon = SubResource("AtlasTexture_tuw1e")
 
 [node name="hailOfBlades" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 layout_mode = 2
 text = "Hail of 
 Blades"
+icon = SubResource("AtlasTexture_jksh4")
 
 [node name="treeOfHealing" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 layout_mode = 2
 text = "Tree of 
 Healing"
+icon = SubResource("AtlasTexture_c8mm1")
 
 [node name="shieldBash" parent="PanelContainer/Tabs/Abilities/all_abilities" instance=ExtResource("3_llkei")]
 layout_mode = 2
 text = "Shield
 Bash"
+icon = SubResource("AtlasTexture_bgn50")
 
 [node name="Skill Tree" type="VBoxContainer" parent="PanelContainer/Tabs"]
 visible = false

@@ -15,7 +15,8 @@ func _ready()-> void:
 	current_state.enter()
 
 func _process(_delta:float)-> void:
-	debug_txt.text = str(current_state.name)
+	if debug_txt:
+		debug_txt.text = str(current_state.name)
 
 func change_state(state: String)-> void:
 	

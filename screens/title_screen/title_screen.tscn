@@ -273,6 +273,7 @@ script = ExtResource("1_4rvf0")
 speed_up_glitch = true
 
 [node name="DesktopBg" type="Sprite2D" parent="."]
+z_index = -5
 position = Vector2(640, 360)
 scale = Vector2(0.68, 0.68)
 texture = ExtResource("8_8eykq")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://kf837f0oenvj"]
+[gd_scene load_steps=24 format=3 uid="uid://kf837f0oenvj"]
 
 [ext_resource type="Script" uid="uid://ct08wt1gyevqs" path="res://PauseUI/skillTreeStuff/skill_tree.gd" id="1_o8exy"]
 [ext_resource type="PackedScene" uid="uid://cx4carxg6oo2t" path="res://PauseUI/skillTreeStuff/skill_button/skill_button.tscn" id="2_lxfyo"]
@@ -6,6 +6,67 @@
 [ext_resource type="AudioStream" uid="uid://oj1u6sw561go" path="res://Audio/UJsfx/unlockHold1.mp3" id="4_wycev"]
 [ext_resource type="AudioStream" uid="uid://blcdsi62f20ft" path="res://Audio/tresure/slashGem.wav" id="5_4i0gp"]
 [ext_resource type="AudioStream" uid="uid://e7fgtf2ti3ki" path="res://Audio/41randsfx/15.wav" id="6_rfxsc"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v4ge1"]
+load_path = "res://.godot/imported/drawing_icons-Sheet.png-7b29da44d8cacc7f9a44181cf67a1e2d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fhbg"]
+atlas = SubResource("CompressedTexture2D_v4ge1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rfxsc"]
+load_path = "res://.godot/imported/drawing_icons-Sheet.png-7b29da44d8cacc7f9a44181cf67a1e2d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3puw"]
+atlas = SubResource("CompressedTexture2D_rfxsc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b2g56"]
+load_path = "res://.godot/imported/drawing_icons-Sheet.png-7b29da44d8cacc7f9a44181cf67a1e2d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7aur"]
+atlas = SubResource("CompressedTexture2D_b2g56")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_brvui"]
+load_path = "res://.godot/imported/drawing_icons-Sheet.png-7b29da44d8cacc7f9a44181cf67a1e2d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpyl2"]
+atlas = SubResource("CompressedTexture2D_brvui")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ce8xh"]
+load_path = "res://.godot/imported/drawing_icons-Sheet.png-7b29da44d8cacc7f9a44181cf67a1e2d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cih7g"]
+atlas = SubResource("CompressedTexture2D_ce8xh")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_npu2e"]
+load_path = "res://.godot/imported/drawing_icons-Sheet.png-7b29da44d8cacc7f9a44181cf67a1e2d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njmdv"]
+atlas = SubResource("CompressedTexture2D_npu2e")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2i21t"]
+load_path = "res://.godot/imported/drawing_icons-Sheet.png-7b29da44d8cacc7f9a44181cf67a1e2d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_if6qr"]
+atlas = SubResource("CompressedTexture2D_2i21t")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfxsc"]
+atlas = SubResource("CompressedTexture2D_v4ge1")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npu2e"]
+atlas = SubResource("CompressedTexture2D_v4ge1")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i21t"]
+atlas = SubResource("CompressedTexture2D_v4ge1")
+region = Rect2(512, 0, 64, 64)
 
 [node name="SkillTree" type="Control"]
 layout_mode = 3
@@ -22,6 +83,7 @@ offset_left = 578.0
 offset_top = 49.0
 offset_right = 610.0
 offset_bottom = 81.0
+texture_normal = SubResource("AtlasTexture_2fhbg")
 description = "Mightier than a sword"
 inspiration_cost = 0
 
@@ -31,6 +93,7 @@ offset_left = 653.0
 offset_top = 49.0
 offset_right = 685.0
 offset_bottom = 81.0
+texture_normal = SubResource("AtlasTexture_n3puw")
 prerequisite_skills = [NodePath("../Pencil")]
 description = "Sharpness Cost: 4"
 inspiration_cost = 0
@@ -41,6 +104,7 @@ offset_left = 579.0
 offset_top = 113.0
 offset_right = 611.0
 offset_bottom = 145.0
+texture_normal = SubResource("AtlasTexture_n7aur")
 prerequisite_skills = [NodePath("../Pencil")]
 description = "Sharpness Cost: 4"
 inspiration_cost = 0
@@ -51,6 +115,7 @@ offset_left = 507.0
 offset_top = 51.0
 offset_right = 539.0
 offset_bottom = 83.0
+texture_normal = SubResource("AtlasTexture_fpyl2")
 prerequisite_skills = [NodePath("../Pencil")]
 description = "Sharpness Cost: 3"
 inspiration_cost = 0
@@ -61,6 +126,7 @@ offset_left = 442.0
 offset_top = 120.0
 offset_right = 474.0
 offset_bottom = 152.0
+texture_normal = SubResource("AtlasTexture_cih7g")
 prerequisite_skills = [NodePath("../Pistol")]
 description = "Sharpness Cost: 5
 Inspiration Cost: 2"
@@ -68,10 +134,11 @@ inspiration_cost = 2
 
 [node name="Sword" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
 layout_mode = 0
-offset_left = 585.0
-offset_top = 176.0
-offset_right = 617.0
-offset_bottom = 208.0
+offset_left = 580.0
+offset_top = 227.0
+offset_right = 612.0
+offset_bottom = 259.0
+texture_normal = SubResource("AtlasTexture_njmdv")
 prerequisite_skills = [NodePath("../Minigun")]
 description = "Sharpness Cost: 5
 Inspiration Cost: 2"
@@ -83,6 +150,7 @@ offset_left = 735.0
 offset_top = 118.0
 offset_right = 767.0
 offset_bottom = 150.0
+texture_normal = SubResource("AtlasTexture_if6qr")
 prerequisite_skills = [NodePath("../Fist")]
 description = "Sharpness Cost: 5
 Inspiration Cost: 2"
@@ -94,6 +162,7 @@ offset_left = 479.0
 offset_top = 276.0
 offset_right = 511.0
 offset_bottom = 308.0
+texture_normal = SubResource("AtlasTexture_rfxsc")
 prerequisite_skills = [NodePath("../Drone")]
 description = "Sharpness Cost: 5
 Inspiration Cost: 4"
@@ -101,10 +170,11 @@ inspiration_cost = 4
 
 [node name="Tree of Healing" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
 layout_mode = 0
-offset_left = 589.0
-offset_top = 290.0
-offset_right = 621.0
-offset_bottom = 322.0
+offset_left = 587.0
+offset_top = 332.0
+offset_right = 619.0
+offset_bottom = 364.0
+texture_normal = SubResource("AtlasTexture_npu2e")
 prerequisite_skills = [NodePath("../Sword")]
 description = "Sharpness Cost: 5
 Inspiration Cost: 4"
@@ -116,6 +186,7 @@ offset_left = 693.0
 offset_top = 276.0
 offset_right = 725.0
 offset_bottom = 308.0
+texture_normal = SubResource("AtlasTexture_2i21t")
 prerequisite_skills = [NodePath("../Scythe")]
 description = "Sharpness Cost: 5
 Inspiration Cost: 4"
@@ -123,6 +194,7 @@ inspiration_cost = 4
 
 [node name="pointer" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+z_index = 2
 position = Vector2(622, 93)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_s2kg6")

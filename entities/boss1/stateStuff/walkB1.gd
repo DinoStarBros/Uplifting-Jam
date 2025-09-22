@@ -6,12 +6,10 @@ func on_enter() -> void:
 	state_duration = randf_range(0.5,1)
 	next_attack_idx = p.attack_pattern[p.current_attack_idx]
 	p.current_attack_idx += 1
-	if p.current_attack_idx >= p.attack_pattern.size() - 1:
+	if p.current_attack_idx >= p.attack_pattern.size():
 		p.current_attack_idx = 0
-	#randi_range(0,1)
 
 func process(delta: float) -> void:
-	p.velocity.x *= 0.8
 	
 	state_duration = max(state_duration-delta, 0)
 	if state_duration <= 0:

@@ -48,6 +48,7 @@ func ability_pressed() -> void:
 	update_skill_arrays()
 
 func _process(delta: float) -> void:
+	
 	if Global.focused_node is SkillButton:
 		pointer.visible = true
 		pointer.global_position = pointer.global_position.lerp(
@@ -57,7 +58,7 @@ func _process(delta: float) -> void:
 	else:
 		pointer.visible = false
 	
-	if Global.focused_node is SkillButton: 
+	if Global.focused_node is SkillButton:
 	# A skill tree skill has been selected
 		
 		if Global.focused_node.unlockable and not Global.focused_node.unlocked:
@@ -105,8 +106,6 @@ func _visuals_stuff() -> void:
 
 func _save() -> void:
 	SaveLoad.SaveFileData.skills_unlockeds = skills_unlockeds
-	
-	
 	
 	SaveLoad._save()
 

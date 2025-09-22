@@ -24,6 +24,7 @@ func _ready() -> void:
 	
 	SaveLoad._load()
 	equipped_abilities = SaveLoad.SaveFileData.equipped_abilities
+	Global.equipped_abilities = equipped_abilities
 
 func ability_handling(delta: float) -> void:
 	equipped_abilities = Global.equipped_abilities

@@ -8,7 +8,6 @@ signal DeadBoss
 @onready var sm: StateMachineBoss1 = %StateMachine
 @onready var anim: AnimationPlayer = %animation
 @onready var health_component: HealthComponent = %health_component
-@onready var fake_bar: ProgressBar = %fake_bar
 
 const SPEED : float = 500.0
 const JUMP_VELOCITY : float = 800.0
@@ -19,7 +18,7 @@ var enable_gravity : bool = true
 var just_ : bool = false
 
 var attack_pattern : Array[int] = [ # 0 = JUMP, 1 = WORDS, 2 = SPIKES
-	0, 1, 2, 1, 1, 0, 0, 2, 2
+	0, 0, 1, 2
 ]
 var current_attack_idx : int
 
