@@ -158,12 +158,12 @@ inspiration_cost = 2
 
 [node name="Hail of Blades" parent="." node_paths=PackedStringArray("prerequisite_skills") instance=ExtResource("2_lxfyo")]
 layout_mode = 0
-offset_left = 479.0
-offset_top = 276.0
-offset_right = 511.0
-offset_bottom = 308.0
+offset_left = 581.0
+offset_top = 328.0
+offset_right = 613.0
+offset_bottom = 360.0
 texture_normal = SubResource("AtlasTexture_rfxsc")
-prerequisite_skills = [NodePath("../Drone")]
+prerequisite_skills = [NodePath("../Sword")]
 description = "Sharpness Cost: 6
 Inspiration Cost: 5"
 inspiration_cost = 5
