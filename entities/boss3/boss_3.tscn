@@ -352,7 +352,7 @@ libraries = {
 }
 
 [node name="health_component" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("5_4pkfw")]
-max_hp = 800.0
+max_hp = 700.0
 hp_bar = NodePath("../UIStuff/BossHealthBar")
 
 [node name="sprite" type="Sprite2D" parent="."]

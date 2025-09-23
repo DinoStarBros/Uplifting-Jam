@@ -13,9 +13,6 @@ func _ready() -> void:
 	%master_volume.value_changed.connect(_on_master_volume_value_changed)
 	%music_volume.value_changed.connect(_on_music_volume_value_changed)
 	%sfx_vol.value_changed.connect(_on_sfx_vol_value_changed)
-	
-	%reset_button.pressed.connect(_reset_sure_press)
-	%reset_button_sure.pressed.connect(_on_reset_pressed)
 
 func _on_save_pressed()->void:
 	SaveLoad.SaveFileData.master_volume = Global.master_volume
@@ -71,7 +68,6 @@ func _on_music_volume_value_changed(value: float)->void:
 
 func _on_sfx_vol_value_changed(value: float)->void:
 	Global.sfx_volume = value
-	
 
 var resolutions : Array[Vector2i] = [
 	Vector2i(1920, 1080),
@@ -94,7 +90,6 @@ func _on_frame_freeze_pressed() -> void:
 	else:
 		%frame_freeze.text = str("Off")
 
-
 func _on_screen_shake_pressed() -> void:
 	Global.screen_shake_value = not Global.screen_shake_value
 	%button_pressed.pitch_scale = randf_range(1.8,2.2)
@@ -104,6 +99,3 @@ func _on_screen_shake_pressed() -> void:
 		%screen_shake.text = str("On")
 	else:
 		%screen_shake.text = str("Off")
-
-func _reset_sure_press() -> void:
-	%reset_button_sure.visible = !%reset_button_sure.visible

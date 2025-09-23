@@ -211,10 +211,10 @@ text = "Replenish Sharpness by attacking"
 label_settings = SubResource("LabelSettings_5pt3k")
 
 [node name="Label5" type="Label" parent="texts"]
-offset_left = 5085.0
-offset_top = -428.0
-offset_right = 5693.0
-offset_bottom = -393.0
+offset_left = 5158.0
+offset_top = -497.0
+offset_right = 5893.0
+offset_bottom = -424.0
 text = "Equip different drawings in the main menu
 "
 label_settings = SubResource("LabelSettings_5pt3k")
