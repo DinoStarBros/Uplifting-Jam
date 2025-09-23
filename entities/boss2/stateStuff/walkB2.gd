@@ -19,6 +19,7 @@ func process(delta: float) -> void:
 	state_duration = max(state_duration-delta, 0)
 	if state_duration <= 0:
 		next_atk(next_attack_idx)
+	
 
 func on_exit()-> void:
 	p.velocity.x =0 

@@ -5,7 +5,7 @@ class_name Player
 
 @onready var sm: StateMachinePlayer = %SM
 @onready var anim: AnimationPlayer = %anim
-@onready var sprite: Sprite2D = %Mow
+@onready var sprite: Sprite2D = %sprite
 @onready var slashnim: AnimationPlayer = %slashnim
 @onready var slash_pivot: Node2D = %slash_pivot
 @onready var hitbox_component: HitboxComponent = %HitboxComponent
@@ -32,13 +32,14 @@ var damage: float = 5
 var knockback: float = 400
 var scene_just_started : bool = true
 var iframe_duration : float = 0
+var is_slashing : bool = false
 
 const MAX_DASHES : int = 1
 const SPEED : float = 400.0
 const JUMP_VEL : float = 600.0
 const COYOTE_TIME_THRESHOLD : float = 0.15
 const DASH_SPEED : float = 1000.0
-const DASH_DURATION : float = 0.25
+const DASH_DURATION : float = 0.17
 const SLASH_COOLDOWN : float = 0.37
 const SLASH_KNOCKBACK : float = 400.0
 
@@ -53,6 +54,11 @@ func _ready() -> void:
 	GlobalSignals.cutscene_end.connect(_cutscene_end)
 
 func _physics_process(delta: float) -> void:
+	
+	sprite.visible = not is_slashing
+	%slashprite.visible = is_slashing
+	%slashprite.flip_h = sprite.flip_h
+	
 	iframe_duration = max(iframe_duration - delta, 0)
 	%hurtbox.disabled = iframe_duration > 0
 	
@@ -106,21 +112,26 @@ func move_handling() -> void:
 func _slash_dir_handling() -> void:
 	if y_input == 0:
 		if last_x_input == 1: # Right
+			_play_side_slashnim()
 			slash_pivot.rotation_degrees = 0
 			hitbox_component.attack.knockback_direction = Vector2.RIGHT
 			
 		elif last_x_input == -1: # Left
+			_play_side_slashnim()
 			slash_pivot.rotation_degrees = 180
 			hitbox_component.attack.knockback_direction = Vector2.LEFT
 			
 	else:
 		if y_input == 1: # Down
+			%slashPriteNim.play("slash_down")
 			if is_on_floor():
 				if last_x_input == 1: # Right
+					_play_side_slashnim()
 					slash_pivot.rotation_degrees = 0
 					hitbox_component.attack.knockback_direction = Vector2.RIGHT
 					
 				elif last_x_input == -1: # Left
+					_play_side_slashnim()
 					slash_pivot.rotation_degrees = 180
 					hitbox_component.attack.knockback_direction = Vector2.LEFT
 			else:
@@ -128,6 +139,7 @@ func _slash_dir_handling() -> void:
 				hitbox_component.attack.knockback_direction = Vector2.DOWN
 			
 		elif y_input == -1: # Up
+			%slashPriteNim.play("slash_up")
 			slash_pivot.rotation_degrees = -90
 			hitbox_component.attack.knockback_direction = Vector2.UP
 
@@ -137,6 +149,7 @@ func slash_handling() -> void:
 		return
 	
 	if (Input.is_action_just_pressed("slash") or buffer_slash) and can_slash:
+		
 		%slash.scale.y *= -1
 		_slash_dir_handling()
 		slashnim.play("slash")
@@ -146,10 +159,17 @@ func slash_handling() -> void:
 		
 		%slash_sfx.pitch_scale = randf_range(0.8, 1.2)
 		%slash_sfx.play()
+		
 	
 	if %slashTimer.time_left <= SLASH_COOLDOWN * 0.5:
 		if Input.is_action_just_pressed("slash"):
 			buffer_slash = true
+
+func _play_side_slashnim() -> void:
+	if %slash.scale.y > 0:
+		%slashPriteNim.play("slash1")
+	else:
+		%slashPriteNim.play("slash2")
 
 func _slashCD_timeout() -> void:
 	can_slash = true
@@ -228,3 +248,6 @@ func _on_exit_area_area_entered(area: Area2D) -> void:
 
 func _reload_scene() -> void:
 	SceneManager.reload_scene()
+
+func _slashing() -> void:
+	is_slashing = not is_slashing

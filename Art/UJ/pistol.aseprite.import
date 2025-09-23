@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cspxr1mace55s"
+path="res://.godot/imported/pistol.aseprite-80a289d754b79fe25e41d0facb5d3b1a.res"
+
+[deps]
+
+source_file="res://Art/UJ/pistol.aseprite"
+dest_files=["res://.godot/imported/pistol.aseprite-80a289d754b79fe25e41d0facb5d3b1a.res"]
+
+[params]
+

@@ -40,7 +40,7 @@ tile_set = ExtResource("2_j3p22")
 
 [node name="player" parent="entities" instance=ExtResource("3_8du0n")]
 z_index = 2
-position = Vector2(2023, 79)
+position = Vector2(-748, 73)
 
 [node name="camLim" type="Node2D" parent="."]
 

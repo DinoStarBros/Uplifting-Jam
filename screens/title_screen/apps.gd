@@ -5,8 +5,11 @@ class_name AppIcons
 @onready var app_windows: AppWindows = %AppWindows
 @onready var inventory_stuff: Inventory = %inventoryStuff
 
+var show_reset_panel : bool = false
+ 
 func _ready() -> void:
 	_load()
+	%recycleBin.pressed.connect(_recycleBin_pressed)
 
 func _on_joy_art_pressed() -> void:
 	%mClick2.play(0.16)
@@ -46,3 +49,11 @@ func _on_art_block_pressed() -> void:
 func _load() -> void:
 	SaveLoad._load()
 	SaveLoad.SaveFileData.bosses_beaten = Global.bosses_beaten
+
+func _recycleBin_pressed()->void:
+	pass
+
+func _reset_savefile() -> void:
+	SaveLoad._reset_save_file()
+	SaveLoad._load()
+	SceneManager.change_scene(References.screen_scenes["title"])

@@ -27,5 +27,5 @@ func _spawn_pistol() -> void:
 	var pistol : BladeRain = pistol_scn.instantiate()
 	
 	pistol.global_position = p.global_position
-	pistol.global_position.y -= 200
+	pistol.global_position.y -= 600
 	Global.game.add_child(pistol)

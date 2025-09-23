@@ -7,7 +7,7 @@ var dir_to_plr : Vector2
 
 var enable_gravity_timer : float = 0
 func on_enter() -> void:
-	
+	p.anim.play("jump")
 	%jump.play()
 	state_duration = 3
 	

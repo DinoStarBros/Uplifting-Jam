@@ -10,7 +10,7 @@ func _ready() -> void:
 	velocity = Vector2.DOWN * 1500
 	look_at(global_position + velocity)
 	
-	hitbox_component.attack.damage = 4
+	hitbox_component.attack.damage = 2
 	
 	a = randf_range(0,1) > 0.5
 	%"Ctweap2-sheet".visible = a

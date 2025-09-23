@@ -7,7 +7,7 @@
 script = ExtResource("1_tl1h2")
 
 [node name="spawnTimer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.05
 autostart = true
 
 [node name="lifeTimer" type="Timer" parent="."]

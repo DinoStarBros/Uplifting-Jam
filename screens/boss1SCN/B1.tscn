@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://muq66bpqq1ix"]
+[gd_scene load_steps=18 format=4 uid="uid://muq66bpqq1ix"]
 
 [ext_resource type="Script" uid="uid://3a1ap85f21s3" path="res://screens/boss1SCN/B1.gd" id="1_lo4yl"]
 [ext_resource type="TileSet" uid="uid://bdopjmolb8531" path="res://placeholder_tiles.tres" id="2_g258d"]
@@ -20,6 +20,9 @@ size = Vector2(3038, 1211)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lo4yl"]
 radius = 114.158
+
+[sub_resource type="LabelSettings" id="LabelSettings_nu3lm"]
+font_size = 50
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wlqgr"]
 size = Vector2(81, 146)
@@ -145,6 +148,7 @@ shape = SubResource("CircleShape2D_lo4yl")
 offset_right = 40.0
 offset_bottom = 18.0
 text = "exit"
+label_settings = SubResource("LabelSettings_nu3lm")
 
 [node name="SpawnBossArea" parent="." instance=ExtResource("5_wlqgr")]
 unique_name_in_owner = true

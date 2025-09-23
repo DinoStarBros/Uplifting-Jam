@@ -43,6 +43,10 @@ func _physics_process(delta: float) -> void:
 		velocity.y = min(velocity.y, Global.GRAVITY_LIMIT)
 	
 	move_and_slide()
+	
+	dir_to_plr = global_position.direction_to(Global.player.global_position)
+	
+	%sprite.flip_h = dir_to_plr.x > 0
 
 func damaged(attack:Attack) -> void:
 	

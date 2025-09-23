@@ -10,7 +10,7 @@ func on_enter() -> void:
 		p.current_attack_idx = 0
 
 func process(delta: float) -> void:
-	
+	p.anim.play("idle")
 	state_duration = max(state_duration-delta, 0)
 	if state_duration <= 0:
 		next_atk(next_attack_idx)

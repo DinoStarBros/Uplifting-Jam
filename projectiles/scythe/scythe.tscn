@@ -4,6 +4,33 @@
 [ext_resource type="Texture2D" uid="uid://cybwbqhax4fsc" path="res://Art/Stuff2/ctweapOutline.png" id="2_qxj8f"]
 [ext_resource type="PackedScene" uid="uid://bedusyx1egfn0" path="res://Components/Hitbox/hitbox_component.tscn" id="3_1ipsq"]
 
+[sub_resource type="Animation" id="Animation_1ipsq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CtweapOutline:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_qxj8f"]
 resource_name = "spin"
 length = 0.3
@@ -32,33 +59,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_1ipsq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CtweapOutline:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [6.28319]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ipsq"]
@@ -97,11 +97,11 @@ shape = SubResource("CircleShape2D_1ipsq")
 disabled = true
 
 [node name="lifeTimer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 autostart = true
 
 [node name="turnTimer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 autostart = true
 

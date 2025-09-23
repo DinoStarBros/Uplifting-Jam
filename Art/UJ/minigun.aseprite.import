@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://biehfdgygf4oa"
+path="res://.godot/imported/minigun.aseprite-9be1db1279770b3729fb29dd256fcd5e.res"
+
+[deps]
+
+source_file="res://Art/UJ/minigun.aseprite"
+dest_files=["res://.godot/imported/minigun.aseprite-9be1db1279770b3729fb29dd256fcd5e.res"]
+
+[params]
+

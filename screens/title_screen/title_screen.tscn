@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://wxr3bfk3vrrk"]
+[gd_scene load_steps=33 format=3 uid="uid://wxr3bfk3vrrk"]
 
 [ext_resource type="Script" uid="uid://bahqri01wuqxe" path="res://screens/title_screen/title_screen.gd" id="1_4rvf0"]
 [ext_resource type="AudioStream" uid="uid://qn6skfb4q5dt" path="res://Audio/UJsfx/OSstartup.mp3" id="2_alfmu"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cgtq6vljh0i4w" path="res://screens/title_screen/taskbar.gd" id="7_8cbff"]
 [ext_resource type="Texture2D" uid="uid://bs62nf76mwogr" path="res://Art/UJ/desktopBG.png" id="8_8eykq"]
 [ext_resource type="PackedScene" uid="uid://do3oy3lqr320g" path="res://PauseUI/settingsMenu/settings_menu.tscn" id="9_bgok2"]
+[ext_resource type="Texture2D" uid="uid://cjldyumq3rtyy" path="res://Art/UJ/desktop_icons-Sheet.png" id="9_e6237"]
 [ext_resource type="Texture2D" uid="uid://bytf2opdnr8js" path="res://icon.svg" id="10_v01p7"]
 [ext_resource type="PackedScene" uid="uid://cirmuwc630gtr" path="res://PauseUI/inventory/inventory.tscn" id="11_yvje3"]
 [ext_resource type="Shader" uid="uid://dwolw7v58mmf8" path="res://shaders/glitch.gdshader" id="12_rgfbv"]
@@ -247,6 +248,34 @@ _data = {
 &"start": SubResource("Animation_4rvf0")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_81sk2"]
+atlas = ExtResource("9_e6237")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y13wa"]
+atlas = ExtResource("9_e6237")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6237"]
+atlas = ExtResource("9_e6237")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhrfk"]
+atlas = ExtResource("9_e6237")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6o3x"]
+atlas = ExtResource("9_e6237")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im15t"]
+atlas = ExtResource("9_e6237")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1e271"]
+atlas = ExtResource("9_e6237")
+region = Rect2(160, 0, 32, 32)
+
 [sub_resource type="FontFile" id="FontFile_yvje3"]
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
@@ -270,7 +299,6 @@ shader_parameter/shake_color_rate = 0.01
 
 [node name="title_screen" type="Node"]
 script = ExtResource("1_4rvf0")
-speed_up_glitch = true
 
 [node name="DesktopBg" type="Sprite2D" parent="."]
 z_index = -5
@@ -376,49 +404,99 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_fjwv1")
 
+[node name="recycleBin" type="Button" parent="AppIcons"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 24.0
+offset_top = 22.0
+offset_right = 102.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 10
+text = "Recycle Bin"
+icon = SubResource("AtlasTexture_81sk2")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="panel" type="PanelContainer" parent="AppIcons/recycleBin"]
+layout_mode = 0
+offset_left = 83.0
+offset_right = 123.0
+offset_bottom = 40.0
+
+[node name="reset" type="Label" parent="AppIcons/recycleBin/panel"]
+layout_mode = 2
+text = "Reset save file?
+
+"
+
 [node name="h" type="HBoxContainer" parent="AppIcons"]
 layout_mode = 0
 offset_left = 189.0
-offset_top = 189.0
-offset_right = 345.0
-offset_bottom = 229.0
+offset_top = 169.0
+offset_right = 364.0
+offset_bottom = 245.0
 
 [node name="joyArt" type="Button" parent="AppIcons/h"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "Joy Art"
+icon = SubResource("AtlasTexture_y13wa")
+alignment = 2
+icon_alignment = 1
+vertical_icon_alignment = 0
 
 [node name="drawings" type="Button" parent="AppIcons/h"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "Drawings"
+icon = SubResource("AtlasTexture_e6237")
+icon_alignment = 1
+vertical_icon_alignment = 0
 
 [node name="bosses" type="HBoxContainer" parent="AppIcons"]
 layout_mode = 0
 offset_left = 189.0
-offset_top = 251.0
-offset_right = 400.0
-offset_bottom = 291.0
+offset_top = 263.0
+offset_right = 462.0
+offset_bottom = 327.0
 
 [node name="tutorial" type="Button" parent="AppIcons/bosses"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "Tutorial"
+icon = SubResource("AtlasTexture_mhrfk")
+icon_alignment = 1
+vertical_icon_alignment = 0
 
 [node name="doubt" type="Button" parent="AppIcons/bosses"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "doubt"
+icon = SubResource("AtlasTexture_n6o3x")
+icon_alignment = 1
+vertical_icon_alignment = 0
 
 [node name="perfectionism" type="Button" parent="AppIcons/bosses"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "perfectionism"
+icon = SubResource("AtlasTexture_im15t")
+icon_alignment = 1
+vertical_icon_alignment = 0
 
 [node name="artblock" type="Button" parent="AppIcons/bosses"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "art block"
+icon = SubResource("AtlasTexture_1e271")
+icon_alignment = 1
+vertical_icon_alignment = 0
 
 [node name="AppWindows" type="Control" parent="."]
 unique_name_in_owner = true

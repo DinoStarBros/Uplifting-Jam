@@ -5,7 +5,7 @@ class_name Scythe
 var velocity: Vector2
 
 func _ready() -> void:
-	hitbox_component.attack.damage = 8
+	hitbox_component.attack.damage = 10
 	hitbox_component.attack.knockback = 600
 
 func _process(delta: float) -> void:

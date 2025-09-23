@@ -1,4 +1,5 @@
 extends Node2D
+class_name Tutorial
 
 func _ready() -> void:
 	Global.game_state = Global.GAME_STATES.MAIN
