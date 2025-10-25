@@ -447,7 +447,7 @@ script = ExtResource("4_fjwv1")
 
 [node name="recycleBin" type="Button" parent="AppIcons"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
 offset_left = 24.0
 offset_top = 22.0
 offset_right = 102.0
@@ -643,6 +643,7 @@ text = "Shut Down"
 
 [node name="settingsMenu" parent="Taskbar/bg/buttons/logo/lMenu" instance=ExtResource("9_bgok2")]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 10.0
 offset_top = 3.0
 offset_right = 10.0
