@@ -75,6 +75,7 @@ func change_scene(scene: String) -> void:
 var tween : Tween
 var property_tween : Object
 var tween_ease : Object
+## Creates tweens for Nodes for their properties that are Vector2, e.g. Position, Scale
 func create_property_vec2_tween(
 	node:Node,
 	vec2:Vector2, 

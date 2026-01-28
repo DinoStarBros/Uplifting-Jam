@@ -1280,6 +1280,7 @@ grow_vertical = 2
 
 [node name="settingsMenu" parent="GUI/pause" instance=ExtResource("16_yqrof")]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -12.0
 offset_top = -47.0
 offset_right = -12.0
@@ -1333,7 +1334,7 @@ text = "
 "
 
 [node name="buttons" type="VBoxContainer" parent="GUI/inventory"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 88.0
 offset_top = 91.0
 offset_right = 263.0
@@ -1382,6 +1383,11 @@ offset_right = 1205.0
 offset_bottom = 78.0
 text = "Inspiration: 0"
 
+[node name="black" type="Polygon2D" parent="GUI"]
+modulate = Color(1, 1, 1, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-58, -140, -59, 798, 1363, 813, 1376, -119)
+
 [node name="black_bars" type="Node2D" parent="GUI"]
 unique_name_in_owner = true
 visible = false
@@ -1397,11 +1403,6 @@ polygon = PackedVector2Array(-800, -100, 800, -100, 800, 100, -800, 100)
 position = Vector2(0, 360)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-800, -100, 800, -100, 800, 100, -800, 100)
-
-[node name="black" type="Polygon2D" parent="GUI"]
-modulate = Color(1, 1, 1, 0)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-58, -140, -59, 798, 1363, 813, 1376, -119)
 
 [node name="blackNim" type="AnimationPlayer" parent="GUI"]
 libraries = {
