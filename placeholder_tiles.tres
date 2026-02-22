@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://bdopjmolb8531"]
+[gd_resource type="TileSet" format=3 uid="uid://bdopjmolb8531"]
 
 [ext_resource type="Texture2D" uid="uid://clikc2xd4jqgp" path="res://Art/Placeholder/ShroomCaveTiles.png" id="1_dv67v"]
 

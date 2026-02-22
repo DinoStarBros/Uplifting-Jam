@@ -12,13 +12,14 @@ config_version=5
 
 warnings/check_invalid_track_paths=false
 warnings/check_angle_interpolation_type_conflicting=false
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
 config/name="UpliftingJam"
 config/tags=PackedStringArray("gamejamlol")
 run/main_scene="uid://wxr3bfk3vrrk"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -26,7 +27,7 @@ config/icon="res://icon.svg"
 Global="*res://globals/Global.gd"
 GlobalSignals="*res://globals/Global_Signals.gd"
 AudioManager="*res://globals/audioManagerGlobals/AudioManager.tscn"
-SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+SceneManager="*uid://j20v4cg7v8m1"
 SaveLoad="*res://saveSystem/SaveLoad.gd"
 References="*res://globals/References.gd"
 

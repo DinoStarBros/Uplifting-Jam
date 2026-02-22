@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://c3ca3y756elru"]
+[gd_scene format=4 uid="uid://c3ca3y756elru"]
 
 [ext_resource type="Script" uid="uid://1qajh1myuq0p" path="res://entities/boss2/boss_2.gd" id="1_xjvva"]
 [ext_resource type="Script" uid="uid://b065nnpdo37wl" path="res://entities/boss2/stateStuff/boss2StateMachine.gd" id="2_xjvva"]
@@ -402,54 +402,52 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh05x"]
 size = Vector2(322, 20)
 
-[node name="boss2" type="CharacterBody2D" groups=["Boss"]]
+[node name="boss2" type="CharacterBody2D" unique_id=15271666 groups=["Boss"]]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_xjvva")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("debug_txt")]
+[node name="StateMachine" type="Node" parent="." unique_id=921533036 node_paths=PackedStringArray("debug_txt")]
 unique_name_in_owner = true
 script = ExtResource("2_xjvva")
 debug_txt = NodePath("../Label")
 
-[node name="start_cutscene" type="Node" parent="StateMachine"]
+[node name="start_cutscene" type="Node" parent="StateMachine" unique_id=1022615724]
 script = ExtResource("3_c11q8")
 
-[node name="walk" type="Node" parent="StateMachine"]
+[node name="walk" type="Node" parent="StateMachine" unique_id=1350941497]
 script = ExtResource("3_xjvva")
 
-[node name="sword_thrust" type="Node" parent="StateMachine"]
+[node name="sword_thrust" type="Node" parent="StateMachine" unique_id=318504029]
 script = ExtResource("5_aubgl")
 
-[node name="dagger_throw" type="Node" parent="StateMachine"]
+[node name="dagger_throw" type="Node" parent="StateMachine" unique_id=1902884460]
 script = ExtResource("6_t1hgp")
 
-[node name="jump_dagger_throw" type="Node" parent="StateMachine"]
+[node name="jump_dagger_throw" type="Node" parent="StateMachine" unique_id=1302368798]
 script = ExtResource("7_a7amn")
 
-[node name="slash_line" type="Node" parent="StateMachine"]
+[node name="slash_line" type="Node" parent="StateMachine" unique_id=1136819548]
 script = ExtResource("8_u6bf7")
 
-[node name="death" type="Node" parent="StateMachine"]
+[node name="death" type="Node" parent="StateMachine" unique_id=1610794860]
 script = ExtResource("9_fh05x")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1167966479]
 offset_left = 78.0
 offset_top = -80.0
 offset_right = 126.0
 offset_bottom = -62.0
 text = "walk"
 
-[node name="collision" type="CollisionShape2D" parent="."]
+[node name="collision" type="CollisionShape2D" parent="." unique_id=861851638]
 shape = SubResource("RectangleShape2D_ga3re")
 
-[node name="animation" type="AnimationPlayer" parent="."]
+[node name="animation" type="AnimationPlayer" parent="." unique_id=1924927042]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_hbd6o")
-}
+libraries/ = SubResource("AnimationLibrary_hbd6o")
 
-[node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component", "ouchnim", "deathnim") instance=ExtResource("4_xdast")]
+[node name="hurtbox_component" parent="." unique_id=48123789 node_paths=PackedStringArray("health_component", "ouchnim", "deathnim") instance=ExtResource("4_xdast")]
 collision_layer = 2
 collision_mask = 2
 health_component = NodePath("../health_component")
@@ -459,34 +457,30 @@ deathnim = NodePath("death")
 spawn_hitspark = true
 hitspark_speed_scale = 0.8
 
-[node name="hurtbox" type="CollisionShape2D" parent="hurtbox_component"]
+[node name="hurtbox" type="CollisionShape2D" parent="hurtbox_component" unique_id=949720766]
 shape = SubResource("RectangleShape2D_gr070")
 
-[node name="ouch" type="AnimationPlayer" parent="hurtbox_component"]
-libraries = {
-&"": SubResource("AnimationLibrary_4evkx")
-}
+[node name="ouch" type="AnimationPlayer" parent="hurtbox_component" unique_id=584832549]
+libraries/ = SubResource("AnimationLibrary_4evkx")
 
-[node name="death" type="AnimationPlayer" parent="hurtbox_component"]
-libraries = {
-&"": SubResource("AnimationLibrary_hlv0q")
-}
+[node name="death" type="AnimationPlayer" parent="hurtbox_component" unique_id=1579625274]
+libraries/ = SubResource("AnimationLibrary_hlv0q")
 
-[node name="HitboxComponent" parent="." instance=ExtResource("8_whq5p")]
+[node name="HitboxComponent" parent="." unique_id=380369177 instance=ExtResource("8_whq5p")]
 unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 4
 
-[node name="hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="hitbox" type="CollisionShape2D" parent="HitboxComponent" unique_id=719724025]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_l7728")
 debug_color = Color(0.994449, 0, 0.221892, 0.42)
 
-[node name="health_component" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("5_okui4")]
-max_hp = 600.0
+[node name="health_component" parent="." unique_id=1604485831 node_paths=PackedStringArray("hp_bar") instance=ExtResource("5_okui4")]
+max_hp = 500.0
 hp_bar = NodePath("../UIStuff/BossHealthBar2")
 
-[node name="sprite" type="Sprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="." unique_id=658803300]
 unique_name_in_owner = true
 texture_filter = 1
 material = SubResource("ShaderMaterial_l7728")
@@ -518,21 +512,19 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "c1a577810738d6d53e9de0af1fd31d1b"
 
-[node name="UIStuff" type="CanvasLayer" parent="."]
+[node name="UIStuff" type="CanvasLayer" parent="." unique_id=346309270]
 
-[node name="start" type="AnimationPlayer" parent="UIStuff"]
-libraries = {
-&"": SubResource("AnimationLibrary_hwmh2")
-}
-autoplay = "start"
+[node name="start" type="AnimationPlayer" parent="UIStuff" unique_id=226915020]
+libraries/ = SubResource("AnimationLibrary_hwmh2")
+autoplay = &"start"
 
-[node name="BossHealthBar2" parent="UIStuff" instance=ExtResource("15_hbd6o")]
+[node name="BossHealthBar2" parent="UIStuff" unique_id=1862685053 instance=ExtResource("15_hbd6o")]
 
-[node name="SwordHitB" parent="." instance=ExtResource("8_whq5p")]
+[node name="SwordHitB" parent="." unique_id=1334565766 instance=ExtResource("8_whq5p")]
 unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitB"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitB" unique_id=1888616001]
 shape = SubResource("RectangleShape2D_fh05x")
 disabled = true
