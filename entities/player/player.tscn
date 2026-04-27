@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://jm4ghv0uftnu"]
+[gd_scene format=4 uid="uid://jm4ghv0uftnu"]
 
 [ext_resource type="Script" uid="uid://culce4loo4np5" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://ktxss84iowf" path="res://entities/player/StateStuff/playerStateMachine.gd" id="2_abrql"]
@@ -1013,20 +1013,20 @@ _data = {
 &"slash_up": SubResource("Animation_ssgi7")
 }
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" unique_id=1656273823]
 collision_layer = 512
 collision_mask = 513
 script = ExtResource("1_symyc")
 fast_wake_up = true
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1914206797]
 offset_left = -22.0
 offset_top = -58.0
 offset_right = 18.0
 offset_bottom = -35.0
 text = "Walk"
 
-[node name="hurtbox_component" parent="." node_paths=PackedStringArray("health_component", "ouchnim", "deathnim") instance=ExtResource("20_eyb6c")]
+[node name="hurtbox_component" parent="." unique_id=1825527800 node_paths=PackedStringArray("health_component", "ouchnim", "deathnim") instance=ExtResource("20_eyb6c")]
 unique_name_in_owner = true
 z_index = 1
 collision_layer = 4
@@ -1037,210 +1037,204 @@ ouchnim = NodePath("ouch")
 deathnim = NodePath("death")
 spawn_hitspark = true
 
-[node name="hurtbox" type="CollisionShape2D" parent="hurtbox_component"]
+[node name="hurtbox" type="CollisionShape2D" parent="hurtbox_component" unique_id=466057849]
 unique_name_in_owner = true
 shape = SubResource("CapsuleShape2D_eyb6c")
 debug_color = Color(0.925038, 0.138517, 3.85046e-07, 0.42)
 
-[node name="ouch" type="AnimationPlayer" parent="hurtbox_component"]
-libraries = {
-&"": SubResource("AnimationLibrary_2soq1")
-}
+[node name="ouch" type="AnimationPlayer" parent="hurtbox_component" unique_id=1190199121]
+libraries/ = SubResource("AnimationLibrary_2soq1")
 
-[node name="death" type="AnimationPlayer" parent="hurtbox_component"]
-libraries = {
-&"": SubResource("AnimationLibrary_np63p")
-}
+[node name="death" type="AnimationPlayer" parent="hurtbox_component" unique_id=1161760045]
+libraries/ = SubResource("AnimationLibrary_np63p")
 
-[node name="health_component" parent="." node_paths=PackedStringArray("hp_bar", "hp_txt") instance=ExtResource("21_221hk")]
+[node name="health_component" parent="." unique_id=1567446123 node_paths=PackedStringArray("hp_bar", "hp_txt") instance=ExtResource("21_221hk")]
 unique_name_in_owner = true
 position = Vector2(-58, -79)
 max_hp = 50.0
 hp_bar = NodePath("../GUI/hpbar")
 hp_txt = NodePath("../GUI/hpbar/hptxt")
 
-[node name="ability_handler" type="Node2D" parent="." node_paths=PackedStringArray("sharpness_bar", "sharpness_txt")]
+[node name="ability_handler" type="Node2D" parent="." unique_id=1398095061 node_paths=PackedStringArray("sharpness_bar", "sharpness_txt")]
 unique_name_in_owner = true
 script = ExtResource("19_we0b7")
 sharpness_bar = NodePath("../GUI/sharpbar")
 sharpness_txt = NodePath("../GUI/sharpbar/sharptxt")
 
-[node name="sfx" type="Node2D" parent="."]
+[node name="sfx" type="Node2D" parent="." unique_id=85257287]
 visible = false
 
-[node name="slash_sfx" type="AudioStreamPlayer" parent="sfx"]
+[node name="slash_sfx" type="AudioStreamPlayer" parent="sfx" unique_id=1608752797]
 unique_name_in_owner = true
 stream = ExtResource("2_bectd")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="slash_sfx2" type="AudioStreamPlayer" parent="sfx"]
+[node name="slash_sfx2" type="AudioStreamPlayer" parent="sfx" unique_id=1469575928]
 unique_name_in_owner = true
 stream = ExtResource("6_gt4e4")
 bus = &"SFX"
 
-[node name="dash_sfx" type="AudioStreamPlayer" parent="sfx"]
+[node name="dash_sfx" type="AudioStreamPlayer" parent="sfx" unique_id=270972607]
 unique_name_in_owner = true
 stream = ExtResource("3_wvtmh")
 bus = &"SFX"
 
-[node name="jump_sfx" type="AudioStreamPlayer" parent="sfx"]
+[node name="jump_sfx" type="AudioStreamPlayer" parent="sfx" unique_id=1319752796]
 unique_name_in_owner = true
 stream = ExtResource("4_3wlsy")
 volume_db = -7.0
 pitch_scale = 1.5
 bus = &"SFX"
 
-[node name="land" type="AudioStreamPlayer" parent="sfx"]
+[node name="land" type="AudioStreamPlayer" parent="sfx" unique_id=1177894478]
 unique_name_in_owner = true
 stream = ExtResource("5_b2kln")
 volume_db = -10.0
 pitch_scale = 3.0
 bus = &"SFX"
 
-[node name="fist_wind" type="AudioStreamPlayer" parent="sfx"]
+[node name="fist_wind" type="AudioStreamPlayer" parent="sfx" unique_id=1368338947]
 unique_name_in_owner = true
 stream = ExtResource("9_wq0jh")
 pitch_scale = 0.9
 bus = &"SFX"
 
-[node name="heal" type="AudioStreamPlayer" parent="sfx"]
+[node name="heal" type="AudioStreamPlayer" parent="sfx" unique_id=437079902]
 unique_name_in_owner = true
 stream = ExtResource("11_geky7")
 volume_db = -5.0
 pitch_scale = 0.8
 bus = &"SFX"
 
-[node name="heal_start" type="AudioStreamPlayer" parent="sfx"]
+[node name="heal_start" type="AudioStreamPlayer" parent="sfx" unique_id=1348435565]
 unique_name_in_owner = true
 stream = ExtResource("12_qwspa")
 volume_db = -5.0
 pitch_scale = 1.5
 bus = &"SFX"
 
-[node name="timers" type="Node" parent="."]
+[node name="timers" type="Node" parent="." unique_id=761174161]
 
-[node name="slashTimer" type="Timer" parent="timers"]
+[node name="slashTimer" type="Timer" parent="timers" unique_id=1361979576]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="SM" type="Node" parent="." node_paths=PackedStringArray("debug_txt")]
+[node name="StateMachine" type="Node" parent="." unique_id=1804984748 node_paths=PackedStringArray("debug_txt")]
 unique_name_in_owner = true
 script = ExtResource("2_abrql")
 debug_txt = NodePath("../Label")
 
-[node name="walk" type="Node" parent="SM"]
+[node name="walk" type="Node" parent="StateMachine" unique_id=1255885596]
 script = ExtResource("3_bls4j")
 
-[node name="dash" type="Node" parent="SM"]
+[node name="dash" type="Node" parent="StateMachine" unique_id=13864550]
 script = ExtResource("6_qiwj3")
 
-[node name="fall" type="Node" parent="SM"]
+[node name="fall" type="Node" parent="StateMachine" unique_id=438614817]
 script = ExtResource("4_fkugw")
 
-[node name="wakeUp" type="Node" parent="SM"]
+[node name="wakeUp" type="Node" parent="StateMachine" unique_id=1974124092]
 script = ExtResource("12_2soq1")
 
-[node name="jump" type="Node" parent="SM"]
+[node name="jump" type="Node" parent="StateMachine" unique_id=912854773]
 script = ExtResource("5_8fjmc")
 
-[node name="pogoJump" type="Node" parent="SM"]
+[node name="pogoJump" type="Node" parent="StateMachine" unique_id=1624104037]
 script = ExtResource("9_a1qjk")
 
-[node name="slashKnockback" type="Node" parent="SM"]
+[node name="slashKnockback" type="Node" parent="StateMachine" unique_id=1600001818]
 script = ExtResource("10_j3ovn")
 
-[node name="exit" type="Node" parent="SM"]
+[node name="exit" type="Node" parent="StateMachine" unique_id=1452492869]
 script = ExtResource("19_8q4fm")
 
-[node name="damaged" type="Node" parent="SM"]
+[node name="damaged" type="Node" parent="StateMachine" unique_id=1277106952]
 script = ExtResource("16_qpopc")
 
-[node name="dead" type="Node" parent="SM"]
+[node name="dead" type="Node" parent="StateMachine" unique_id=611914844]
 script = ExtResource("20_bwdx1")
 
-[node name="cutscene" type="Node" parent="SM"]
+[node name="cutscene" type="Node" parent="StateMachine" unique_id=948670210]
 script = ExtResource("21_2soq1")
 
-[node name="abilities" type="Node" parent="SM"]
+[node name="abilities" type="Node" parent="StateMachine" unique_id=196821811]
 unique_name_in_owner = true
 
-[node name="fist" type="Node" parent="SM/abilities"]
+[node name="fist" type="Node" parent="StateMachine/abilities" unique_id=965229695]
 script = ExtResource("18_qpopc")
 sharpness_cost = 4
 
-[node name="minigun" type="Node" parent="SM/abilities"]
+[node name="minigun" type="Node" parent="StateMachine/abilities" unique_id=1166215455]
 script = ExtResource("23_24ehl")
 sharpness_cost = 4
 
-[node name="pistol" type="Node" parent="SM/abilities"]
+[node name="pistol" type="Node" parent="StateMachine/abilities" unique_id=573067927]
 script = ExtResource("19_wq0jh")
 sharpness_cost = 3
 
-[node name="drone" type="Node" parent="SM/abilities"]
+[node name="drone" type="Node" parent="StateMachine/abilities" unique_id=1736935888]
 script = ExtResource("16_ghoj8")
 sharpness_cost = 5
 
-[node name="sword" type="Node" parent="SM/abilities"]
+[node name="sword" type="Node" parent="StateMachine/abilities" unique_id=1028878987]
 script = ExtResource("27_8q4fm")
 sharpness_cost = 4
 
-[node name="scythe" type="Node" parent="SM/abilities"]
+[node name="scythe" type="Node" parent="StateMachine/abilities" unique_id=460166670]
 script = ExtResource("28_np63p")
 sharpness_cost = 4
 
-[node name="hailOfBlades" type="Node" parent="SM/abilities"]
+[node name="hailOfBlades" type="Node" parent="StateMachine/abilities" unique_id=328534351]
 script = ExtResource("29_0eo6o")
 sharpness_cost = 6
 
-[node name="treeOfHealing" type="Node" parent="SM/abilities"]
+[node name="treeOfHealing" type="Node" parent="StateMachine/abilities" unique_id=1010808257]
 script = ExtResource("30_ttr27")
 sharpness_cost = 5
 
-[node name="shieldBash" type="Node" parent="SM/abilities"]
+[node name="shieldBash" type="Node" parent="StateMachine/abilities" unique_id=157320554]
 script = ExtResource("31_13wue")
 sharpness_cost = 4
 
-[node name="coffee" type="Node" parent="SM/abilities"]
+[node name="coffee" type="Node" parent="StateMachine/abilities" unique_id=429437281]
 script = ExtResource("32_wy7bt")
 sharpness_cost = 4
 
-[node name="anim" type="AnimationPlayer" parent="."]
+[node name="anim" type="AnimationPlayer" parent="." unique_id=340017844]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_8fjmc")
-}
+libraries/ = SubResource("AnimationLibrary_8fjmc")
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=1149552629]
 unique_name_in_owner = true
 zoom = Vector2(0.8, 0.8)
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("11_afbqv")
 
-[node name="camLimArea" type="Area2D" parent="Camera"]
+[node name="camLimArea" type="Area2D" parent="Camera" unique_id=937806352]
 unique_name_in_owner = true
 collision_layer = 128
 collision_mask = 128
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/camLimArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/camLimArea" unique_id=1857108035]
 shape = SubResource("CircleShape2D_vewsg")
 
-[node name="collide" type="CollisionShape2D" parent="."]
+[node name="collide" type="CollisionShape2D" parent="." unique_id=2064133774]
 shape = SubResource("RectangleShape2D_bls4j")
 
-[node name="GUI" type="CanvasLayer" parent="."]
+[node name="GUI" type="CanvasLayer" parent="." unique_id=1168089934]
 process_mode = 3
 script = ExtResource("15_gx6sm")
 
-[node name="hpbar" type="ProgressBar" parent="GUI"]
+[node name="hpbar" type="ProgressBar" parent="GUI" unique_id=1979247902]
 offset_left = 36.0
 offset_top = 25.0
 offset_right = 368.0
 offset_bottom = 47.0
 show_percentage = false
 
-[node name="hptxt" type="Label" parent="GUI/hpbar"]
+[node name="hptxt" type="Label" parent="GUI/hpbar" unique_id=272630871]
 layout_mode = 0
 offset_left = 30.0
 offset_right = 83.0
@@ -1249,14 +1243,14 @@ text = "HP: 50 / 50"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="sharpbar" type="ProgressBar" parent="GUI"]
+[node name="sharpbar" type="ProgressBar" parent="GUI" unique_id=524930675]
 offset_left = 36.0
 offset_top = 60.0
 offset_right = 368.0
 offset_bottom = 82.0
 show_percentage = false
 
-[node name="sharptxt" type="Label" parent="GUI/sharpbar"]
+[node name="sharptxt" type="Label" parent="GUI/sharpbar" unique_id=2082736425]
 layout_mode = 0
 offset_left = 30.0
 offset_right = 83.0
@@ -1265,7 +1259,7 @@ text = "Sharp: 10 / 10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="pause" type="Control" parent="GUI"]
+[node name="pause" type="Control" parent="GUI" unique_id=512570118]
 unique_name_in_owner = true
 visible = false
 layout_mode = 3
@@ -1278,7 +1272,7 @@ offset_right = 677.0
 offset_bottom = 325.0
 grow_vertical = 2
 
-[node name="settingsMenu" parent="GUI/pause" instance=ExtResource("16_yqrof")]
+[node name="settingsMenu" parent="GUI/pause" unique_id=258337174 instance=ExtResource("16_yqrof")]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -12.0
@@ -1286,36 +1280,36 @@ offset_top = -47.0
 offset_right = -12.0
 offset_bottom = -47.0
 
-[node name="buttonBox" type="HBoxContainer" parent="GUI/pause/settingsMenu"]
+[node name="buttonBox" type="HBoxContainer" parent="GUI/pause/settingsMenu" unique_id=1045262050]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 549.0
 offset_right = 223.0
 offset_bottom = 589.0
 
-[node name="resume" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
+[node name="resume" type="Button" parent="GUI/pause/settingsMenu/buttonBox" unique_id=1036799172]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
 
-[node name="quit" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
+[node name="quit" type="Button" parent="GUI/pause/settingsMenu/buttonBox" unique_id=142203514]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
 
-[node name="sure" type="Button" parent="GUI/pause/settingsMenu/buttonBox"]
+[node name="sure" type="Button" parent="GUI/pause/settingsMenu/buttonBox" unique_id=2119329358]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Sure"
 
-[node name="inventory" type="Control" parent="GUI"]
+[node name="inventory" type="Control" parent="GUI" unique_id=857612685]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="inventroyBox" type="PanelContainer" parent="GUI/inventory"]
+[node name="inventroyBox" type="PanelContainer" parent="GUI/inventory" unique_id=1511152073]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 43.0
@@ -1323,7 +1317,7 @@ offset_top = 40.0
 offset_right = 1224.0
 offset_bottom = 678.0
 
-[node name="inv_resume" type="Button" parent="GUI/inventory/inventroyBox"]
+[node name="inv_resume" type="Button" parent="GUI/inventory/inventroyBox" unique_id=1594402062]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -1333,7 +1327,7 @@ text = "
 
 "
 
-[node name="buttons" type="VBoxContainer" parent="GUI/inventory"]
+[node name="buttons" type="VBoxContainer" parent="GUI/inventory" unique_id=1262813996]
 layout_mode = 0
 offset_left = 88.0
 offset_top = 91.0
@@ -1342,39 +1336,39 @@ offset_bottom = 253.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="GUI/inventory/buttons"]
+[node name="Label" type="Label" parent="GUI/inventory/buttons" unique_id=479503895]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Drawings Equipped"
 
-[node name="1" type="Button" parent="GUI/inventory/buttons"]
+[node name="1" type="Button" parent="GUI/inventory/buttons" unique_id=1179593274]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Neutral / 1:
 
 "
 
-[node name="2" type="Button" parent="GUI/inventory/buttons"]
+[node name="2" type="Button" parent="GUI/inventory/buttons" unique_id=2055223939]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Up / 2:
 
 "
 
-[node name="3" type="Button" parent="GUI/inventory/buttons"]
+[node name="3" type="Button" parent="GUI/inventory/buttons" unique_id=2041843891]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Down / 3:
 
 "
 
-[node name="Label2" type="Label" parent="GUI/inventory/buttons"]
+[node name="Label2" type="Label" parent="GUI/inventory/buttons" unique_id=386235986]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Can't equip other drawings here,
 equip them in the drawings folder"
 
-[node name="inspiration" type="Label" parent="GUI/inventory"]
+[node name="inspiration" type="Label" parent="GUI/inventory" unique_id=1055046499]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1079.0
@@ -1383,34 +1377,32 @@ offset_right = 1205.0
 offset_bottom = 78.0
 text = "Inspiration: 0"
 
-[node name="black" type="Polygon2D" parent="GUI"]
+[node name="black" type="Polygon2D" parent="GUI" unique_id=40861086]
 modulate = Color(1, 1, 1, 0)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-58, -140, -59, 798, 1363, 813, 1376, -119)
 
-[node name="black_bars" type="Node2D" parent="GUI"]
+[node name="black_bars" type="Node2D" parent="GUI" unique_id=805675832]
 unique_name_in_owner = true
 visible = false
 position = Vector2(640, 360)
 scale = Vector2(1.5, 1.5)
 
-[node name="bbu" type="Polygon2D" parent="GUI/black_bars"]
+[node name="bbu" type="Polygon2D" parent="GUI/black_bars" unique_id=1093606082]
 position = Vector2(0, -360)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-800, -100, 800, -100, 800, 100, -800, 100)
 
-[node name="bbd" type="Polygon2D" parent="GUI/black_bars"]
+[node name="bbd" type="Polygon2D" parent="GUI/black_bars" unique_id=808238752]
 position = Vector2(0, 360)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-800, -100, 800, -100, 800, 100, -800, 100)
 
-[node name="blackNim" type="AnimationPlayer" parent="GUI"]
-libraries = {
-&"": SubResource("AnimationLibrary_13wue")
-}
-autoplay = "start"
+[node name="blackNim" type="AnimationPlayer" parent="GUI" unique_id=1841852999]
+libraries/ = SubResource("AnimationLibrary_13wue")
+autoplay = &"start"
 
-[node name="Mow" type="Sprite2D" parent="."]
+[node name="Mow" type="Sprite2D" parent="." unique_id=1511832386]
 unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_2soq1")
@@ -1420,10 +1412,10 @@ hframes = 8
 vframes = 5
 frame = 1
 
-[node name="slash_pivot" type="Node2D" parent="."]
+[node name="slash_pivot" type="Node2D" parent="." unique_id=1655256397]
 unique_name_in_owner = true
 
-[node name="slash" type="Sprite2D" parent="slash_pivot"]
+[node name="slash" type="Sprite2D" parent="slash_pivot" unique_id=2116831701]
 unique_name_in_owner = true
 visible = false
 scale = Vector2(1.4, 0.7)
@@ -1432,32 +1424,30 @@ hframes = 2
 vframes = 2
 frame = 1
 
-[node name="slashnim" type="AnimationPlayer" parent="slash_pivot"]
+[node name="slashnim" type="AnimationPlayer" parent="slash_pivot" unique_id=409414254]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_a1qjk")
-}
+libraries/ = SubResource("AnimationLibrary_a1qjk")
 speed_scale = 1.5
 
-[node name="HitboxComponent" parent="slash_pivot" instance=ExtResource("13_j3ovn")]
+[node name="HitboxComponent" parent="slash_pivot" unique_id=149750264 instance=ExtResource("13_j3ovn")]
 unique_name_in_owner = true
 rotation = 1.5708
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="slash_pivot/HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slash_pivot/HitboxComponent" unique_id=1652985463]
 position = Vector2(1.00006, -23)
 shape = SubResource("CapsuleShape2D_7thud")
 disabled = true
 
-[node name="exit_area" type="Area2D" parent="."]
+[node name="exit_area" type="Area2D" parent="." unique_id=2007148765]
 collision_layer = 256
 collision_mask = 256
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_area" unique_id=175765023]
 shape = SubResource("CircleShape2D_2soq1")
 
-[node name="sprite" type="Sprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="." unique_id=343468831]
 unique_name_in_owner = true
 visible = false
 texture_filter = 1
@@ -1490,7 +1480,7 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "8927c650e25c0a76b9684d8246279bd2"
 
-[node name="slashprite" type="Sprite2D" parent="."]
+[node name="slashprite" type="Sprite2D" parent="." unique_id=1246514190]
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(6, -13)
@@ -1522,10 +1512,8 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "8927c650e25c0a76b9684d8246279bd2"
 
-[node name="slashPriteNim" type="AnimationPlayer" parent="slashprite"]
+[node name="slashPriteNim" type="AnimationPlayer" parent="slashprite" unique_id=1250313492]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_c112w")
-}
+libraries/ = SubResource("AnimationLibrary_c112w")
 
 [connection signal="area_entered" from="exit_area" to="." method="_on_exit_area_area_entered"]

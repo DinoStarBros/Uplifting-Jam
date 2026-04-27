@@ -2,7 +2,7 @@ extends Node2D
 class_name Ability_Handler
 
 @onready var p : Player = get_parent()
-@onready var sm: StateMachinePlayer = %SM
+@onready var sm: StateMachinePlayer = %StateMachine
 
 @export var sharpness_bar : ProgressBar
 @export var sharpness_txt : Label

@@ -3,7 +3,7 @@ class_name Player
 
 @export var fast_wake_up : bool = false
 
-@onready var sm: StateMachinePlayer = %SM
+@onready var sm: StateMachinePlayer = %StateMachine
 @onready var anim: AnimationPlayer = %anim
 @onready var sprite: Sprite2D = %sprite
 @onready var slashnim: AnimationPlayer = %slashnim

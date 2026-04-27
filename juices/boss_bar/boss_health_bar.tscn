@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpfgqwsylvrr2"]
+[gd_scene format=3 uid="uid://dpfgqwsylvrr2"]
 
 [ext_resource type="Script" uid="uid://gmy3c4hf7yci" path="res://juices/boss_bar/boss_health_bar.gd" id="1_ssqm8"]
 
@@ -23,7 +23,7 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4r6r8"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="BossHealthBar" type="ProgressBar"]
+[node name="BossHealthBar" type="ProgressBar" unique_id=1381802460]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -41,7 +41,7 @@ value = 100.0
 show_percentage = false
 script = ExtResource("1_ssqm8")
 
-[node name="fake_bar" type="ProgressBar" parent="."]
+[node name="fake_bar" type="ProgressBar" parent="." unique_id=1815979001]
 unique_name_in_owner = true
 show_behind_parent = true
 custom_minimum_size = Vector2(1247, 0)
@@ -52,7 +52,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_txswc")
 value = 100.0
 show_percentage = false
 
-[node name="bg_bar" type="ProgressBar" parent="fake_bar"]
+[node name="bg_bar" type="ProgressBar" parent="fake_bar" unique_id=1252815417]
 show_behind_parent = true
 custom_minimum_size = Vector2(1247, 0)
 layout_mode = 0
