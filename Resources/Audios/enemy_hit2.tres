@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AudioSettings" load_steps=3 format=3 uid="uid://bx8nvxuk50vh"]
+[gd_resource type="Resource" script_class="AudioSettings" format=3 uid="uid://bx8nvxuk50vh"]
 
 [ext_resource type="AudioStream" uid="uid://btoc7gcwarymr" path="res://Audio/amalgun/shoot.wav" id="1_pf55o"]
 [ext_resource type="Script" uid="uid://dev818h8ibdxg" path="res://globals/audioManagerGlobals/audio_settings_res.gd" id="2_56i6y"]
@@ -11,6 +11,4 @@ type = 1
 volume_db = -10.0
 min_pitch = 0.3
 max_pitch = 0.45
-starting_point = 0.0
-duration = 1.5
 metadata/_custom_type_script = "uid://dev818h8ibdxg"
