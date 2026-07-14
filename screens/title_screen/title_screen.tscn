@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://wxr3bfk3vrrk"]
+[gd_scene format=4 uid="uid://wxr3bfk3vrrk"]
 
 [ext_resource type="Script" uid="uid://bahqri01wuqxe" path="res://screens/title_screen/title_screen.gd" id="1_4rvf0"]
 [ext_resource type="AudioStream" uid="uid://qn6skfb4q5dt" path="res://Audio/UJsfx/OSstartup.mp3" id="2_alfmu"]
@@ -283,6 +283,15 @@ atlas = ExtResource("9_e6237")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="FontFile" id="FontFile_yvje3"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -315,10 +324,10 @@ shader_parameter/shake_speed = 5.0
 shader_parameter/shake_block_size = 30.5
 shader_parameter/shake_color_rate = 0.01
 
-[node name="title_screen" type="Node"]
+[node name="title_screen" type="Node" unique_id=185915475]
 script = ExtResource("1_4rvf0")
 
-[node name="DesktopBg" type="Sprite2D" parent="."]
+[node name="DesktopBg" type="Sprite2D" parent="." unique_id=214975498]
 modulate = Color(0.779291, 0.779291, 0.779291, 1)
 z_index = -5
 texture_filter = 1
@@ -347,7 +356,7 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "2500dd3fe821d3dfb267eb24d3b0de12"
 
-[node name="title_txt" type="Label" parent="."]
+[node name="title_txt" type="Label" parent="." unique_id=1845509872]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -359,7 +368,7 @@ grow_horizontal = 2
 text = "Mightier Dan"
 label_settings = SubResource("LabelSettings_4rvf0")
 
-[node name="buttons" type="VBoxContainer" parent="."]
+[node name="buttons" type="VBoxContainer" parent="." unique_id=1563105272]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 4
@@ -372,69 +381,67 @@ offset_bottom = 254.0
 grow_vertical = 2
 theme_override_constants/separation = 50
 
-[node name="play" type="Button" parent="buttons"]
+[node name="play" type="Button" parent="buttons" unique_id=1390414214]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "PLAY"
 
-[node name="options" type="Button" parent="buttons"]
+[node name="options" type="Button" parent="buttons" unique_id=1037473512]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "OPTIONS"
 
-[node name="quit" type="Button" parent="buttons"]
+[node name="quit" type="Button" parent="buttons" unique_id=903886928]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "QUIT"
 
-[node name="animation" type="AnimationPlayer" parent="."]
+[node name="animation" type="AnimationPlayer" parent="." unique_id=1678690811]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_alfmu")
-}
+libraries/ = SubResource("AnimationLibrary_alfmu")
 
-[node name="lDotsTimer" type="Timer" parent="."]
+[node name="lDotsTimer" type="Timer" parent="." unique_id=928242346]
 unique_name_in_owner = true
 wait_time = 0.1
 autostart = true
 
-[node name="sfx" type="Node" parent="."]
+[node name="sfx" type="Node" parent="." unique_id=1155902941]
 
-[node name="Startup" type="AudioStreamPlayer" parent="sfx"]
+[node name="Startup" type="AudioStreamPlayer" parent="sfx" unique_id=1940092769]
 stream = ExtResource("2_alfmu")
 volume_db = -20.0
 bus = &"Music"
 
-[node name="mClick2" type="AudioStreamPlayer" parent="sfx"]
+[node name="mClick2" type="AudioStreamPlayer" parent="sfx" unique_id=1721447944]
 unique_name_in_owner = true
 stream = ExtResource("3_v18if")
 pitch_scale = 2.0
 bus = &"SFX"
 
-[node name="glitching" type="AudioStreamPlayer" parent="sfx"]
+[node name="glitching" type="AudioStreamPlayer" parent="sfx" unique_id=1716491635]
 stream = ExtResource("5_hjto8")
 volume_db = -15.0
 pitch_scale = 3.0
 bus = &"SFX"
 
-[node name="glitch1" type="AudioStreamPlayer" parent="sfx"]
+[node name="glitch1" type="AudioStreamPlayer" parent="sfx" unique_id=836948116]
 stream = ExtResource("5_rgfbv")
 volume_db = -10.0
 pitch_scale = 0.5
 bus = &"SFX"
 
-[node name="glitch2" type="AudioStreamPlayer" parent="sfx"]
+[node name="glitch2" type="AudioStreamPlayer" parent="sfx" unique_id=1247983814]
 stream = ExtResource("6_ijpes")
 volume_db = -10.0
 bus = &"SFX"
 
-[node name="AppIcons" type="Control" parent="."]
+[node name="AppIcons" type="Control" parent="." unique_id=1571033918]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -445,7 +452,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_fjwv1")
 
-[node name="recycleBin" type="Button" parent="AppIcons"]
+[node name="recycleBin" type="Button" parent="AppIcons" unique_id=836895809]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 24.0
@@ -458,7 +465,7 @@ icon = SubResource("AtlasTexture_81sk2")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="panel" type="PanelContainer" parent="AppIcons/recycleBin"]
+[node name="panel" type="PanelContainer" parent="AppIcons/recycleBin" unique_id=519101724]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -466,28 +473,28 @@ offset_left = 83.0
 offset_right = 244.0
 offset_bottom = 106.0
 
-[node name="reset" type="Label" parent="AppIcons/recycleBin/panel"]
+[node name="reset" type="Label" parent="AppIcons/recycleBin/panel" unique_id=233348138]
 layout_mode = 2
 text = "Reset save file?
 You'll lose your
 progress.
 "
 
-[node name="reset_sf" type="Button" parent="AppIcons/recycleBin/panel"]
+[node name="reset_sf" type="Button" parent="AppIcons/recycleBin/panel" unique_id=1599682798]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Reset?"
 
-[node name="h" type="HBoxContainer" parent="AppIcons"]
+[node name="h" type="HBoxContainer" parent="AppIcons" unique_id=1794423010]
 layout_mode = 0
 offset_left = 189.0
 offset_top = 169.0
 offset_right = 364.0
 offset_bottom = 245.0
 
-[node name="joyArt" type="Button" parent="AppIcons/h"]
+[node name="joyArt" type="Button" parent="AppIcons/h" unique_id=446912258]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
@@ -497,7 +504,7 @@ alignment = 2
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="drawings" type="Button" parent="AppIcons/h"]
+[node name="drawings" type="Button" parent="AppIcons/h" unique_id=2059894063]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
@@ -506,14 +513,14 @@ icon = SubResource("AtlasTexture_e6237")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="bosses" type="HBoxContainer" parent="AppIcons"]
+[node name="bosses" type="HBoxContainer" parent="AppIcons" unique_id=2058152761]
 layout_mode = 0
 offset_left = 189.0
 offset_top = 263.0
 offset_right = 462.0
 offset_bottom = 327.0
 
-[node name="tutorial" type="Button" parent="AppIcons/bosses"]
+[node name="tutorial" type="Button" parent="AppIcons/bosses" unique_id=2067401021]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
@@ -522,7 +529,7 @@ icon = SubResource("AtlasTexture_mhrfk")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="doubt" type="Button" parent="AppIcons/bosses"]
+[node name="doubt" type="Button" parent="AppIcons/bosses" unique_id=2099224151]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
@@ -531,7 +538,7 @@ icon = SubResource("AtlasTexture_n6o3x")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="perfectionism" type="Button" parent="AppIcons/bosses"]
+[node name="perfectionism" type="Button" parent="AppIcons/bosses" unique_id=1741027040]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
@@ -540,7 +547,7 @@ icon = SubResource("AtlasTexture_im15t")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="artblock" type="Button" parent="AppIcons/bosses"]
+[node name="artblock" type="Button" parent="AppIcons/bosses" unique_id=1795817055]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
@@ -549,7 +556,7 @@ icon = SubResource("AtlasTexture_1e271")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
-[node name="AppWindows" type="Control" parent="."]
+[node name="AppWindows" type="Control" parent="." unique_id=2074223887]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 8
@@ -562,13 +569,13 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("5_jtisy")
 
-[node name="mClick" type="AudioStreamPlayer" parent="AppWindows"]
+[node name="mClick" type="AudioStreamPlayer" parent="AppWindows" unique_id=383016325]
 unique_name_in_owner = true
 stream = ExtResource("3_v18if")
 pitch_scale = 1.1
 bus = &"SFX"
 
-[node name="joy_art_window" parent="AppWindows" instance=ExtResource("6_jrv5w")]
+[node name="joy_art_window" parent="AppWindows" unique_id=50855415 instance=ExtResource("6_jrv5w")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -577,12 +584,12 @@ offset_top = -255.0
 offset_right = -503.0
 offset_bottom = -255.0
 
-[node name="inventoryStuff" parent="AppWindows" instance=ExtResource("11_yvje3")]
+[node name="inventoryStuff" parent="AppWindows" unique_id=1972426046 instance=ExtResource("11_yvje3")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="x_inv" type="Button" parent="AppWindows/inventoryStuff"]
+[node name="x_inv" type="Button" parent="AppWindows/inventoryStuff" unique_id=1623666349]
 layout_mode = 0
 offset_left = 583.0
 offset_top = -337.0
@@ -591,7 +598,7 @@ offset_bottom = -306.0
 theme_override_fonts/font = SubResource("FontFile_yvje3")
 text = "X"
 
-[node name="Taskbar" type="Control" parent="."]
+[node name="Taskbar" type="Control" parent="." unique_id=207224424]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -602,7 +609,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("7_8cbff")
 
-[node name="bg" type="ColorRect" parent="Taskbar"]
+[node name="bg" type="ColorRect" parent="Taskbar" unique_id=1782612004]
 layout_mode = 0
 offset_top = 667.0
 offset_right = 1280.0
@@ -610,7 +617,7 @@ offset_bottom = 720.0
 mouse_filter = 2
 color = Color(0.601223, 0.601223, 0.601223, 1)
 
-[node name="buttons" type="HBoxContainer" parent="Taskbar/bg"]
+[node name="buttons" type="HBoxContainer" parent="Taskbar/bg" unique_id=1387361261]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 4.0
@@ -618,13 +625,13 @@ offset_right = 322.0
 offset_bottom = 44.0
 theme_override_constants/separation = 20
 
-[node name="logo" type="Button" parent="Taskbar/bg/buttons"]
+[node name="logo" type="Button" parent="Taskbar/bg/buttons" unique_id=455181900]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Settings"
 icon = SubResource("AtlasTexture_8ye7k")
 
-[node name="lMenu" type="Panel" parent="Taskbar/bg/buttons/logo"]
+[node name="lMenu" type="Panel" parent="Taskbar/bg/buttons/logo" unique_id=1301373495]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -632,7 +639,7 @@ offset_top = -586.0
 offset_right = 532.0
 offset_bottom = -4.0
 
-[node name="shutDown" type="Button" parent="Taskbar/bg/buttons/logo/lMenu"]
+[node name="shutDown" type="Button" parent="Taskbar/bg/buttons/logo/lMenu" unique_id=1834218344]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 426.0
@@ -641,7 +648,7 @@ offset_right = 529.0
 offset_bottom = 579.0
 text = "Shut Down"
 
-[node name="settingsMenu" parent="Taskbar/bg/buttons/logo/lMenu" instance=ExtResource("9_bgok2")]
+[node name="settingsMenu" parent="Taskbar/bg/buttons/logo/lMenu" unique_id=1735520808 instance=ExtResource("9_bgok2")]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 10.0
@@ -650,13 +657,13 @@ offset_right = 10.0
 offset_bottom = 3.0
 scale = Vector2(0.797162, 0.873554)
 
-[node name="joy_art_taskbar" type="Button" parent="Taskbar/bg/buttons"]
+[node name="joy_art_taskbar" type="Button" parent="Taskbar/bg/buttons" unique_id=422537930]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Joy Art 2025"
 icon = SubResource("AtlasTexture_405we")
 
-[node name="x_ja" type="Button" parent="Taskbar/bg/buttons/joy_art_taskbar"]
+[node name="x_ja" type="Button" parent="Taskbar/bg/buttons/joy_art_taskbar" unique_id=1477565735]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 165.0
@@ -664,13 +671,13 @@ offset_right = 204.0
 offset_bottom = 40.0
 text = "X"
 
-[node name="inventory_taskbar" type="Button" parent="Taskbar/bg/buttons"]
+[node name="inventory_taskbar" type="Button" parent="Taskbar/bg/buttons" unique_id=1734397684]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Drawings"
 icon = SubResource("AtlasTexture_wim8o")
 
-[node name="x_i" type="Button" parent="Taskbar/bg/buttons/inventory_taskbar"]
+[node name="x_i" type="Button" parent="Taskbar/bg/buttons/inventory_taskbar" unique_id=896240374]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 134.0
@@ -678,13 +685,13 @@ offset_right = 173.0
 offset_bottom = 40.0
 text = "X"
 
-[node name="black_overlay" type="Polygon2D" parent="."]
+[node name="black_overlay" type="Polygon2D" parent="." unique_id=421558676]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(740, 247)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-915, -416, -915, 553, 881, 573, 854, -349)
 
-[node name="dinoOs" type="Label" parent="black_overlay"]
+[node name="dinoOs" type="Label" parent="black_overlay" unique_id=73510445]
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
@@ -700,7 +707,7 @@ text = "Dino Os
 "
 label_settings = SubResource("LabelSettings_4rvf0")
 
-[node name="loading" type="ProgressBar" parent="black_overlay/dinoOs"]
+[node name="loading" type="ProgressBar" parent="black_overlay/dinoOs" unique_id=637217638]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 10.0
@@ -712,7 +719,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_v18if")
 max_value = 1.0
 show_percentage = false
 
-[node name="lDots" type="Label" parent="black_overlay/dinoOs"]
+[node name="lDots" type="Label" parent="black_overlay/dinoOs" unique_id=150962266]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 157.0
@@ -721,7 +728,7 @@ offset_right = 247.0
 offset_bottom = 220.0
 text = "Loading..."
 
-[node name="glitch" type="Sprite2D" parent="."]
+[node name="glitch" type="Sprite2D" parent="." unique_id=1069486525]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_ijpes")
 position = Vector2(661.5, 378)
