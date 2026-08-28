@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="UpliftingJam"
+config/name="MightierDan"
 config/tags=PackedStringArray("gamejamlol")
 run/main_scene="uid://wxr3bfk3vrrk"
 config/features=PackedStringArray("4.7", "GL Compatibility")
